@@ -1,31 +1,24 @@
-import type { EntryFieldTypes } from "contentful";
-
-export type BrandSkeleton = {
-  contentTypeId: "brand";
-  fields: {
-    name: EntryFieldTypes.Text;
-    slug: EntryFieldTypes.Text;
-    country: EntryFieldTypes.Text;
-    foundedYear: EntryFieldTypes.Integer;
-    description: EntryFieldTypes.RichText;
-    logo: EntryFieldTypes.AssetLink;
-    heroImage: EntryFieldTypes.AssetLink;
-  };
+export type Brand = {
+  id: string;
+  name: string;
+  slug: string;
+  country: string | null;
+  foundedYear: number | null;
+  description: string | null;
 };
 
-export type CameraSkeleton = {
-  contentTypeId: "camera";
-  fields: {
-    name: EntryFieldTypes.Text;
-    slug: EntryFieldTypes.Text;
-    brand: EntryFieldTypes.EntryLink<BrandSkeleton>;
-    releaseYear: EntryFieldTypes.Integer;
-    cameraType: EntryFieldTypes.Text;
-    mount: EntryFieldTypes.Text;
-    sensorFormat: EntryFieldTypes.Text;
-    description: EntryFieldTypes.RichText;
-    heroImage: EntryFieldTypes.AssetLink;
-    gallery: EntryFieldTypes.Array<EntryFieldTypes.AssetLink>;
-    specs: EntryFieldTypes.Object;
+export type Camera = {
+  id: string;
+  name: string;
+  slug: string;
+  releaseYear: number | null;
+  cameraType: string | null;
+  mount: string | null;
+  sensorFormat: string | null;
+  description: string | null;
+  specs: Record<string, unknown> | null;
+  brand: {
+    name: string;
+    slug: string;
   };
 };
