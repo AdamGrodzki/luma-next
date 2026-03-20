@@ -1,0 +1,36 @@
+[
+  {
+    "legacyId": "canon-eos-r5",
+    "name": "Canon EOS R5",
+    "slug": "canon-eos-r5",
+    "brandSlug": "canon",
+    "releaseYear": 2020,
+    "cameraType": "Mirrorless",
+    "mount": "Canon RF",
+    "sensorFormat": "Full Frame",
+    "description": "High-resolution full-frame mirrorless camera.",
+    "specs": {
+      "resolutionMp": 45,
+      "video": "8K",
+      "ibis": true
+    },
+    "status": "active"
+  },
+  {
+    "legacyId": "fujifilm-x-t5",
+    "name": "Fujifilm X-T5",
+    "slug": "fujifilm-x-t5",
+    "brandSlug": "fujifilm",
+    "releaseYear": 2022,
+    "cameraType": "Mirrorless",
+    "mount": "Fujifilm X",
+    "sensorFormat": "APS-C",
+    "description": "Compact APS-C mirrorless camera focused on stills.",
+    "specs": {
+      "resolutionMp": 40.2,
+      "video": "6.2K",
+      "ibis": true
+    },
+    "status": "active"
+  }
+]
