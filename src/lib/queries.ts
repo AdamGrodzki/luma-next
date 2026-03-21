@@ -12,6 +12,24 @@ function getAssetUrl(asset: any): string | null {
   return url.startsWith("//") ? `https:${url}` : url;
 }
 
+function getAssetUrls(assets: any[] | undefined): string[] {
+  if (!Array.isArray(assets)) return [];
+  return assets
+    .map((asset) => getAssetUrl(asset))
+    .filter((url): url is string => Boolean(url));
+}
+
+export function buildContentfulImageUrl(
+  url: string,
+  options?: { w?: number; h?: number; fit?: "fill" | "pad" | "scale" | "crop" | "thumb" }
+) {
+  const parsed = new URL(url);
+  if (options?.w) parsed.searchParams.set("w", String(options.w));
+  if (options?.h) parsed.searchParams.set("h", String(options.h));
+  if (options?.fit) parsed.searchParams.set("fit", options.fit);
+  return parsed.toString();
+}
+
 export async function getBrands(): Promise<Brand[]> {
   const res = await contentful.getEntries({
     content_type: "brand",
@@ -50,7 +68,6 @@ export async function getBrandBySlug(slug: string): Promise<Brand | null> {
     logoUrl: getAssetUrl(item.fields.logo),
   };
 }
-
 export async function getCameras(): Promise<Camera[]> {
   const res = await contentful.getEntries({
     content_type: "camera",
@@ -69,6 +86,7 @@ export async function getCameras(): Promise<Camera[]> {
     description: item.fields.description ?? null,
     specs: item.fields.specs ?? null,
     heroImageUrl: getAssetUrl(item.fields.heroImage),
+    galleryUrls: getAssetUrls(item.fields.gallery),
     brand: {
       name: item.fields.brand?.fields?.name ?? "Unknown brand",
       slug: item.fields.brand?.fields?.slug ?? "",
@@ -98,6 +116,7 @@ export async function getCameraBySlug(slug: string): Promise<Camera | null> {
     description: item.fields.description ?? null,
     specs: item.fields.specs ?? null,
     heroImageUrl: getAssetUrl(item.fields.heroImage),
+    galleryUrls: getAssetUrls(item.fields.gallery),
     brand: {
       name: item.fields.brand?.fields?.name ?? "Unknown brand",
       slug: item.fields.brand?.fields?.slug ?? "",
@@ -210,6 +229,7 @@ export async function getCollectionData(filters?: {
       slug: camera.slug,
       year: camera.releaseYear,
       type: camera.cameraType,
+      imageUrl: camera.heroImageUrl || camera.galleryUrls[0] || null,
     });
     grouped.set(groupName, current);
   }

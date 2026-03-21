@@ -11,6 +11,7 @@
     "cf:migrate:camera": "dotenv -e .env.local -- bash -lc 'contentful space migration -s \"$CONTENTFUL_SPACE_ID\" -e \"$CONTENTFUL_ENVIRONMENT\" --mt \"$CONTENTFUL_MANAGEMENT_TOKEN\" ./migrations/002-create-camera.js'",
     "cf:migrate:logo": "dotenv -e .env.local -- bash -lc 'contentful space migration -s \"$CONTENTFUL_SPACE_ID\" -e \"$CONTENTFUL_ENVIRONMENT\" --mt \"$CONTENTFUL_MANAGEMENT_TOKEN\" ./migrations/003-add-brand-logo.js'",
     "cf:migrate:hero-image": "dotenv -e .env.local -- bash -lc 'contentful space migration -s \"$CONTENTFUL_SPACE_ID\" -e \"$CONTENTFUL_ENVIRONMENT\" --mt \"$CONTENTFUL_MANAGEMENT_TOKEN\" ./migrations/004-add-camera-hero-image.js'",
+    "cf:migrate:add-camera-gallery": "dotenv -e .env.local -- bash -lc 'contentful space migration -s \"$CONTENTFUL_SPACE_ID\" -e \"$CONTENTFUL_ENVIRONMENT\" --mt \"$CONTENTFUL_MANAGEMENT_TOKEN\" ./migrations/005-add-camera-gallery.js'",
     "cf:import": "dotenv -e .env.local -- tsx scripts/migrate/run.ts"
   },
   "dependencies": {

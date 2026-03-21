@@ -10,6 +10,7 @@ export type CollectionCameraCard = {
   slug: string;
   year?: number | null;
   type?: string | null;
+  imageUrl?: string | null;
 };
 
 export type CollectionSensorGroup = {
@@ -18,3 +19,4 @@ export type CollectionSensorGroup = {
   expanded?: boolean;
   cameras: CollectionCameraCard[];
 };
+
