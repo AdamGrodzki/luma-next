@@ -6,10 +6,17 @@ import type {
   CollectionCameraCard,
 } from "../../components/collection/types";
 
+function getAssetUrl(asset: any): string | null {
+  const url = asset?.fields?.file?.url;
+  if (!url) return null;
+  return url.startsWith("//") ? `https:${url}` : url;
+}
+
 export async function getBrands(): Promise<Brand[]> {
   const res = await contentful.getEntries({
     content_type: "brand",
     order: ["fields.name"],
+    include: 2,
   });
 
   return res.items.map((item: any) => ({
@@ -19,6 +26,7 @@ export async function getBrands(): Promise<Brand[]> {
     country: item.fields.country ?? null,
     foundedYear: item.fields.foundedYear ?? null,
     description: item.fields.description ?? null,
+    logoUrl: getAssetUrl(item.fields.logo),
   }));
 }
 
@@ -39,6 +47,7 @@ export async function getBrandBySlug(slug: string): Promise<Brand | null> {
     country: item.fields.country ?? null,
     foundedYear: item.fields.foundedYear ?? null,
     description: item.fields.description ?? null,
+    logoUrl: getAssetUrl(item.fields.logo),
   };
 }
 
@@ -59,6 +68,7 @@ export async function getCameras(): Promise<Camera[]> {
     sensorFormat: item.fields.sensorFormat ?? null,
     description: item.fields.description ?? null,
     specs: item.fields.specs ?? null,
+    heroImageUrl: getAssetUrl(item.fields.heroImage),
     brand: {
       name: item.fields.brand?.fields?.name ?? "Unknown brand",
       slug: item.fields.brand?.fields?.slug ?? "",
@@ -87,6 +97,7 @@ export async function getCameraBySlug(slug: string): Promise<Camera | null> {
     sensorFormat: item.fields.sensorFormat ?? null,
     description: item.fields.description ?? null,
     specs: item.fields.specs ?? null,
+    heroImageUrl: getAssetUrl(item.fields.heroImage),
     brand: {
       name: item.fields.brand?.fields?.name ?? "Unknown brand",
       slug: item.fields.brand?.fields?.slug ?? "",

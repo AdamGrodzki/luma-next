@@ -9,6 +9,8 @@
     "lint": "eslint",
     "cf:migrate:brand": "dotenv -e .env.local -- bash -lc 'contentful space migration -s \"$CONTENTFUL_SPACE_ID\" -e \"$CONTENTFUL_ENVIRONMENT\" --mt \"$CONTENTFUL_MANAGEMENT_TOKEN\" ./migrations/001-create-brand.js'",
     "cf:migrate:camera": "dotenv -e .env.local -- bash -lc 'contentful space migration -s \"$CONTENTFUL_SPACE_ID\" -e \"$CONTENTFUL_ENVIRONMENT\" --mt \"$CONTENTFUL_MANAGEMENT_TOKEN\" ./migrations/002-create-camera.js'",
+    "cf:migrate:logo": "dotenv -e .env.local -- bash -lc 'contentful space migration -s \"$CONTENTFUL_SPACE_ID\" -e \"$CONTENTFUL_ENVIRONMENT\" --mt \"$CONTENTFUL_MANAGEMENT_TOKEN\" ./migrations/003-add-brand-logo.js'",
+    "cf:migrate:hero-image": "dotenv -e .env.local -- bash -lc 'contentful space migration -s \"$CONTENTFUL_SPACE_ID\" -e \"$CONTENTFUL_ENVIRONMENT\" --mt \"$CONTENTFUL_MANAGEMENT_TOKEN\" ./migrations/004-add-camera-hero-image.js'",
     "cf:import": "dotenv -e .env.local -- tsx scripts/migrate/run.ts"
   },
   "dependencies": {
