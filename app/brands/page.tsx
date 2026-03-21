@@ -1,44 +1,71 @@
-import Link from "next/link";
-import { getBrands } from "@/lib/queries";
+import { getBrands } from "@/src/lib/contentful/brands";
+import { getCameras } from "@/src/lib/contentful/cameras";
+import Container from "@/components/ui/Container";
+import SectionHeader from "@/components/ui/SectionHeader";
+import InfoCard from "@/components/ui/InfoCard";
+import Image from "next/image";
 
 export const revalidate = 60;
 
 export default async function BrandsPage() {
-  const brands = await getBrands();
+  const [brands, cameras] = await Promise.all([
+    getBrands(),
+    getCameras(),
+  ]);
 
-
-  if (brands.length === 0) {
   return (
-    <main className="mx-auto max-w-4xl px-6 py-16">
-      <h1 className="text-3xl font-bold">Marki</h1>
-        <p className="mt-4 text-neutral-600">Brak danych w Contentful.</p>
-      </main>
-    );
-  }
-  return (
-    <main className="mx-auto max-w-6xl px-6 py-16">
-      <div className="max-w-2xl">
-        <h1 className="text-3xl font-bold">Marki</h1>
-        <p className="mt-3 text-neutral-600">
-          Przegląd producentów aparatów i systemów fotograficznych.
-        </p>
-      </div>
+    <main className="min-h-screen bg-[#040607] py-16 text-[#f3eadf]">
+      <Container>
+        <SectionHeader
+          eyebrow="Producenci"
+          title="Marki"
+          description="Poznaj producentów aparatów i przejdź do ich modeli."
+        />
 
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+          {brands.map((brand) => {
+            const count = cameras.filter(
+              (c) => c.brand.slug === brand.slug
+            ).length;
 
-      <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-        {brands.map((brand: any) => (
-          <Link
-            key={brand.id}
-            href={`/brands/${brand.slug}`}
-            className="rounded-2xl border p-5 transition hover:shadow-sm"
-          >
-            <h2 className="text-xl font-semibold">{brand.name}</h2>
-            <p className="mt-2 text-sm text-neutral-600">
-              {brand.country || "Unknown country"} • {brand.foundedYear || "—"}
-            </p>
-          </Link>
-        ))}
-      </div>
+            return (
+              <InfoCard key={brand.id} href={`/brands/${brand.slug}`}>
+
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <h2 className="text-2xl font-semibold text-[#f3eadf]">
+                      {brand.name}
+                    </h2>
+
+                    <p className="mt-2 text-sm text-[#9e968c]">
+                      {brand.country ?? "Brak kraju"} •{" "}
+                      {brand.foundedYear ?? "Brak roku"}
+                    </p>
+                  </div>
+
+                  {brand.logoUrl && (
+                    <Image
+                      src={brand.logoUrl}
+                      alt={brand.name}
+                      width={64}
+                      height={64}
+                      className="h-14 w-14 rounded-xl object-contain"
+                    />
+                  )}
+                </div>
+
+                <p className="mt-4 line-clamp-3 text-sm text-[#b9b0a5]">
+                  {brand.description ?? "Brak opisu marki."}
+                </p>
+
+                <div className="mt-5 border-t border-[#1d1a16] pt-4 text-sm text-[#d2b08b]">
+                  Modele: {count}
+                </div>
+              </InfoCard>
+            );
+          })}
+        </div>
+      </Container>
     </main>
   );
 }
