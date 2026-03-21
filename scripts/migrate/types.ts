@@ -6,6 +6,7 @@ export type NormalizedBrand = {
   foundedYear?: number;
   description?: string;
   sourceUrl?: string;
+  logoPath?: string;
 };
 
 export type NormalizedCamera = {
@@ -21,4 +22,6 @@ export type NormalizedCamera = {
   specs?: Record<string, unknown>;
   status?: string;
   sourceUrl?: string;
+  heroImagePath?: string;
+  galleryPaths?: string[];
 };

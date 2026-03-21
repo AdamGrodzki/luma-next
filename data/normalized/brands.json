@@ -1,18 +1,19 @@
 [
   {
-    "legacyId": "canon",
-    "name": "Canon",
-    "slug": "canon",
-    "country": "Japan",
-    "foundedYear": 1937,
-    "description": "Canon is a Japanese imaging and optics company."
-  },
-  {
     "legacyId": "fujifilm",
     "name": "Fujifilm",
     "slug": "fujifilm",
     "country": "Japan",
     "foundedYear": 1934,
     "description": "Fujifilm is known for cameras, film, and imaging systems."
+  },
+  {
+    "legacyId": "canon",
+    "name": "Canon",
+    "slug": "canon",
+    "country": "Japan",
+    "foundedYear": 1937,
+    "description": "Canon is a Japanese imaging and optics company.",
+    "logoPath": "data/assets/brands/canon-logo.png"
   }
 ]

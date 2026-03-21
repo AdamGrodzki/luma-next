@@ -1,6 +1,7 @@
 import { getEnvironment } from "./config";
 import { readJsonFile } from "./utils";
 import type { NormalizedBrand } from "./types";
+import { uploadAssetFromFile } from "./upload-assets";
 
 export type BrandIdMap = Record<string, string>;
 
@@ -29,20 +30,17 @@ export async function importBrands(): Promise<BrandIdMap> {
       legacyId: { "en-US": brand.legacyId },
     };
 
-    if (brand.country) {
-      fields.country = { "en-US": brand.country };
-    }
+    if (brand.country) fields.country = { "en-US": brand.country };
+    if (typeof brand.foundedYear === "number") fields.foundedYear = { "en-US": brand.foundedYear };
+    if (brand.description) fields.description = { "en-US": brand.description };
+    if (brand.sourceUrl) fields.sourceUrl = { "en-US": brand.sourceUrl };
 
-    if (typeof brand.foundedYear === "number") {
-      fields.foundedYear = { "en-US": brand.foundedYear };
-    }
-
-    if (brand.description) {
-      fields.description = { "en-US": brand.description };
-    }
-
-    if (brand.sourceUrl) {
-      fields.sourceUrl = { "en-US": brand.sourceUrl };
+    if (brand.logoPath) {
+      const logoLink = await uploadAssetFromFile({
+        filePath: brand.logoPath,
+        title: `${brand.slug}-logo`,
+      });
+      fields.logo = { "en-US": logoLink };
     }
 
     let entry;

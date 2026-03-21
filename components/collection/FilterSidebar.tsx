@@ -104,10 +104,6 @@ export default function FilterSidebar({
         </button>
       </form>
 
-      <div className="mt-3 text-xs uppercase tracking-[0.14em] text-[#c3b7a9]">
-        Filtry zawężają wyniki po URL
-      </div>
-
       <div className="mt-8 border-t border-[#102730] pt-8">
         <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-[#f3e9df]">
           • Wielkość matrycy
