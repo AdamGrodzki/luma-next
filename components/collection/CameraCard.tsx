@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { buildContentfulImageUrl } from "@/lib/queries";
+import { buildContentfulImageUrl } from "@/src/lib/contentful/assets";
 import type { CollectionCameraCard } from "./types";
 
 type Props = {

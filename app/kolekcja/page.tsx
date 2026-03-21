@@ -4,7 +4,7 @@ import FilterSidebar from "../../components/collection/FilterSidebar";
 import SensorGroup from "../../components/collection/SensorGroup";
 import CollectionMobileDrawers from "../../components/collection/CollectionMobileDrawers";
 
-import { getCollectionData } from "@/lib/queries";
+import { getCollectionData } from "@/src/lib/contentful/collection";
 
 type Props = {
   searchParams: Promise<{
