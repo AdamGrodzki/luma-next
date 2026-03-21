@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getCameraBySlug } from "@/lib/queries";
+import { getCameraBySlug, buildContentfulImageUrl } from "@/lib/queries";
 import Image from "next/image";
 
 type Props = {
@@ -64,6 +64,29 @@ export default async function CameraDetailPage({ params }: Props) {
             height={900}
             className="h-auto w-full object-cover"
           />
+        </div>
+      )}
+
+      {camera.galleryUrls.length > 0 && (
+        <div className="mt-10">
+          <h2 className="text-2xl font-semibold">Galeria</h2>
+
+          <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {camera.galleryUrls.map((url, index) => (
+              <div
+                key={`${url}-${index}`}
+                className="overflow-hidden rounded-2xl border bg-[#0b0d0f]"
+              >
+                <Image
+                  src={buildContentfulImageUrl(url, { w: 1200, h: 900, fit: "fill" })}
+                  alt={`${camera.name} gallery image ${index + 1}`}
+                  width={1200}
+                  height={900}
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       )}
 

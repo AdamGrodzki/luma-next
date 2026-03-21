@@ -1,4 +1,3 @@
-
 export type Brand = {
   id: string;
   name: string;
@@ -20,6 +19,7 @@ export type Camera = {
   description: string | null;
   specs: Record<string, unknown> | null;
   heroImageUrl: string | null;
+  galleryUrls: string[];
   brand: {
     name: string;
     slug: string;
