@@ -1,23 +1,36 @@
 import Link from "next/link";
+import Image from "next/image";
 
 type Props = {
   brandName: string;
   totalCount: number;
   brandSlug?: string;
+  logoUrl?: string | null;
 };
 
 export default function CollectionHeader({
   brandName,
   totalCount,
   brandSlug,
+  logoUrl,
 }: Props) {
   return (
     <div className="flex flex-col gap-5 border-b border-[#1d1813] pb-7 md:flex-row md:items-start md:justify-between">
       <div className="flex items-center gap-6">
         <div className="flex h-20 w-[230px] items-center justify-center rounded-md bg-white px-6 shadow-md">
-          <span className="text-5xl font-bold italic tracking-tight text-[#cf0d15] md:text-6xl">
-            {brandName}
-          </span>
+          {logoUrl ? (
+            <Image
+              src={logoUrl}
+              alt={`${brandName} logo`}
+              width={180}
+              height={60}
+              className="h-auto max-h-12 w-auto object-contain"
+            />
+          ) : (
+              <span className="text-5xl font-bold italic tracking-tight text-[#cf0d15] md:text-6xl">
+                {brandName}
+              </span>
+          )}
         </div>
 
         <div>

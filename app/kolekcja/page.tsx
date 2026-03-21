@@ -115,6 +115,7 @@ export default async function CollectionPage({ searchParams }: Props) {
               brandName={activeBrand.name}
               totalCount={totalCount}
               brandSlug={activeBrand.slug}
+              logoUrl={activeBrand.logoUrl}
             />
 
             <div className="mt-6 flex flex-wrap gap-2">

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getCameraBySlug } from "@/lib/queries";
+import Image from "next/image";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -53,6 +54,18 @@ export default async function CameraDetailPage({ params }: Props) {
     <main className="mx-auto max-w-4xl px-6 py-16">
       <p className="text-sm text-neutral-500">{camera.brand.name}</p>
       <h1 className="text-4xl font-bold">{camera.name}</h1>
+
+      {camera.heroImageUrl && (
+        <div className="mt-8 overflow-hidden rounded-2xl border">
+          <Image
+            src={camera.heroImageUrl}
+            alt={camera.name}
+            width={1600}
+            height={900}
+            className="h-auto w-full object-cover"
+          />
+        </div>
+      )}
 
       <div className="mt-6 rounded-2xl border p-6">
         <dl>
