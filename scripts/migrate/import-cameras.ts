@@ -2,6 +2,7 @@ import { getEnvironment } from "./config";
 import { readJsonFile } from "./utils";
 import type { NormalizedCamera } from "./types";
 import type { BrandIdMap } from "./import-brands";
+import { uploadAssetFromFile } from "./upload-assets";
 
 async function findCameraBySlug(env: any, slug: string) {
   const res = await env.getEntries({
@@ -42,36 +43,33 @@ export async function importCameras(brandMap: BrandIdMap) {
       },
     };
 
-    if (typeof camera.releaseYear === "number") {
-      fields.releaseYear = { "en-US": camera.releaseYear };
+    if (typeof camera.releaseYear === "number") fields.releaseYear = { "en-US": camera.releaseYear };
+    if (camera.cameraType) fields.cameraType = { "en-US": camera.cameraType };
+    if (camera.mount) fields.mount = { "en-US": camera.mount };
+    if (camera.sensorFormat) fields.sensorFormat = { "en-US": camera.sensorFormat };
+    if (camera.description) fields.description = { "en-US": camera.description };
+    if (camera.specs) fields.specs = { "en-US": camera.specs };
+    if (camera.status) fields.status = { "en-US": camera.status };
+    if (camera.sourceUrl) fields.sourceUrl = { "en-US": camera.sourceUrl };
+
+    if (camera.heroImagePath) {
+      const heroLink = await uploadAssetFromFile({
+        filePath: camera.heroImagePath,
+        title: `${camera.slug}-hero`,
+      });
+      fields.heroImage = { "en-US": heroLink };
     }
 
-    if (camera.cameraType) {
-      fields.cameraType = { "en-US": camera.cameraType };
-    }
-
-    if (camera.mount) {
-      fields.mount = { "en-US": camera.mount };
-    }
-
-    if (camera.sensorFormat) {
-      fields.sensorFormat = { "en-US": camera.sensorFormat };
-    }
-
-    if (camera.description) {
-      fields.description = { "en-US": camera.description };
-    }
-
-    if (camera.specs) {
-      fields.specs = { "en-US": camera.specs };
-    }
-
-    if (camera.status) {
-      fields.status = { "en-US": camera.status };
-    }
-
-    if (camera.sourceUrl) {
-      fields.sourceUrl = { "en-US": camera.sourceUrl };
+    if (camera.galleryPaths?.length) {
+      const galleryLinks = [];
+      for (let i = 0; i < camera.galleryPaths.length; i += 1) {
+        const galleryLink = await uploadAssetFromFile({
+          filePath: camera.galleryPaths[i],
+          title: `${camera.slug}-gallery-${i + 1}`,
+        });
+        galleryLinks.push(galleryLink);
+      }
+      fields.gallery = { "en-US": galleryLinks };
     }
 
     let entry;

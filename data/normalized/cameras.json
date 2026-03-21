@@ -5,14 +5,18 @@
     "slug": "canon-eos-r5",
     "brandSlug": "canon",
     "releaseYear": 2020,
-    "cameraType": "Mirrorless",
+    "cameraType": "Bezlusterkowiec",
     "mount": "Canon RF",
-    "sensorFormat": "Full Frame",
+    "sensorFormat": "Pełna Klatka",
     "description": "High-resolution full-frame mirrorless camera.",
+    "heroImagePath": "data/assets/cameras/canon-eos-r5/hero.jpg",
+    "galleryPaths": [
+      "data/assets/cameras/canon-eos-r5/gallery-1.jpg",
+      "data/assets/cameras/canon-eos-r5/gallery-2.jpg"
+    ],
     "specs": {
       "resolutionMp": 45,
-      "video": "8K",
-      "ibis": true
+      "video": "8K"
     },
     "status": "active"
   },
