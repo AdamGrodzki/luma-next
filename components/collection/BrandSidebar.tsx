@@ -3,9 +3,48 @@ import type { CollectionBrand } from "./types";
 
 type Props = {
   brands: CollectionBrand[];
+  activeSensor?: string;
+  activeType?: string;
+  activeQuery?: string;
+  activeYearFrom?: number;
+  activeYearTo?: number;
 };
 
-export default function BrandSidebar({ brands }: Props) {
+function buildBrandUrl({
+  brand,
+  sensor,
+  type,
+  q,
+  yearFrom,
+  yearTo,
+}: {
+  brand: string;
+  sensor?: string;
+  type?: string;
+  q?: string;
+  yearFrom?: number;
+  yearTo?: number;
+}) {
+  const params = new URLSearchParams();
+
+  params.set("brand", brand);
+  if (sensor) params.set("sensor", sensor);
+  if (type) params.set("type", type);
+  if (q) params.set("q", q);
+  if (typeof yearFrom === "number") params.set("yearFrom", String(yearFrom));
+  if (typeof yearTo === "number") params.set("yearTo", String(yearTo));
+
+  return `/kolekcja?${params.toString()}`;
+}
+
+export default function BrandSidebar({
+  brands,
+  activeSensor,
+  activeType,
+  activeQuery,
+  activeYearFrom,
+  activeYearTo,
+}: Props) {
   return (
     <aside className="rounded-[22px] border border-[#0e242c] bg-[linear-gradient(180deg,#031015_0%,#051017_100%)] p-4 shadow-[0_0_0_1px_rgba(218,180,134,0.05)]">
       <div className="mb-4">
@@ -21,7 +60,14 @@ export default function BrandSidebar({ brands }: Props) {
         {brands.map((brand) => (
           <Link
             key={brand.slug}
-            href={`/kolekcja?brand=${brand.slug}`}
+            href={buildBrandUrl({
+              brand: brand.slug,
+              sensor: activeSensor,
+              type: activeType,
+              q: activeQuery,
+              yearFrom: activeYearFrom,
+              yearTo: activeYearTo,
+            })}
             className={`flex w-full items-center justify-between rounded-xl border px-3 py-3 text-left transition ${
               brand.active
                 ? "border-[#9c7b53] bg-[#141210] shadow-[inset_0_0_0_1px_rgba(220,194,162,0.18)]"

@@ -2,11 +2,18 @@ import BrandSidebar from "../../components/collection/BrandSidebar";
 import CollectionHeader from "../../components/collection/CollectionHeader";
 import FilterSidebar from "../../components/collection/FilterSidebar";
 import SensorGroup from "../../components/collection/SensorGroup";
+import CollectionMobileDrawers from "../../components/collection/CollectionMobileDrawers";
+
 import { getCollectionData } from "@/lib/queries";
 
 type Props = {
   searchParams: Promise<{
     brand?: string;
+    sensor?: string;
+    type?: string;
+    q?: string;
+    yearFrom?: string;
+    yearTo?: string;
   }>;
 };
 
@@ -33,10 +40,31 @@ export const revalidate = 60;
 
 export default async function CollectionPage({ searchParams }: Props) {
   const params = await searchParams;
-  const brandSlug = params.brand;
+
+  const activeBrandSlug = params.brand;
+  const activeSensor = params.sensor;
+  const activeType = params.type;
+  const activeQuery = params.q?.trim() || undefined;
+
+  const yearFrom =
+    params.yearFrom && !Number.isNaN(Number(params.yearFrom))
+      ? Number(params.yearFrom)
+      : undefined;
+
+  const yearTo =
+    params.yearTo && !Number.isNaN(Number(params.yearTo))
+      ? Number(params.yearTo)
+      : undefined;
 
   const { brands, activeBrand, sensorGroups, totalCount } =
-    await getCollectionData(brandSlug);
+    await getCollectionData({
+      activeBrandSlug,
+      sensor: activeSensor,
+      type: activeType,
+      q: activeQuery,
+      yearFrom,
+      yearTo,
+    });
 
   if (!activeBrand) {
     return (
@@ -56,21 +84,30 @@ export default async function CollectionPage({ searchParams }: Props) {
   return (
     <main className="min-h-screen bg-[#040607] text-[#f3eadf]">
       <div className="mx-auto max-w-[1500px] px-6 py-5">
-        <div className="hidden items-center justify-between rounded-2xl border border-[#182027] bg-[#071015] px-4 py-3 lg:flex xl:hidden">
-          <button className="rounded-full border border-[#3b3024] px-4 py-2 text-xs uppercase tracking-[0.16em] text-[#d7c7b3]">
-            Marki
-          </button>
-          <div className="text-sm uppercase tracking-[0.18em] text-[#bfae97]">
-            {activeBrand.name} • {totalCount} modeli
-          </div>
-          <button className="rounded-full border border-[#3b3024] px-4 py-2 text-xs uppercase tracking-[0.16em] text-[#d7c7b3]">
-            Filtry
-          </button>
-        </div>
+        <CollectionMobileDrawers
+          brands={brands}
+          activeBrandName={activeBrand.name}
+          totalCount={totalCount}
+          sensorFilters={sensorFilters}
+          typeFilters={typeFilters}
+          activeBrandSlug={activeBrand.slug}
+          activeSensor={activeSensor}
+          activeType={activeType}
+          activeQuery={activeQuery}
+          activeYearFrom={yearFrom}
+          activeYearTo={yearTo}
+        />
 
         <div className="mt-5 grid gap-6 xl:grid-cols-[230px_minmax(0,1fr)_300px]">
           <div className="hidden xl:block">
-            <BrandSidebar brands={brands} />
+            <BrandSidebar
+              brands={brands}
+              activeSensor={activeSensor}
+              activeType={activeType}
+              activeQuery={activeQuery}
+              activeYearFrom={yearFrom}
+              activeYearTo={yearTo}
+            />
           </div>
 
           <section className="rounded-[22px] border border-[#1f1a14] bg-[#050607] px-6 py-6 shadow-[0_0_60px_rgba(0,0,0,0.35)] md:px-8 xl:px-10 xl:py-7">
@@ -80,6 +117,34 @@ export default async function CollectionPage({ searchParams }: Props) {
               brandSlug={activeBrand.slug}
             />
 
+            <div className="mt-6 flex flex-wrap gap-2">
+              {activeQuery && (
+                <span className="rounded-full border border-[#3b3024] px-3 py-1 text-xs text-[#d7c7b3]">
+                  Szukaj: {activeQuery}
+                </span>
+              )}
+              {activeSensor && (
+                <span className="rounded-full border border-[#3b3024] px-3 py-1 text-xs text-[#d7c7b3]">
+                  Sensor: {activeSensor}
+                </span>
+              )}
+              {activeType && (
+                <span className="rounded-full border border-[#3b3024] px-3 py-1 text-xs text-[#d7c7b3]">
+                  Typ: {activeType}
+                </span>
+              )}
+              {typeof yearFrom === "number" && (
+                <span className="rounded-full border border-[#3b3024] px-3 py-1 text-xs text-[#d7c7b3]">
+                  Od: {yearFrom}
+                </span>
+              )}
+              {typeof yearTo === "number" && (
+                <span className="rounded-full border border-[#3b3024] px-3 py-1 text-xs text-[#d7c7b3]">
+                  Do: {yearTo}
+                </span>
+              )}
+            </div>
+
             <div className="mt-8 space-y-8">
               {sensorGroups.length > 0 ? (
                 sensorGroups.map((group) => (
@@ -87,7 +152,7 @@ export default async function CollectionPage({ searchParams }: Props) {
                 ))
               ) : (
                 <div className="rounded-2xl border border-[#1d1711] bg-[#090b0c] p-6 text-[#b9b0a5]">
-                  Brak aparatów dla tej marki.
+                    Brak aparatów dla wybranych filtrów.
                 </div>
               )}
             </div>
@@ -97,6 +162,12 @@ export default async function CollectionPage({ searchParams }: Props) {
             <FilterSidebar
               sensorFilters={sensorFilters}
               typeFilters={typeFilters}
+              activeBrandSlug={activeBrand.slug}
+              activeSensor={activeSensor}
+              activeType={activeType}
+              activeQuery={activeQuery}
+              activeYearFrom={yearFrom}
+              activeYearTo={yearTo}
             />
           </div>
         </div>

@@ -118,8 +118,14 @@ function normalizeSensorGroupName(sensorFormat: string | null | undefined): stri
 
   return "Inne";
 }
-
-export async function getCollectionData(activeBrandSlug?: string): Promise<{
+export async function getCollectionData(filters?: {
+  activeBrandSlug?: string;
+  sensor?: string;
+  type?: string;
+  q?: string;
+  yearFrom?: number;
+  yearTo?: number;
+}): Promise<{
   brands: CollectionBrand[];
   activeBrand: Brand | null;
   sensorGroups: CollectionSensorGroup[];
@@ -127,7 +133,7 @@ export async function getCollectionData(activeBrandSlug?: string): Promise<{
 }> {
   const [brands, cameras] = await Promise.all([getBrands(), getCameras()]);
 
-  const effectiveBrandSlug = activeBrandSlug || brands[0]?.slug || null;
+  const effectiveBrandSlug = filters?.activeBrandSlug || brands[0]?.slug || null;
 
   const activeBrand = effectiveBrandSlug
     ? brands.find((brand) => brand.slug === effectiveBrandSlug) ?? null
@@ -147,9 +153,41 @@ export async function getCollectionData(activeBrandSlug?: string): Promise<{
     active: brand.slug === effectiveBrandSlug,
   }));
 
-  const filteredCameras = effectiveBrandSlug
+  let filteredCameras = effectiveBrandSlug
     ? cameras.filter((camera) => camera.brand.slug === effectiveBrandSlug)
     : cameras;
+
+  if (filters?.sensor) {
+    filteredCameras = filteredCameras.filter(
+      (camera) => normalizeSensorGroupName(camera.sensorFormat) === filters.sensor
+    );
+  }
+
+  if (filters?.type) {
+    filteredCameras = filteredCameras.filter(
+      (camera) =>
+        (camera.cameraType ?? "").toLowerCase() === filters.type?.toLowerCase()
+    );
+  }
+
+  if (filters?.q) {
+    const query = filters.q.trim().toLowerCase();
+    filteredCameras = filteredCameras.filter((camera) =>
+      camera.name.toLowerCase().includes(query)
+    );
+  }
+
+  if (typeof filters?.yearFrom === "number" && !Number.isNaN(filters.yearFrom)) {
+    filteredCameras = filteredCameras.filter(
+      (camera) => (camera.releaseYear ?? 0) >= filters.yearFrom!
+    );
+  }
+
+  if (typeof filters?.yearTo === "number" && !Number.isNaN(filters.yearTo)) {
+    filteredCameras = filteredCameras.filter(
+      (camera) => (camera.releaseYear ?? 9999) <= filters.yearTo!
+    );
+  }
 
   const grouped = new Map<string, CollectionCameraCard[]>();
 

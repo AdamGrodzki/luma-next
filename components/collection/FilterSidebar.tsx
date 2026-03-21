@@ -1,34 +1,147 @@
+import Link from "next/link";
+
 type Props = {
   sensorFilters: string[];
   typeFilters: string[];
+  activeBrandSlug?: string;
+  activeSensor?: string;
+  activeType?: string;
+  activeQuery?: string;
+  activeYearFrom?: number;
+  activeYearTo?: number;
 };
 
-export default function FilterSidebar({ sensorFilters, typeFilters }: Props) {
+function buildCollectionUrl({
+  brand,
+  sensor,
+  type,
+  q,
+  yearFrom,
+  yearTo,
+}: {
+  brand?: string;
+  sensor?: string;
+  type?: string;
+  q?: string;
+  yearFrom?: number;
+  yearTo?: number;
+}) {
+  const params = new URLSearchParams();
+
+  if (brand) params.set("brand", brand);
+  if (sensor) params.set("sensor", sensor);
+  if (type) params.set("type", type);
+  if (q) params.set("q", q);
+  if (typeof yearFrom === "number") params.set("yearFrom", String(yearFrom));
+  if (typeof yearTo === "number") params.set("yearTo", String(yearTo));
+
+  const query = params.toString();
+  return query ? `/kolekcja?${query}` : "/kolekcja";
+}
+
+export default function FilterSidebar({
+  sensorFilters,
+  typeFilters,
+  activeBrandSlug,
+  activeSensor,
+  activeType,
+  activeQuery,
+  activeYearFrom,
+  activeYearTo,
+}: Props) {
   return (
     <aside className="rounded-[22px] border border-[#0e242c] bg-[linear-gradient(180deg,#041018_0%,#06111a_100%)] p-5 shadow-[0_0_0_1px_rgba(218,180,134,0.05)]">
-      <h2 className="text-2xl font-semibold uppercase tracking-[0.08em] text-[#f6eee6]">
-        Filtrowanie
-      </h2>
+      <div className="flex items-center justify-between">
+        <h2 className="text-2xl font-semibold uppercase tracking-[0.08em] text-[#f6eee6]">
+          Filtrowanie
+        </h2>
 
-      <div className="mt-6 flex items-center rounded-xl border border-[#6b573f] bg-transparent px-4 py-3 text-sm text-[#6f6a63]">
-        <span className="flex-1">Szukaj aparatu...</span>
-        <span>⌕</span>
+        <Link
+          href={activeBrandSlug ? `/kolekcja?brand=${activeBrandSlug}` : "/kolekcja"}
+          className="text-xs uppercase tracking-[0.14em] text-[#c99f6a] hover:text-white"
+        >
+          Reset
+        </Link>
       </div>
-      <p className="mt-3 text-xs uppercase tracking-[0.14em] text-[#c3b7a9]">
-        Filtr wyłonił 2693 urządzeń
-      </p>
+
+      <form action="/kolekcja" method="get" className="mt-6 space-y-4">
+        {activeBrandSlug && <input type="hidden" name="brand" value={activeBrandSlug} />}
+        {activeSensor && <input type="hidden" name="sensor" value={activeSensor} />}
+        {activeType && <input type="hidden" name="type" value={activeType} />}
+
+        <div className="rounded-xl border border-[#6b573f] px-4 py-3">
+          <input
+            type="text"
+            name="q"
+            defaultValue={activeQuery ?? ""}
+            placeholder="Szukaj aparatu..."
+            className="w-full bg-transparent text-sm text-[#f3eadf] outline-none placeholder:text-[#6f6a63]"
+          />
+        </div>
+
+        <div className="grid grid-cols-2 gap-3">
+          <input
+            type="number"
+            name="yearFrom"
+            defaultValue={activeYearFrom ?? ""}
+            placeholder="Od roku"
+            className="rounded-xl border border-[#6b573f] bg-transparent px-4 py-3 text-sm text-[#f3eadf] outline-none placeholder:text-[#6f6a63]"
+          />
+          <input
+            type="number"
+            name="yearTo"
+            defaultValue={activeYearTo ?? ""}
+            placeholder="Do roku"
+            className="rounded-xl border border-[#6b573f] bg-transparent px-4 py-3 text-sm text-[#f3eadf] outline-none placeholder:text-[#6f6a63]"
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="w-full rounded-xl border border-[#8e6a47] px-4 py-3 text-sm uppercase tracking-[0.14em] text-[#f3eadf] transition hover:bg-[#141210]"
+        >
+          Zastosuj
+        </button>
+      </form>
+
+      <div className="mt-3 text-xs uppercase tracking-[0.14em] text-[#c3b7a9]">
+        Filtry zawężają wyniki po URL
+      </div>
 
       <div className="mt-8 border-t border-[#102730] pt-8">
         <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-[#f3e9df]">
           • Wielkość matrycy
         </h3>
-        <div className="mt-5 space-y-4">
-          {sensorFilters.map((item) => (
-            <label key={item} className="flex items-center gap-3 text-sm text-[#d8d0c7]">
-              <span className="h-4 w-4 rounded-[3px] border border-[#7c8d98] bg-transparent" />
-              {item}
-            </label>
-          ))}
+        <div className="mt-5 space-y-3">
+          {sensorFilters.map((item) => {
+            const isActive = activeSensor === item;
+
+            return (
+              <Link
+                key={item}
+                href={buildCollectionUrl({
+                  brand: activeBrandSlug,
+                  sensor: isActive ? undefined : item,
+                  type: activeType,
+                  q: activeQuery,
+                  yearFrom: activeYearFrom,
+                  yearTo: activeYearTo,
+                })}
+                className={`flex items-center gap-3 rounded-lg px-2 py-2 text-sm transition ${isActive
+                    ? "bg-[#141210] text-[#f3eadf]"
+                    : "text-[#d8d0c7] hover:bg-[#0d1419]"
+                  }`}
+              >
+                <span
+                  className={`h-4 w-4 rounded-[3px] border ${isActive
+                      ? "border-[#c99f6a] bg-[#c99f6a]"
+                      : "border-[#7c8d98] bg-transparent"
+                    }`}
+                />
+                {item}
+              </Link>
+            );
+          })}
         </div>
       </div>
 
@@ -36,30 +149,36 @@ export default function FilterSidebar({ sensorFilters, typeFilters }: Props) {
         <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-[#f3e9df]">
           • Rodzaj sprzętu
         </h3>
-        <div className="mt-5 space-y-4">
-          {typeFilters.map((item) => (
-            <label key={item} className="flex items-center gap-3 text-sm text-[#d8d0c7]">
-              <span className="h-4 w-4 rounded-[3px] border border-[#7c8d98] bg-transparent" />
-              {item}
-            </label>
-          ))}
-        </div>
-      </div>
+        <div className="mt-5 space-y-3">
+          {typeFilters.map((item) => {
+            const isActive = activeType === item;
 
-      <div className="mt-8 border-t border-[#102730] pt-8">
-        <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-[#f3e9df]">
-          • Przedział czasowy
-        </h3>
-        <div className="mt-5 flex items-center justify-between text-xs font-semibold text-white">
-          <span className="rounded bg-[#0e1114] px-2 py-1">1994</span>
-          <span className="text-[#7c746b]">—</span>
-          <span className="rounded bg-[#0e1114] px-2 py-1">2025</span>
-        </div>
-        <div className="mt-5 h-1 rounded-full bg-[#3c3329]">
-          <div className="relative h-1 rounded-full bg-[#d4aa79]">
-            <span className="absolute -left-1 -top-1.5 h-4 w-4 rounded-full border border-[#c79b6d] bg-[#f3eadf]" />
-            <span className="absolute -right-1 -top-1.5 h-4 w-4 rounded-full border border-[#c79b6d] bg-[#f3eadf]" />
-          </div>
+            return (
+              <Link
+                key={item}
+                href={buildCollectionUrl({
+                  brand: activeBrandSlug,
+                  sensor: activeSensor,
+                  type: isActive ? undefined : item,
+                  q: activeQuery,
+                  yearFrom: activeYearFrom,
+                  yearTo: activeYearTo,
+                })}
+                className={`flex items-center gap-3 rounded-lg px-2 py-2 text-sm transition ${isActive
+                    ? "bg-[#141210] text-[#f3eadf]"
+                    : "text-[#d8d0c7] hover:bg-[#0d1419]"
+                  }`}
+              >
+                <span
+                  className={`h-4 w-4 rounded-[3px] border ${isActive
+                      ? "border-[#c99f6a] bg-[#c99f6a]"
+                      : "border-[#7c8d98] bg-transparent"
+                    }`}
+                />
+                {item}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </aside>
