@@ -19,23 +19,37 @@ export default function RootLayout({
     <html lang="pl">
       <body className="bg-[#040607] text-[#f3eadf] antialiased">
         <header className="border-b border-[#2a231c] px-6 py-4">
-          <div className="mx-auto grid max-w-[1500px] grid-cols-3 items-center text-sm uppercase tracking-[0.25em] text-[#8e867d]">
-            <nav className="flex gap-10">
-              <Link href="/kolekcja" className="hover:text-[#dcc2a2]">
+          <div className="mx-auto grid max-w-[1500px] grid-cols-[1fr_220px_1fr] items-center gap-4">
+            <nav className="flex min-w-0 items-center gap-4 text-[11px] uppercase tracking-[0.22em] text-[#8e867d] md:gap-8">
+              <Link
+                href="/kolekcja"
+                className="whitespace-nowrap transition hover:text-[#dcc2a2]"
+              >
                 Kolekcja
               </Link>
-              <Link href="/brands" className="hover:text-[#dcc2a2]">
+              <Link
+                href="/brands"
+                className="whitespace-nowrap transition hover:text-[#dcc2a2]"
+              >
                 Marki
               </Link>
             </nav>
 
-            <Link href="/" className="text-center text-5xl font-serif tracking-[0.22em] text-[#f1e4d3] md:text-6xl">
-              Luma
-            </Link>
+            <div className="flex justify-center">
+              <Link
+                href="/"
+                className="whitespace-nowrap text-center font-serif text-3xl tracking-[0.14em] text-[#f1e4d3] transition hover:text-white md:text-4xl"
+              >
+                Luma
+              </Link>
+            </div>
 
-            <div className="text-right">
-              <Link href="/cameras" className="hover:text-[#dcc2a2]">
-                Szukaj
+            <div className="flex justify-end text-[11px] uppercase tracking-[0.22em] text-[#8e867d]">
+              <Link
+                href="/cameras"
+                className="whitespace-nowrap transition hover:text-[#dcc2a2]"
+              >
+                Aparaty
               </Link>
             </div>
           </div>

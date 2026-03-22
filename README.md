@@ -1,36 +1,201 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📸 Luma — Camera Encyclopedia
 
-## Getting Started
+Nowoczesna aplikacja webowa do eksplorowania aparatów i marek fotograficznych, zbudowana w oparciu o **Next.js** i **Contentful**.
 
-First, run the development server:
+---
+
+## ✨ Funkcje
+
+* 🔎 Przeglądanie aparatów według:
+
+  * marki
+  * typu
+  * sensora
+* 🎯 Zaawansowane filtrowanie i sortowanie
+* 🧠 Wyszukiwarka (full-text search)
+* 🏷️ Strony detali:
+
+  * aparatów
+  * marek
+* 🧩 Grupowanie aparatów według sensora
+* ⚡ ISR (Incremental Static Regeneration)
+* 🖼️ Integracja z Contentful (headless CMS)
+* 🎨 Spójny dark UI
+
+---
+
+## 🧱 Stack technologiczny
+
+* **Next.js (App Router)**
+* **TypeScript**
+* **Tailwind CSS**
+* **Contentful**
+* **ISR / SSG**
+
+---
+
+## 🚀 Getting Started
+
+### 1. Klon repo
+
+```bash
+git clone https://github.com/your-username/luma.git
+cd luma
+```
+
+### 2. Instalacja zależności
+
+```bash
+npm install
+# lub
+yarn
+# lub
+pnpm install
+```
+
+### 3. Konfiguracja środowiska
+
+Utwórz plik:
+
+```bash
+.env.local
+```
+
+Dodaj:
+
+```env
+CONTENTFUL_SPACE_ID=your_space_id
+CONTENTFUL_ACCESS_TOKEN=your_access_token
+```
+
+---
+
+### 4. Uruchomienie
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Aplikacja będzie dostępna pod:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🗂️ Struktura projektu
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+src/
+├── app/
+│   ├── page.tsx              # Homepage
+│   ├── kolekcja/             # Kolekcja + filtrowanie
+│   ├── cameras/              # Lista + detale aparatów
+│   ├── brands/               # Lista + detale marek
+│   ├── loading.tsx
+│   ├── error.tsx
+│   └── not-found.tsx
+│
+├── components/
+│   ├── collection/           # UI kolekcji
+│   ├── home/                 # Sekcje homepage
+│   └── ui/                   # Komponenty wielokrotnego użytku
+│
+├── lib/
+│   └── contentful/           # API + mapowanie danych
+│
+└── types/
+    └── contentful.ts
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🔌 Contentful — model danych
 
-## Deploy on Vercel
+### Brand
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* name
+* slug
+* country
+* foundedYear
+* description
+* logo
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Camera
+
+* name
+* slug
+* brand (reference)
+* cameraType
+* sensorFormat
+* mount
+* releaseYear
+* description
+* heroImage
+* gallery
+
+---
+
+## 🧠 Architektura
+
+* Server Components do pobierania danych
+* Client Components dla interakcji (filtry, drawers)
+* Mapowanie danych CMS → UI
+* ISR (`revalidate = 60`) dla wydajności
+
+---
+
+## 🎨 UI / UX
+
+* Dark-first design
+* Typografia serif dla nagłówków
+* System kart (`InfoCard`, `CameraCard`)
+* Responsywność (mobile drawers)
+* Custom loading screens
+
+---
+
+## 📦 Deployment
+
+Najprostszy sposób:
+
+👉 Vercel
+
+[https://vercel.com](https://vercel.com)
+
+Lub lokalnie:
+
+```bash
+npm run build
+npm start
+```
+
+---
+
+## 📈 Możliwe rozszerzenia
+
+* 🔍 Live search (debounce)
+* 📊 Porównywarka aparatów
+* ❤️ Ulubione (localStorage)
+* 📑 Paginacja / infinite scroll
+* 🧭 Breadcrumbs
+* 🌐 i18n
+
+---
+
+## 👤 Autor
+
+Projekt wykonany jako część portfolio frontendowego Adam Grodzki.
+
+---
+
+## 🌍 Demo (opcjonalnie)
+
+[https://your-app.vercel.app](https://your-app.vercel.app)
+
+---
+
+## 🖼️ Preview (opcjonalnie)
+
+Dodaj screenshoty do folderu `public/screens` i podlinkuj tutaj.
