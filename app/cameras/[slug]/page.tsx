@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Container from "@/components/ui/Container";
@@ -14,6 +15,24 @@ export async function generateStaticParams() {
   return cameras.map((camera) => ({ slug: camera.slug }));
 }
 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const camera = await getCameraBySlug(slug);
+
+  if (!camera) {
+    return {
+      title: "Camera not found | Luma",
+    };
+  }
+
+  return {
+    title: `${camera.name} | ${camera.brand.name} | Luma`,
+    description:
+      camera.description ??
+      `${camera.name} by ${camera.brand.name}. Explore specs, sensor format and gallery.`,
+  };
+}
+
 export default async function CameraDetailPage({ params }: Props) {
   const { slug } = await params;
   const camera = await getCameraBySlug(slug);
@@ -24,7 +43,6 @@ export default async function CameraDetailPage({ params }: Props) {
     <main className="min-h-screen bg-[#040607] py-16 text-[#f3eadf]">
       <Container>
         <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr]">
-
           {/* LEFT — IMAGES */}
           <div>
             <div className="overflow-hidden rounded-[28px] border border-[#1f1a14] bg-[#0b0d0f]">
@@ -55,7 +73,7 @@ export default async function CameraDetailPage({ params }: Props) {
                       alt={camera.name}
                       width={600}
                       height={400}
-                      className="h-40 w-full object-cover hover:scale-105 transition"
+                      className="h-40 w-full object-cover transition hover:scale-105"
                     />
                   </div>
                 ))}
@@ -73,7 +91,6 @@ export default async function CameraDetailPage({ params }: Props) {
               {camera.name}
             </h1>
 
-            {/* BADGES */}
             <div className="mt-6 flex flex-wrap gap-2">
               {camera.cameraType && <Badge>{camera.cameraType}</Badge>}
               {camera.sensorFormat && <Badge>{camera.sensorFormat}</Badge>}
@@ -81,12 +98,10 @@ export default async function CameraDetailPage({ params }: Props) {
               {camera.releaseYear && <Badge>{camera.releaseYear}</Badge>}
             </div>
 
-            {/* DESCRIPTION */}
             <p className="mt-8 leading-7 text-[#b7aea4]">
               {camera.description ?? "Brak opisu aparatu."}
             </p>
 
-            {/* SPECS */}
             <div className="mt-10 grid gap-4">
               <InfoCard>
                 <p className="text-sm text-[#8e867d]">Marka</p>
@@ -95,12 +110,16 @@ export default async function CameraDetailPage({ params }: Props) {
 
               <InfoCard>
                 <p className="text-sm text-[#8e867d]">Typ</p>
-                <p className="mt-2 text-xl">{camera.cameraType ?? "Brak danych"}</p>
+                <p className="mt-2 text-xl">
+                  {camera.cameraType ?? "Brak danych"}
+                </p>
               </InfoCard>
 
               <InfoCard>
                 <p className="text-sm text-[#8e867d]">Sensor</p>
-                <p className="mt-2 text-xl">{camera.sensorFormat ?? "Brak danych"}</p>
+                <p className="mt-2 text-xl">
+                  {camera.sensorFormat ?? "Brak danych"}
+                </p>
               </InfoCard>
 
               <InfoCard>
