@@ -17,6 +17,7 @@ type Props = {
   activeQuery?: string;
   activeYearFrom?: number;
   activeYearTo?: number;
+  activeSort?: string;
 };
 
 type DrawerProps = {
@@ -32,7 +33,9 @@ function Drawer({ side, title, open, onClose, children }: DrawerProps) {
     <>
       <div
         className={`fixed inset-0 z-40 bg-black/60 transition ${
-          open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
+          open
+            ? "pointer-events-auto opacity-100"
+            : "pointer-events-none opacity-0"
         }`}
         onClick={onClose}
       />
@@ -44,8 +47,8 @@ function Drawer({ side, title, open, onClose, children }: DrawerProps) {
           open
             ? "translate-x-0"
             : side === "left"
-              ? "-translate-x-full"
-              : "translate-x-full"
+            ? "-translate-x-full"
+            : "translate-x-full"
         }`}
       >
         <div className="flex h-full flex-col bg-[#040607] p-4 shadow-2xl">
@@ -53,6 +56,7 @@ function Drawer({ side, title, open, onClose, children }: DrawerProps) {
             <h2 className="text-sm uppercase tracking-[0.18em] text-[#d7c7b3]">
               {title}
             </h2>
+
             <button
               type="button"
               onClick={onClose}
@@ -81,6 +85,7 @@ export default function CollectionMobileDrawers({
   activeQuery,
   activeYearFrom,
   activeYearTo,
+  activeSort,
 }: Props) {
   const [brandsOpen, setBrandsOpen] = useState(false);
   const [filtersOpen, setFiltersOpen] = useState(false);
@@ -117,11 +122,13 @@ export default function CollectionMobileDrawers({
       >
         <BrandSidebar
           brands={brands}
+          activeBrandSlug={activeBrandSlug}
           activeSensor={activeSensor}
           activeType={activeType}
           activeQuery={activeQuery}
           activeYearFrom={activeYearFrom}
           activeYearTo={activeYearTo}
+          activeSort={activeSort}
         />
       </Drawer>
 
@@ -140,6 +147,7 @@ export default function CollectionMobileDrawers({
           activeQuery={activeQuery}
           activeYearFrom={activeYearFrom}
           activeYearTo={activeYearTo}
+          activeSort={activeSort}
         />
       </Drawer>
     </>
