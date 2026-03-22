@@ -5,6 +5,8 @@ import InfoCard from "@/components/ui/InfoCard";
 import { getBrandBySlug, getBrands } from "@/src/lib/contentful/brands";
 import { getCameras } from "@/src/lib/contentful/cameras";
 
+import Link from "next/link";
+
 type Props = {
   params: Promise<{ slug: string }>;
 };
@@ -33,6 +35,15 @@ export default async function BrandDetailPage({ params }: Props) {
           title={brand.name}
           description={brand.description ?? "Brak opisu marki."}
         />
+
+        <div className="mt-6">
+          <Link
+            href={`/kolekcja?brand=${brand.slug}`}
+            className="inline-flex rounded-full border border-[#8e6a47] px-5 py-3 text-sm uppercase tracking-[0.14em] text-[#f3eadf] transition hover:bg-[#141210]"
+          >
+            Zobacz kolekcję marki
+          </Link>
+        </div>
 
         {/* STATS */}
         <div className="mt-8 grid gap-4 md:grid-cols-3">

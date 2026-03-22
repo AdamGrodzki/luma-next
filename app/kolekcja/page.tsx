@@ -5,6 +5,7 @@ import SensorGroup from "../../components/collection/SensorGroup";
 import CollectionMobileDrawers from "../../components/collection/CollectionMobileDrawers";
 
 import { getCollectionData } from "@/src/lib/contentful/collection";
+import Link from "next/link";
 
 type Props = {
   searchParams: Promise<{
@@ -14,6 +15,8 @@ type Props = {
     q?: string;
     yearFrom?: string;
     yearTo?: string;
+    sort?: string;
+    activeSort?: string;
   }>;
 };
 
@@ -40,6 +43,8 @@ export const revalidate = 60;
 
 export default async function CollectionPage({ searchParams }: Props) {
   const params = await searchParams;
+  const sort =
+    typeof params.sort === "string" ? params.sort : undefined;
 
   const activeBrandSlug = params.brand;
   const activeSensor = params.sensor;
@@ -64,6 +69,7 @@ export default async function CollectionPage({ searchParams }: Props) {
       q: activeQuery,
       yearFrom,
       yearTo,
+      sort
     });
 
   if (!activeBrand) {
@@ -81,6 +87,33 @@ export default async function CollectionPage({ searchParams }: Props) {
     );
   }
 
+  function buildQueryString(
+    params: Record<string, string | number | undefined>
+  ) {
+    const search = new URLSearchParams();
+
+    for (const [key, value] of Object.entries(params)) {
+      if (value !== undefined && value !== "") {
+        search.set(key, String(value));
+      }
+    }
+
+    const query = search.toString();
+    return query ? `?${query}` : "";
+  }
+
+  console.log("RAW searchParams", params);
+
+  console.log("PAGE parsed", {
+    brand: params.brand,
+    sensor: params.sensor,
+    type: params.type,
+    q: params.q,
+    yearFrom: params.yearFrom,
+    yearTo: params.yearTo,
+    sort: params.sort,
+  });
+
   return (
     <main className="min-h-screen bg-[#040607] text-[#f3eadf]">
       <div className="mx-auto max-w-[1500px] px-6 py-5">
@@ -96,17 +129,20 @@ export default async function CollectionPage({ searchParams }: Props) {
           activeQuery={activeQuery}
           activeYearFrom={yearFrom}
           activeYearTo={yearTo}
+          activeSort={sort}
         />
 
         <div className="mt-5 grid gap-6 xl:grid-cols-[230px_minmax(0,1fr)_300px]">
           <div className="hidden xl:block">
             <BrandSidebar
               brands={brands}
+              activeBrandSlug={activeBrand.slug}
               activeSensor={activeSensor}
               activeType={activeType}
               activeQuery={activeQuery}
               activeYearFrom={yearFrom}
               activeYearTo={yearTo}
+              activeSort={sort}
             />
           </div>
 
@@ -146,6 +182,93 @@ export default async function CollectionPage({ searchParams }: Props) {
               )}
             </div>
 
+            <div className="mb-8 flex flex-col gap-4 rounded-[22px] border border-[#1f1a14] bg-[#090b0c] p-4 md:flex-row md:items-center md:justify-between">
+              <div>
+                <p className="text-sm uppercase tracking-[0.14em] text-[#8e867d]">
+                  Sortowanie
+                </p>
+
+                <div className="mt-3 flex flex-wrap gap-2">
+                  <Link
+                    href={buildQueryString({
+                      brand: activeBrand.slug,
+                      sensor: activeSensor,
+                      type: activeType,
+                      q: activeQuery,
+                      yearFrom,
+                      yearTo,
+                      sort: "year-desc",
+                    })}
+                    className={`rounded-full border px-4 py-2 text-sm transition ${sort === "year-desc" || !sort
+                      ? "border-[#8e6a47] text-[#f3eadf]"
+                      : "border-[#2d241c] text-[#aa9f93]"
+                      }`}
+                  >
+                    Najnowsze
+                  </Link>
+
+                  <Link
+                    href={buildQueryString({
+                      brand: activeBrand.slug,
+                      sensor: activeSensor,
+                      type: activeType,
+                      q: activeQuery,
+                      yearFrom,
+                      yearTo,
+                      sort: "year-asc",
+                    })}
+                    className={`rounded-full border px-4 py-2 text-sm transition ${sort === "year-asc"
+                      ? "border-[#8e6a47] text-[#f3eadf]"
+                      : "border-[#2d241c] text-[#aa9f93]"
+                      }`}
+                  >
+                    Najstarsze
+                  </Link>
+
+                  <Link
+                    href={buildQueryString({
+                      brand: activeBrand.slug,
+                      sensor: activeSensor,
+                      type: activeType,
+                      q: activeQuery,
+                      yearFrom,
+                      yearTo,
+                      sort: "name-asc",
+                    })}
+                    className={`rounded-full border px-4 py-2 text-sm transition ${sort === "name-asc"
+                      ? "border-[#8e6a47] text-[#f3eadf]"
+                      : "border-[#2d241c] text-[#aa9f93]"
+                      }`}
+                  >
+                    A–Z
+                  </Link>
+
+                  <Link
+                    href={buildQueryString({
+                      brand: activeBrand.slug,
+                      sensor: activeSensor,
+                      type: activeType,
+                      q: activeQuery,
+                      yearFrom,
+                      yearTo,
+                      sort: "name-desc",
+                    })}
+                    className={`rounded-full border px-4 py-2 text-sm transition ${sort === "name-desc"
+                      ? "border-[#8e6a47] text-[#f3eadf]"
+                      : "border-[#2d241c] text-[#aa9f93]"
+                      }`}
+                  >
+                    Z–A
+                  </Link>
+                </div>
+              </div>
+
+              <div className="text-sm text-[#a79d92]">
+                Wyników: <span className="text-[#f3eadf]">{totalCount}</span>
+              </div>
+            </div>
+
+
             <div className="mt-8 space-y-8">
               {sensorGroups.length > 0 ? (
                 sensorGroups.map((group) => (
@@ -169,6 +292,7 @@ export default async function CollectionPage({ searchParams }: Props) {
               activeQuery={activeQuery}
               activeYearFrom={yearFrom}
               activeYearTo={yearTo}
+              activeSort={sort}
             />
           </div>
         </div>

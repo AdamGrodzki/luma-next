@@ -57,3 +57,30 @@ export async function getCameras(): Promise<Camera[]> {
         },
     };
 }
+
+export async function getRelatedCameras(
+    currentSlug: string,
+    options?: {
+        brandSlug?: string;
+        sensorFormat?: string | null;
+        limit?: number;
+    }
+): Promise<Camera[]> {
+    const all = await getCameras();
+
+    const filtered = all.filter((camera) => {
+        if (camera.slug === currentSlug) return false;
+
+        const sameBrand =
+            options?.brandSlug ? camera.brand.slug === options.brandSlug : false;
+
+        const sameSensor =
+            options?.sensorFormat
+                ? camera.sensorFormat?.toLowerCase() === options.sensorFormat.toLowerCase()
+                : false;
+
+        return sameBrand || sameSensor;
+    });
+
+    return filtered.slice(0, options?.limit ?? 3);
+}

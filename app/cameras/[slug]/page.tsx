@@ -3,7 +3,11 @@ import Image from "next/image";
 import Container from "@/components/ui/Container";
 import Badge from "@/components/ui/Badge";
 import InfoCard from "@/components/ui/InfoCard";
-import { getCameraBySlug, getCameras } from "@/src/lib/contentful/cameras";
+import {
+  getCameraBySlug,
+  getCameras,
+  getRelatedCameras,
+} from "@/src/lib/contentful/cameras";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -18,7 +22,15 @@ export default async function CameraDetailPage({ params }: Props) {
   const { slug } = await params;
   const camera = await getCameraBySlug(slug);
 
+
+
   if (!camera) notFound();
+
+  const relatedCameras = await getRelatedCameras(camera.slug, {
+    brandSlug: camera.brand.slug,
+    sensorFormat: camera.sensorFormat,
+    limit: 3,
+  });
 
   return (
     <main className="min-h-screen bg-[#040607] py-16 text-[#f3eadf]">
@@ -62,6 +74,32 @@ export default async function CameraDetailPage({ params }: Props) {
               </div>
             )}
           </div>
+
+          {relatedCameras.length > 0 && (
+            <section className="mt-20">
+              <h2 className="text-3xl font-serif text-[#f3eadf]">
+                Podobne aparaty
+              </h2>
+
+              <div className="mt-8 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+                {relatedCameras.map((related) => (
+                  <InfoCard key={related.id} href={`/cameras/${related.slug}`}>
+                    <p className="text-sm uppercase tracking-[0.14em] text-[#8e867d]">
+                      {related.brand.name}
+                    </p>
+
+                    <h3 className="mt-2 text-2xl font-semibold text-[#f3eadf]">
+                      {related.name}
+                    </h3>
+
+                    <p className="mt-3 text-sm text-[#a69d93]">
+                      {related.releaseYear ?? "—"} • {related.sensorFormat ?? "—"}
+                    </p>
+                  </InfoCard>
+                ))}
+              </div>
+            </section>
+          )}
 
           {/* RIGHT — INFO */}
           <div>
