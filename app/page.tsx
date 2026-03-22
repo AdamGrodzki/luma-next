@@ -1,6 +1,6 @@
-import HeroSection from "../components/home/HeroSection";
-import FeaturedBrands from "../components/home/FeaturedBrands";
-import FeaturedCameras from "../components/home/FeaturedCameras";
+import HeroSection from "@/components/home/HeroSection";
+import FeaturedBrands from "@/components/home/FeaturedBrands";
+import FeaturedCameras from "@/components/home/FeaturedCameras";
 import { getBrands } from "@/src/lib/contentful/brands";
 import { getCameras } from "@/src/lib/contentful/cameras";
 
