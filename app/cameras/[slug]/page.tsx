@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Image from "next/image";
-import Container from "@/components/ui/Container";
-import Badge from "@/components/ui/Badge";
-import InfoCard from "@/components/ui/InfoCard";
 import {
   getCameraBySlug,
   getCameras,
   getRelatedCameras,
 } from "@/src/lib/contentful/cameras";
+import { CameraDetailView } from "@/components/camera-detail/camera-detail-view";
+import { mapContentfulCameraToDetail } from "@/src/lib/contentful/mappers";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -41,8 +39,6 @@ export default async function CameraDetailPage({ params }: Props) {
   const { slug } = await params;
   const camera = await getCameraBySlug(slug);
 
-
-
   if (!camera) notFound();
 
   const relatedCameras = await getRelatedCameras(camera.slug, {
@@ -51,123 +47,7 @@ export default async function CameraDetailPage({ params }: Props) {
     limit: 3,
   });
 
-  return (
-    <main className="min-h-screen bg-[#040607] py-16 text-[#f3eadf]">
-      <Container>
-        <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr]">
-          {/* LEFT — IMAGES */}
-          <div>
-            <div className="overflow-hidden rounded-[28px] border border-[#1f1a14] bg-[#0b0d0f]">
-              {camera.heroImageUrl ? (
-                <Image
-                  src={camera.heroImageUrl}
-                  alt={camera.name}
-                  width={1400}
-                  height={1000}
-                  className="w-full object-cover"
-                />
-              ) : (
-                <div className="flex min-h-[420px] items-center justify-center text-[#7f776d]">
-                  Brak zdjęcia
-                </div>
-              )}
-            </div>
+  const detailData = mapContentfulCameraToDetail(camera, relatedCameras);
 
-            {camera.galleryUrls.length > 0 && (
-              <div className="mt-5 grid grid-cols-2 gap-4 md:grid-cols-3">
-                {camera.galleryUrls.map((url) => (
-                  <div
-                    key={url}
-                    className="overflow-hidden rounded-[18px] border border-[#1f1a14]"
-                  >
-                    <Image
-                      src={url}
-                      alt={camera.name}
-                      width={600}
-                      height={400}
-                      className="h-40 w-full object-cover transition hover:scale-105"
-                    />
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {relatedCameras.length > 0 && (
-            <section className="mt-20">
-              <h2 className="text-3xl font-serif text-[#f3eadf]">
-                Podobne aparaty
-              </h2>
-
-              <div className="mt-8 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-                {relatedCameras.map((related) => (
-                  <InfoCard key={related.id} href={`/cameras/${related.slug}`}>
-                    <p className="text-sm uppercase tracking-[0.14em] text-[#8e867d]">
-                      {related.brand.name}
-                    </p>
-
-                    <h3 className="mt-2 text-2xl font-semibold text-[#f3eadf]">
-                      {related.name}
-                    </h3>
-
-                    <p className="mt-3 text-sm text-[#a69d93]">
-                      {related.releaseYear ?? "—"} • {related.sensorFormat ?? "—"}
-                    </p>
-                  </InfoCard>
-                ))}
-              </div>
-            </section>
-          )}
-
-          {/* RIGHT — INFO */}
-          <div>
-            <p className="text-sm uppercase tracking-[0.18em] text-[#a88a69]">
-              {camera.brand.name}
-            </p>
-
-            <h1 className="mt-4 font-serif text-5xl leading-tight text-[#f3eadf]">
-              {camera.name}
-            </h1>
-
-            <div className="mt-6 flex flex-wrap gap-2">
-              {camera.cameraType && <Badge>{camera.cameraType}</Badge>}
-              {camera.sensorFormat && <Badge>{camera.sensorFormat}</Badge>}
-              {camera.mount && <Badge>{camera.mount}</Badge>}
-              {camera.releaseYear && <Badge>{camera.releaseYear}</Badge>}
-            </div>
-
-            <p className="mt-8 leading-7 text-[#b7aea4]">
-              {camera.description ?? "Brak opisu aparatu."}
-            </p>
-
-            <div className="mt-10 grid gap-4">
-              <InfoCard>
-                <p className="text-sm text-[#8e867d]">Marka</p>
-                <p className="mt-2 text-xl">{camera.brand.name}</p>
-              </InfoCard>
-
-              <InfoCard>
-                <p className="text-sm text-[#8e867d]">Typ</p>
-                <p className="mt-2 text-xl">
-                  {camera.cameraType ?? "Brak danych"}
-                </p>
-              </InfoCard>
-
-              <InfoCard>
-                <p className="text-sm text-[#8e867d]">Sensor</p>
-                <p className="mt-2 text-xl">
-                  {camera.sensorFormat ?? "Brak danych"}
-                </p>
-              </InfoCard>
-
-              <InfoCard>
-                <p className="text-sm text-[#8e867d]">Mount</p>
-                <p className="mt-2 text-xl">{camera.mount ?? "Brak danych"}</p>
-              </InfoCard>
-            </div>
-          </div>
-        </div>
-      </Container>
-    </main>
-  );
+  return <CameraDetailView camera={detailData} />;
 }
