@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -38,9 +39,9 @@ export default function RootLayout({
             <div className="flex justify-center">
               <Link
                 href="/"
-                className="whitespace-nowrap text-center font-serif text-3xl tracking-[0.14em] text-[#f1e4d3] transition hover:text-white md:text-4xl"
+                // className="whitespace-nowrap text-center font-serif text-3xl tracking-[0.14em] text-[#f1e4d3] transition hover:text-white md:text-4xl"
               >
-                Luma
+                <Image src="../luma-logo.svg" alt="Luma Camera Encyclopedia" width={120} height={40} />
               </Link>
             </div>
 
