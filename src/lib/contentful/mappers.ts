@@ -1,38 +1,14 @@
 import type { CameraDetailData } from "@/components/camera-detail/types";
-
-type RelatedCameraLike = {
-  id: string;
-  slug: string;
-  name: string;
-  releaseYear?: number | null;
-  sensorFormat?: string | null;
-  heroImageUrl?: string | null;
-  brand: {
-    name: string;
-  };
-};
-
-type CameraLike = {
-  slug: string;
-  name: string;
-  description?: string | null;
-  releaseYear?: number | null;
-  cameraType?: string | null;
-  sensorFormat?: string | null;
-  mount?: string | null;
-  heroImageUrl?: string | null;
-  galleryUrls: string[];
-  brand: {
-    name: string;
-    slug: string;
-    logoUrl?: string | null;
-  };
-};
+import type { Camera } from "@/src/types/contentful";
 
 export function mapContentfulCameraToDetail(
-  camera: CameraLike,
-  relatedCameras: RelatedCameraLike[] = []
+  camera: Camera,
+  relatedCameras: Camera[] = []
 ): CameraDetailData {
+  const marketAvg = camera.marketPriceAvg ?? 3300;
+  const marketMin = camera.marketPriceMin ?? 3000;
+  const marketMax = camera.marketPriceMax ?? 3600;
+
   return {
     slug: camera.slug,
     brand: {
@@ -40,11 +16,11 @@ export function mapContentfulCameraToDetail(
       logo: camera.brand.logoUrl ?? null,
     },
     name: camera.name,
-    subtitle: camera.description ?? null,
+    subtitle: camera.shortDescription ?? camera.description ?? null,
     image: camera.heroImageUrl ?? null,
     gallery: camera.galleryUrls ?? [],
     description: camera.description ?? null,
-    story: camera.description ?? null,
+    story: camera.story ?? camera.description ?? null,
 
     heroStats: [
       {
@@ -66,12 +42,17 @@ export function mapContentfulCameraToDetail(
     ],
 
     popularity: {
-      label: "Niepopularny",
-      score: 37,
-      updatedAt: "23 czerwca 2026",
-      summary: "Standardowa popularność, typowa dla masowego sprzętu.",
+      label: camera.popularityLabel ?? "Standardowy",
+      score: camera.popularityScore ?? 37,
+      updatedAt: "Aktualne dane katalogowe",
+      summary:
+        (camera.popularityScore ?? 0) >= 70
+          ? "Model o wysokiej rozpoznawalności i silnej obecności w katalogu."
+          : "Model o stabilnej obecności i standardowej rozpoznawalności.",
       recommendedLenses:
-        camera.brand.name === "Canon"
+        camera.recommendedLenses?.length
+          ? camera.recommendedLenses
+          : camera.brand.name === "Canon"
           ? [
               "Canon RF 24-70mm f/2.8L IS USM",
               "Canon RF 50mm f/1.8 STM",
@@ -83,27 +64,19 @@ export function mapContentfulCameraToDetail(
         { name: "Niemcy", value: 51 },
         { name: "Japonia", value: 58 },
         { name: "USA", value: 47 },
-        { name: "Francja", value: 39 },
-        { name: "Włochy", value: 34 },
       ],
     },
 
     marketValue: {
-      average: 3300,
+      average: marketAvg,
       currency: "PLN",
-      min: 3000,
-      max: 3600,
+      min: marketMin,
+      max: marketMax,
       history: [
-        { label: "01.06", value: 3350 },
-        { label: "02.06", value: 3300 },
-        { label: "04.06", value: 3500 },
-        { label: "05.06", value: 3150 },
-        { label: "07.06", value: 3250 },
-        { label: "08.06", value: 3470 },
-        { label: "09.06", value: 3560 },
-        { label: "10.06", value: 3390 },
-        { label: "11.06", value: 3540 },
-        { label: "12.06", value: 3550 },
+        { label: "Q1", value: marketMin },
+        { label: "Q2", value: Math.round((marketMin + marketAvg) / 2) },
+        { label: "Q3", value: marketAvg },
+        { label: "Q4", value: marketMax },
       ],
     },
 
@@ -118,21 +91,100 @@ export function mapContentfulCameraToDetail(
             label: "Data premiery",
             value: camera.releaseYear ? String(camera.releaseYear) : "Brak danych",
           },
+          {
+            label: "Cena startowa",
+            value: camera.launchPrice ?? "Brak danych",
+          },
         ],
       },
       {
         title: "Sensor",
         items: [
           { label: "Format sensora", value: camera.sensorFormat ?? "Brak danych" },
-          { label: "Mocowanie", value: camera.mount ?? "Brak danych" },
+          {
+            label: "Maks. rozdzielczość",
+            value: camera.maxResolution ?? "Brak danych",
+          },
+          { label: "Zakres ISO", value: camera.isoRange ?? "Brak danych" },
+          {
+            label: "Procesor obrazu",
+            value: camera.imageProcessor ?? "Brak danych",
+          },
         ],
       },
       {
-        title: "Opis",
+        title: "Performance",
         items: [
           {
-            label: "Charakterystyka",
-            value: camera.description ?? "Brak opisu",
+            label: "Zdjęcia seryjne",
+            value: camera.continuousShooting ?? "Brak danych",
+          },
+          { label: "Mocowanie", value: camera.mount ?? "Brak danych" },
+          {
+            label: "Uszczelnienie",
+            value:
+              camera.weatherSealed == null
+                ? "Brak danych"
+                : camera.weatherSealed
+                ? "Tak"
+                : "Nie",
+          },
+        ],
+      },
+      {
+        title: "Video",
+        items: [
+          { label: "Video", value: camera.videoSpecs ?? "Brak danych" },
+          {
+            label: "Port mikrofonu",
+            value:
+              camera.micPort == null ? "Brak danych" : camera.micPort ? "Tak" : "Nie",
+          },
+          {
+            label: "Port słuchawkowy",
+            value:
+              camera.headphonePort == null
+                ? "Brak danych"
+                : camera.headphonePort
+                ? "Tak"
+                : "Nie",
+          },
+        ],
+      },
+      {
+        title: "Display & Connectivity",
+        items: [
+          { label: "Ekran", value: camera.screenSpecs ?? "Brak danych" },
+          {
+            label: "Dotyk",
+            value:
+              camera.touchscreen == null
+                ? "Brak danych"
+                : camera.touchscreen
+                ? "Tak"
+                : "Nie",
+          },
+          { label: "Łączność", value: camera.wireless ?? "Brak danych" },
+          { label: "Nośniki", value: camera.storageTypes ?? "Brak danych" },
+        ],
+      },
+      {
+        title: "Body",
+        items: [
+          {
+            label: "Waga",
+            value: camera.weight ? `${camera.weight} g` : "Brak danych",
+          },
+          { label: "Wymiary", value: camera.dimensions ?? "Brak danych" },
+          {
+            label: "Kraj marki",
+            value: camera.brand.country ?? "Brak danych",
+          },
+          {
+            label: "Rok założenia marki",
+            value: camera.brand.foundedYear
+              ? String(camera.brand.foundedYear)
+              : "Brak danych",
           },
         ],
       },
