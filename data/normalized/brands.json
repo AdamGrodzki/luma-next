@@ -1,21 +1,53 @@
 [
   {
-    "legacyId": "fujifilm",
-    "name": "Fujifilm",
-    "slug": "fujifilm",
-    "country": "Japan",
-    "foundedYear": 1934,
-    "description": "Fujifilm is known for cameras, film, and imaging systems.",
-    "logoPath": "data/assets/brands/Fujifilm_logo.svg"
-
-  },
-  {
     "legacyId": "canon",
     "name": "Canon",
     "slug": "canon",
     "country": "Japan",
     "foundedYear": 1937,
-    "description": "Canon is a Japanese imaging and optics company.",
-    "logoPath": "data/assets/brands/Canon_logo.svg"
+    "logoPath": "data/assets/brands/Canon_logo.svg",
+    "description": "Canon is a Japanese imaging and optics company known for cameras, lenses, and professional imaging systems."
+  },
+  {
+    "legacyId": "fujifilm",
+    "name": "Fujifilm",
+    "slug": "fujifilm",
+    "country": "Japan",
+    "foundedYear": 1934,
+    "logoPath": "data/assets/brands/Fujifilm_logo.svg",
+    "description": "Fujifilm is a Japanese company known for cameras, film stocks, and hybrid imaging systems."
+  },
+  {
+    "legacyId": "sony",
+    "name": "Sony",
+    "slug": "sony",
+    "country": "Japan",
+    "foundedYear": 1946,
+    "logoPath": "data/assets/brands/Sony_logo.svg",
+    "description": "Sony is a major electronics manufacturer and one of the leading camera brands in the mirrorless segment."
+  },
+  {
+    "legacyId": "nikon",
+    "name": "Nikon",
+    "slug": "nikon",
+    "country": "Japan",
+    "foundedYear": 1917,
+    "description": "Nikon is a Japanese optics and imaging company known for cameras, lenses, and photographic equipment."
+  },
+  {
+    "legacyId": "leica",
+    "name": "Leica",
+    "slug": "leica",
+    "country": "Germany",
+    "foundedYear": 1914,
+    "description": "Leica is a German premium camera manufacturer known for rangefinders, compact cameras, and distinctive industrial design."
+  },
+  {
+    "legacyId": "panasonic",
+    "name": "Panasonic",
+    "slug": "panasonic",
+    "country": "Japan",
+    "foundedYear": 1918,
+    "description": "Panasonic develops Lumix cameras and is active in both hybrid stills and video-oriented camera systems."
   }
 ]

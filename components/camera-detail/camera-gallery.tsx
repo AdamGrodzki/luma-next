@@ -24,6 +24,7 @@ export function CameraGallery({ camera }: Props) {
 
   useEffect(() => {
     setActiveIndex(0);
+    setIsLightboxOpen(false);
   }, [camera.slug]);
 
   useEffect(() => {
@@ -34,20 +35,21 @@ export function CameraGallery({ camera }: Props) {
         setIsLightboxOpen(false);
       }
 
-      if (event.key === "ArrowRight") {
+      if (event.key === "ArrowRight" && images.length > 1) {
         setActiveIndex((prev) => (prev + 1) % images.length);
       }
 
-      if (event.key === "ArrowLeft") {
+      if (event.key === "ArrowLeft" && images.length > 1) {
         setActiveIndex((prev) => (prev - 1 + images.length) % images.length);
       }
     }
 
+    const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [images.length, isLightboxOpen]);
@@ -182,102 +184,106 @@ export function CameraGallery({ camera }: Props) {
 
       {isLightboxOpen && activeImage ? (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-[rgba(0,0,0,0.92)] px-4 py-6"
+          className="fixed inset-0 z-[100] bg-[rgba(0,0,0,0.94)]"
           onClick={() => setIsLightboxOpen(false)}
         >
           <div
-            className="relative w-full max-w-7xl"
+            className="flex h-dvh w-full flex-col px-4 py-4 md:px-6 md:py-5"
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="mb-4 flex items-center justify-between gap-4">
-              <div>
-                <p className="text-[10px] uppercase tracking-[0.28em] text-[#9b8772]">
-                  Fullscreen preview
-                </p>
-                <h3 className="mt-2 text-xl font-semibold text-[#f6efe7] md:text-2xl">
-                  {camera.name}
-                </h3>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <div className="rounded-full border border-[#34271d] bg-[rgba(14,14,14,0.82)] px-4 py-2 text-xs uppercase tracking-[0.2em] text-[#d8c8b8] backdrop-blur-md">
-                  {activeIndex + 1} / {images.length}
+            <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col">
+              <div className="sticky top-0 z-20 mb-4 flex items-start justify-between gap-4 rounded-[20px] border border-[#2b2118] bg-[rgba(10,10,10,0.78)] px-4 py-3 backdrop-blur-xl">
+                <div className="min-w-0 pr-2">
+                  <p className="text-[10px] uppercase tracking-[0.28em] text-[#9b8772]">
+                    Fullscreen preview
+                  </p>
+                  <h3 className="mt-1 truncate text-lg font-semibold text-[#f6efe7] md:text-2xl">
+                    {camera.name}
+                  </h3>
                 </div>
 
-                <button
-                  type="button"
-                  onClick={() => setIsLightboxOpen(false)}
-                  className="rounded-full border border-[#34271d] bg-[rgba(14,14,14,0.82)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#f6efe7] backdrop-blur-md transition hover:border-[#c79b63] hover:text-[#c79b63]"
-                >
-                  Zamknij
-                </button>
-              </div>
-            </div>
+                <div className="flex shrink-0 items-center gap-3">
+                  <div className="rounded-full border border-[#34271d] bg-[rgba(14,14,14,0.82)] px-4 py-2 text-xs uppercase tracking-[0.2em] text-[#d8c8b8]">
+                    {activeIndex + 1} / {images.length}
+                  </div>
 
-            <div className="relative overflow-hidden rounded-[28px] border border-[#2b2118] bg-[#0b0b0b] shadow-[0_25px_100px_rgba(0,0,0,0.45)]">
-              <div className="relative aspect-[16/10] w-full">
-                <Image
-                  src={activeImage}
-                  alt={`${camera.name} fullscreen`}
-                  fill
-                  className="object-contain"
-                  sizes="100vw"
-                  priority
-                />
+                  <button
+                    type="button"
+                    onClick={() => setIsLightboxOpen(false)}
+                    aria-label="Zamknij podgląd"
+                    className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#34271d] bg-[rgba(14,14,14,0.82)] text-xl leading-none text-[#f6efe7] shadow-[0_8px_24px_rgba(0,0,0,0.22)] transition duration-300 hover:scale-[1.04] hover:border-[#c79b63] hover:text-[#c79b63]"
+                  >
+                    ×
+                  </button>
+                </div>
+              </div>
+
+              <div className="relative flex min-h-0 flex-1 items-center justify-center overflow-hidden rounded-[28px] border border-[#2b2118] bg-[#0b0b0b] shadow-[0_25px_100px_rgba(0,0,0,0.45)]">
+                <div className="relative h-full max-h-full w-full">
+                  <Image
+                    src={activeImage}
+                    alt={`${camera.name} fullscreen`}
+                    fill
+                    className="object-contain"
+                    sizes="100vw"
+                    priority
+                  />
+                </div>
+
+                {images.length > 1 && (
+                  <>
+                    <button
+                      type="button"
+                      onClick={goPrev}
+                      className="absolute left-3 top-1/2 z-10 -translate-y-1/2 rounded-full border border-[#3a2d21] bg-[rgba(10,10,10,0.82)] px-4 py-3 text-sm font-semibold text-[#f6efe7] backdrop-blur-md transition hover:border-[#c79b63] hover:text-[#c79b63] md:left-4"
+                      aria-label="Poprzednie zdjęcie"
+                    >
+                      ←
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={goNext}
+                      className="absolute right-3 top-1/2 z-10 -translate-y-1/2 rounded-full border border-[#3a2d21] bg-[rgba(10,10,10,0.82)] px-4 py-3 text-sm font-semibold text-[#f6efe7] backdrop-blur-md transition hover:border-[#c79b63] hover:text-[#c79b63] md:right-4"
+                      aria-label="Następne zdjęcie"
+                    >
+                      →
+                    </button>
+                  </>
+                )}
               </div>
 
               {images.length > 1 && (
-                <>
-                  <button
-                    type="button"
-                    onClick={goPrev}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full border border-[#3a2d21] bg-[rgba(10,10,10,0.82)] px-4 py-3 text-sm font-semibold text-[#f6efe7] backdrop-blur-md transition hover:border-[#c79b63] hover:text-[#c79b63]"
-                    aria-label="Poprzednie zdjęcie"
-                  >
-                    ←
-                  </button>
+                <div className="mt-4 shrink-0 overflow-x-auto pb-1">
+                  <div className="grid min-w-max grid-flow-col gap-3">
+                    {images.map((image, index) => {
+                      const isActive = index === activeIndex;
 
-                  <button
-                    type="button"
-                    onClick={goNext}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full border border-[#3a2d21] bg-[rgba(10,10,10,0.82)] px-4 py-3 text-sm font-semibold text-[#f6efe7] backdrop-blur-md transition hover:border-[#c79b63] hover:text-[#c79b63]"
-                    aria-label="Następne zdjęcie"
-                  >
-                    →
-                  </button>
-                </>
+                      return (
+                        <button
+                          key={`${image}-lightbox-${index}`}
+                          type="button"
+                          onClick={() => setActiveIndex(index)}
+                          className={`relative w-24 overflow-hidden rounded-2xl border transition md:w-28 ${isActive
+                            ? "border-[#c79b63] ring-1 ring-[#c79b63]/40"
+                            : "border-[#241d17] hover:border-[#3b2d20]"
+                            }`}
+                        >
+                          <div className="relative aspect-[4/3] bg-[#0b0b0b]">
+                            <Image
+                              src={image}
+                              alt={`${camera.name} thumb ${index + 1}`}
+                              fill
+                              className="object-cover"
+                            />
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
               )}
             </div>
-
-            {images.length > 1 && (
-              <div className="mt-4 grid grid-cols-3 gap-3 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8">
-                {images.map((image, index) => {
-                  const isActive = index === activeIndex;
-
-                  return (
-                    <button
-                      key={`${image}-lightbox-${index}`}
-                      type="button"
-                      onClick={() => setActiveIndex(index)}
-                      className={`relative overflow-hidden rounded-2xl border transition ${
-                        isActive
-                          ? "border-[#c79b63] ring-1 ring-[#c79b63]/40"
-                          : "border-[#241d17] hover:border-[#3b2d20]"
-                      }`}
-                    >
-                      <div className="relative aspect-[4/3] bg-[#0b0b0b]">
-                        <Image
-                          src={image}
-                          alt={`${camera.name} thumb ${index + 1}`}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
-            )}
           </div>
         </div>
       ) : null}
