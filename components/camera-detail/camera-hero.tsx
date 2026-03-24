@@ -10,68 +10,68 @@ export function CameraHero({ camera }: Props) {
 
   return (
     <section
-  id="hero"
-  className="relative overflow-hidden rounded-[36px] border border-[#2a2119] bg-[linear-gradient(180deg,#0b0b0b_0%,#070707_100%)] px-6 py-8 md:px-10 md:py-10 xl:px-12 xl:py-12"
->
+      id="hero"
+      className="scroll-mt-24 relative overflow-hidden rounded-[24px] border border-[#2a2119] bg-[linear-gradient(180deg,#0b0b0b_0%,#070707_100%)] px-4 py-5 sm:rounded-[28px] sm:px-5 sm:py-6 md:px-8 md:py-8 xl:rounded-[36px] xl:px-12 xl:py-12"
+    >
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-[-10%] top-[-20%] h-[300px] w-[300px] rounded-full bg-[#a7753f]/10 blur-3xl" />
-        <div className="absolute bottom-[-20%] right-[-5%] h-[260px] w-[260px] rounded-full bg-white/[0.03] blur-3xl" />
+        <div className="absolute left-[-15%] top-[-20%] h-[180px] w-[180px] rounded-full bg-[#a7753f]/10 blur-3xl sm:h-[240px] sm:w-[240px] md:h-[300px] md:w-[300px]" />
+        <div className="absolute bottom-[-20%] right-[-5%] h-[160px] w-[160px] rounded-full bg-white/[0.03] blur-3xl sm:h-[220px] sm:w-[220px] md:h-[260px] md:w-[260px]" />
       </div>
 
-      <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-[0.045]">
-        <div className="absolute right-[-20px] top-6 text-[90px] font-black uppercase leading-none tracking-[-0.04em] text-white md:text-[150px] xl:text-[220px]">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-[0.04]">
+        <div className="absolute right-[-8px] top-4 text-[52px] font-black uppercase leading-none tracking-[-0.04em] text-white sm:text-[80px] md:text-[120px] xl:right-[-20px] xl:top-6 xl:text-[220px]">
           {watermark}
         </div>
       </div>
 
-      <div className="relative grid gap-10 xl:grid-cols-[1.05fr_0.95fr] xl:items-center">
-        <div className="space-y-8">
-          <div className="space-y-6">
-            <div className="flex flex-wrap items-center gap-4">
+      <div className="relative grid gap-6 xl:grid-cols-[1.05fr_0.95fr] xl:items-center xl:gap-10">
+        <div className="space-y-6 md:space-y-8">
+          <div className="space-y-5">
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4">
               {camera.brand.logo ? (
-                <div className="inline-flex rounded-xl border border-[#2c241d] bg-white/95 p-3 shadow-[0_10px_30px_rgba(0,0,0,0.18)]">
+                <div className="inline-flex rounded-xl border border-[#2c241d] bg-white/95 p-2.5 shadow-[0_10px_30px_rgba(0,0,0,0.18)] sm:p-3">
                   <Image
                     src={camera.brand.logo}
                     alt={camera.brand.name}
-                    width={120}
-                    height={48}
-                    className="h-auto w-auto object-contain"
+                    width={110}
+                    height={44}
+                    className="h-auto w-auto max-w-[90px] object-contain sm:max-w-[110px]"
                   />
                 </div>
               ) : null}
 
-              <div className="inline-flex rounded-full border border-[#3b2d20] bg-[#110e0b] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-[#d0a46f]">
+              <div className="inline-flex rounded-full border border-[#3b2d20] bg-[#110e0b] px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#d0a46f] sm:px-4 sm:py-2 sm:text-[11px] sm:tracking-[0.28em]">
                 {camera.brand.name}
               </div>
             </div>
 
-            <div className="space-y-4">
-              <p className="text-[11px] uppercase tracking-[0.38em] text-[#9f8364]">
+            <div className="space-y-3 sm:space-y-4">
+              <p className="text-[10px] uppercase tracking-[0.28em] text-[#9f8364] sm:text-[11px] sm:tracking-[0.38em]">
                 Kolekcja aparatów / detal modelu
               </p>
 
-              <h1 className="max-w-[10ch] text-4xl font-black uppercase leading-[0.92] text-[#f7f1e8] sm:text-5xl md:text-6xl xl:text-7xl">
+              <h1 className="max-w-[12ch] text-3xl font-black uppercase leading-[0.95] text-[#f7f1e8] sm:text-4xl md:text-5xl xl:max-w-[10ch] xl:text-7xl">
                 {camera.name}
               </h1>
 
               {camera.subtitle ? (
-                <p className="max-w-2xl text-base leading-7 text-[#c5b8aa] md:text-lg">
+                <p className="max-w-2xl text-sm leading-6 text-[#c5b8aa] sm:text-base sm:leading-7 md:text-lg">
                   {camera.subtitle}
                 </p>
               ) : null}
             </div>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid gap-3 sm:grid-cols-2 sm:gap-4">
             {camera.heroStats.map((stat) => (
               <div
                 key={stat.label}
-                className="group rounded-[22px] border border-[#221b15] bg-[linear-gradient(180deg,#101010_0%,#0b0b0b_100%)] p-5 transition duration-300 hover:border-[#3e2f22] hover:bg-[#101010]"
+                className="group rounded-[18px] border border-[#221b15] bg-[linear-gradient(180deg,#101010_0%,#0b0b0b_100%)] p-4 transition duration-300 hover:-translate-y-[2px] hover:border-[#3e2f22] hover:bg-[#101010] hover:shadow-[0_16px_35px_rgba(0,0,0,0.22)] sm:rounded-[22px] sm:p-5"
               >
-                <div className="mb-3 text-[10px] uppercase tracking-[0.28em] text-[#806d5b]">
+                <div className="mb-2 text-[10px] uppercase tracking-[0.22em] text-[#806d5b] sm:mb-3 sm:tracking-[0.28em]">
                   {stat.label}
                 </div>
-                <div className="text-xl font-semibold leading-tight text-[#f6efe7] sm:text-2xl">
+                <div className="text-lg font-semibold leading-tight text-[#f6efe7] sm:text-xl md:text-2xl">
                   {stat.value}
                 </div>
               </div>
@@ -81,19 +81,19 @@ export function CameraHero({ camera }: Props) {
 
         <div className="flex justify-center xl:justify-end">
           <div className="relative w-full max-w-[620px]">
-            <div className="absolute inset-0 rounded-[30px] bg-[#b07a43]/10 blur-2xl" />
+            <div className="absolute inset-0 rounded-[24px] bg-[#b07a43]/10 blur-2xl sm:rounded-[30px]" />
 
-            <div className="relative rounded-[30px] border border-[#31261d] bg-[linear-gradient(180deg,#111111_0%,#0c0c0c_100%)] p-4 shadow-[0_25px_100px_rgba(0,0,0,0.45)]">
+            <div className="relative rounded-[24px] border border-[#31261d] bg-[linear-gradient(180deg,#111111_0%,#0c0c0c_100%)] p-3 shadow-[0_25px_100px_rgba(0,0,0,0.45)] sm:rounded-[30px] sm:p-4">
               <div className="mb-3 flex items-center justify-between px-1">
-                <span className="text-[10px] uppercase tracking-[0.28em] text-[#806d5b]">
+                <span className="text-[10px] uppercase tracking-[0.22em] text-[#806d5b] sm:tracking-[0.28em]">
                   Hero image
                 </span>
-                <span className="text-[10px] uppercase tracking-[0.28em] text-[#806d5b]">
+                <span className="text-[10px] uppercase tracking-[0.22em] text-[#806d5b] sm:tracking-[0.28em]">
                   {camera.brand.name}
                 </span>
               </div>
 
-              <div className="relative aspect-[4/3] overflow-hidden rounded-[22px] border border-[#3a2d21] bg-[#0b0b0b]">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-[18px] border border-[#3a2d21] bg-[#0b0b0b] sm:rounded-[22px]">
                 {camera.image ? (
                   <>
                     <Image
