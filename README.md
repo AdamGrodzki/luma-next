@@ -39,8 +39,8 @@ Nowoczesna aplikacja webowa do eksplorowania aparatów i marek fotograficznych, 
 ### 1. Klon repo
 
 ```bash
-git clone https://github.com/your-username/luma.git
-cd luma
+git clone https://github.com/AdamGrodzki/luma-next.git
+cd luma-next
 ```
 
 ### 2. Instalacja zależności
@@ -64,8 +64,11 @@ Utwórz plik:
 Dodaj:
 
 ```env
-CONTENTFUL_SPACE_ID=your_space_id
-CONTENTFUL_ACCESS_TOKEN=your_access_token
+CONTENTFUL_SPACE_ID=space_id
+CONTENTFUL_MANAGEMENT_TOKEN=managment_token
+CONTENTFUL_PREVIEW_TOKEN=preview_token
+CONTENTFUL_DELIVERY_TOKEN=delivery_token
+CONTENTFUL_ENVIRONMENT=master
 ```
 
 ---
