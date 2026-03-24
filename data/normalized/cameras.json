@@ -26,13 +26,166 @@
     "slug": "fujifilm-x-t5",
     "brandSlug": "fujifilm",
     "releaseYear": 2022,
-    "cameraType": "Mirrorless",
+    "cameraType": "Bezlusterkowiec",
     "mount": "Fujifilm X",
     "sensorFormat": "APS-C",
     "description": "Compact APS-C mirrorless camera focused on stills.",
     "specs": {
       "resolutionMp": 40.2,
       "video": "6.2K",
+      "ibis": true
+    },
+    "status": "active"
+  },
+  {
+    "legacyId": "canon-eos-r6-mark-ii",
+    "name": "Canon EOS R6 Mark II",
+    "slug": "canon-eos-r6-mark-ii",
+    "brandSlug": "canon",
+    "releaseYear": 2022,
+    "cameraType": "Bezlusterkowiec",
+    "mount": "Canon RF",
+    "sensorFormat": "Pełna Klatka",
+    "description": "Fast full-frame mirrorless camera with strong autofocus and hybrid shooting capabilities.",
+    "specs": {
+      "resolutionMp": 24.2,
+      "video": "4K",
+      "ibis": true
+    },
+    "status": "active"
+  },
+  {
+    "legacyId": "canon-eos-90d",
+    "name": "Canon EOS 90D",
+    "slug": "canon-eos-90d",
+    "brandSlug": "canon",
+    "releaseYear": 2019,
+    "cameraType": "Lustrzanka",
+    "mount": "Canon EF",
+    "sensorFormat": "APS-C",
+    "description": "APS-C DSLR combining high resolution with classic optical-viewfinder shooting.",
+    "specs": {
+      "resolutionMp": 32.5,
+      "video": "4K",
+      "ibis": false
+    },
+    "status": "active"
+  },
+  {
+    "legacyId": "fujifilm-x-h2",
+    "name": "Fujifilm X-H2",
+    "slug": "fujifilm-x-h2",
+    "brandSlug": "fujifilm",
+    "releaseYear": 2022,
+    "cameraType": "Bezlusterkowiec",
+    "mount": "Fujifilm X",
+    "sensorFormat": "APS-C",
+    "description": "High-resolution APS-C flagship with robust body and advanced hybrid capabilities.",
+    "specs": {
+      "resolutionMp": 40.2,
+      "video": "8K",
+      "ibis": true
+    },
+    "status": "active"
+  },
+  {
+    "legacyId": "sony-a7-iv",
+    "name": "Sony A7 IV",
+    "slug": "sony-a7-iv",
+    "brandSlug": "sony",
+    "releaseYear": 2021,
+    "cameraType": "Bezlusterkowiec",
+    "mount": "Sony E",
+    "sensorFormat": "Pełna Klatka",
+    "description": "Balanced full-frame mirrorless camera positioned for hybrid creators and photographers.",
+    "specs": {
+      "resolutionMp": 33,
+      "video": "4K",
+      "ibis": true
+    },
+    "status": "active"
+  },
+  {
+    "legacyId": "sony-a6700",
+    "name": "Sony A6700",
+    "slug": "sony-a6700",
+    "brandSlug": "sony",
+    "releaseYear": 2023,
+    "cameraType": "Bezlusterkowiec",
+    "mount": "Sony E",
+    "sensorFormat": "APS-C",
+    "description": "Compact APS-C mirrorless model with modern autofocus and strong video feature set.",
+    "specs": {
+      "resolutionMp": 26,
+      "video": "4K",
+      "ibis": true
+    },
+    "status": "active"
+  },
+  {
+    "legacyId": "nikon-z8",
+    "name": "Nikon Z8",
+    "slug": "nikon-z8",
+    "brandSlug": "nikon",
+    "releaseYear": 2023,
+    "cameraType": "Bezlusterkowiec",
+    "mount": "Nikon Z",
+    "sensorFormat": "Pełna Klatka",
+    "description": "High-end full-frame mirrorless camera with professional stills and video performance.",
+    "specs": {
+      "resolutionMp": 45.7,
+      "video": "8K",
+      "ibis": true
+    },
+    "status": "active"
+  },
+  {
+    "legacyId": "nikon-z-fc",
+    "name": "Nikon Z fc",
+    "slug": "nikon-z-fc",
+    "brandSlug": "nikon",
+    "releaseYear": 2021,
+    "cameraType": "Bezlusterkowiec",
+    "mount": "Nikon Z",
+    "sensorFormat": "APS-C",
+    "description": "Retro-styled APS-C mirrorless camera inspired by classic Nikon film bodies.",
+    "specs": {
+      "resolutionMp": 20.9,
+      "video": "4K",
+      "ibis": false
+    },
+    "status": "active"
+  },
+  {
+    "legacyId": "leica-q3",
+    "name": "Leica Q3",
+    "slug": "leica-q3",
+    "brandSlug": "leica",
+    "releaseYear": 2023,
+    "cameraType": "Kompakt",
+    "mount": "Fixed Lens",
+    "sensorFormat": "Pełna Klatka",
+    "description": "Premium full-frame compact camera with fixed lens and distinctive Leica design.",
+    "specs": {
+      "resolutionMp": 60,
+      "video": "8K",
+      "ibis": true
+    },
+    "status": "active"
+  },
+  {
+    "legacyId": "panasonic-lumix-s5-ii",
+    "name": "Panasonic Lumix S5 II",
+    "slug": "panasonic-lumix-s5-ii",
+    "brandSlug": "panasonic",
+    "releaseYear": 2023,
+    "cameraType": "Bezlusterkowiec",
+    "mount": "L-Mount",
+    "sensorFormat": "Pełna Klatka",
+    "description": "Hybrid-oriented full-frame mirrorless camera with strong video features and stabilization.",
+    "specs": {
+      "resolutionMp": 24.2,
+      "video": "6K",
       "ibis": true
     },
     "status": "active"
