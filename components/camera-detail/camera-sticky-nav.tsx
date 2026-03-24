@@ -34,7 +34,7 @@ export function CameraStickyNav({ items }: Props) {
         },
         {
           root: null,
-          rootMargin: "-35% 0px -50% 0px",
+          rootMargin: "-30% 0px -55% 0px",
           threshold: 0.01,
         }
       );
@@ -52,7 +52,7 @@ export function CameraStickyNav({ items }: Props) {
     const element = document.getElementById(id);
     if (!element) return;
 
-    const y = element.getBoundingClientRect().top + window.scrollY - 110;
+    const y = element.getBoundingClientRect().top + window.scrollY - 88;
 
     window.scrollTo({
       top: y,
@@ -63,8 +63,8 @@ export function CameraStickyNav({ items }: Props) {
   if (!visibleItems.length) return null;
 
   return (
-    <div className="sticky top-3 z-40">
-      <div className="overflow-x-auto rounded-full border border-[#2a2119] bg-[rgba(10,10,10,0.82)] px-2 py-2 backdrop-blur-xl supports-[backdrop-filter]:bg-[rgba(10,10,10,0.72)]">
+    <div className="sticky top-2 z-40 sm:top-3">
+      <div className="no-scrollbar overflow-x-auto rounded-2xl border border-[#2a2119] bg-[rgba(10,10,10,0.82)] px-2 py-2 backdrop-blur-xl supports-[backdrop-filter]:bg-[rgba(10,10,10,0.72)]">
         <div className="flex min-w-max items-center gap-2">
           {visibleItems.map((item) => {
             const isActive = item.id === activeId;
@@ -74,7 +74,7 @@ export function CameraStickyNav({ items }: Props) {
                 key={item.id}
                 type="button"
                 onClick={() => handleScrollTo(item.id)}
-                className={`rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] transition duration-300 ${
+                className={`rounded-full px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] transition duration-300 sm:px-4 sm:text-xs ${
                   isActive
                     ? "border border-[#c79b63] bg-[#c79b63] text-black shadow-[0_0_24px_rgba(199,155,99,0.2)]"
                     : "border border-transparent text-[#b8aa9b] hover:border-[#3a2d21] hover:bg-[#121212] hover:text-[#f6efe7]"

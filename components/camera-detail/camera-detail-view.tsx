@@ -37,11 +37,11 @@ export function CameraDetailView({ camera }: Props) {
   return (
     <main className="min-h-screen bg-[#030303] text-white">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute left-1/2 top-0 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-[#9c6b35]/10 blur-3xl" />
-        <div className="absolute right-0 top-[30%] h-[320px] w-[320px] rounded-full bg-white/[0.03] blur-3xl" />
+        <div className="absolute left-1/2 top-0 h-[280px] w-[280px] -translate-x-1/2 rounded-full bg-[#9c6b35]/10 blur-3xl md:h-[420px] md:w-[420px]" />
+        <div className="absolute right-0 top-[30%] h-[220px] w-[220px] rounded-full bg-white/[0.03] blur-3xl md:h-[320px] md:w-[320px]" />
       </div>
 
-      <div className="relative mx-auto flex w-full max-w-[1440px] flex-col gap-12 px-4 py-8 md:px-6 md:py-10 xl:px-8">
+      <div className="relative mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-3 py-4 sm:px-4 sm:py-6 md:gap-10 md:px-6 md:py-8 xl:gap-12 xl:px-8 xl:py-10">
         <CameraStickyNav items={navItems} />
 
         <RevealOnScroll y={18}>

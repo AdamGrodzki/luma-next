@@ -71,10 +71,10 @@ export function CameraGallery({ camera }: Props) {
 
   return (
     <>
-      <section
-        id="gallery"
-        className="scroll-mt-28 space-y-8 rounded-[32px] border border-[#1f1914] bg-[linear-gradient(180deg,#080808_0%,#060606_100%)] px-6 py-10 md:px-10 md:py-12"
-      >
+<section
+  id="gallery"
+  className="scroll-mt-24 space-y-6 rounded-[24px] border border-[#1f1914] bg-[linear-gradient(180deg,#080808_0%,#060606_100%)] px-4 py-6 sm:rounded-[28px] sm:px-5 sm:py-8 md:px-8 md:py-10 xl:rounded-[32px] xl:px-10 xl:py-12"
+>
         <div className="text-center">
           <p className="mb-3 text-[11px] uppercase tracking-[0.35em] text-[#a07f5e]">
             Visual archive
@@ -88,7 +88,7 @@ export function CameraGallery({ camera }: Props) {
           </p>
         </div>
 
-        <div className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
+          <div className="grid gap-5 xl:grid-cols-[1.1fr_0.9fr] xl:gap-6">
           <div className="rounded-[28px] border border-[#2a2119] bg-[linear-gradient(180deg,#101010_0%,#0b0b0b_100%)] p-4 shadow-[0_20px_70px_rgba(0,0,0,0.35)]">
             <div className="mb-3 flex items-center justify-between px-1">
               <span className="text-[10px] uppercase tracking-[0.28em] text-[#806d5b]">
@@ -132,7 +132,7 @@ export function CameraGallery({ camera }: Props) {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-2">
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 xl:grid-cols-2">
               {images.map((image, index) => {
                 const isActive = index === activeIndex;
 
@@ -192,18 +192,18 @@ export function CameraGallery({ camera }: Props) {
             onClick={(event) => event.stopPropagation()}
           >
             <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col">
-              <div className="sticky top-0 z-20 mb-4 flex items-start justify-between gap-4 rounded-[20px] border border-[#2b2118] bg-[rgba(10,10,10,0.78)] px-4 py-3 backdrop-blur-xl">
+               <div className="sticky top-0 z-20 mb-3 flex items-start justify-between gap-3 rounded-[18px] border border-[#2b2118] bg-[rgba(10,10,10,0.78)] px-3 py-3 backdrop-blur-xl sm:mb-4 sm:rounded-[20px] sm:px-4">
                 <div className="min-w-0 pr-2">
                   <p className="text-[10px] uppercase tracking-[0.28em] text-[#9b8772]">
                     Fullscreen preview
                   </p>
-                  <h3 className="mt-1 truncate text-lg font-semibold text-[#f6efe7] md:text-2xl">
+                    <h3 className="mt-1 max-w-[140px] truncate text-base font-semibold text-[#f6efe7] sm:max-w-none sm:text-lg md:text-2xl">
                     {camera.name}
                   </h3>
                 </div>
 
                 <div className="flex shrink-0 items-center gap-3">
-                  <div className="rounded-full border border-[#34271d] bg-[rgba(14,14,14,0.82)] px-4 py-2 text-xs uppercase tracking-[0.2em] text-[#d8c8b8]">
+                    <div className="rounded-full border border-[#34271d] bg-[rgba(14,14,14,0.82)] px-3 py-2 text-[10px] uppercase tracking-[0.16em] text-[#d8c8b8] sm:px-4 sm:text-xs sm:tracking-[0.2em]">
                     {activeIndex + 1} / {images.length}
                   </div>
 
@@ -211,7 +211,7 @@ export function CameraGallery({ camera }: Props) {
                     type="button"
                     onClick={() => setIsLightboxOpen(false)}
                     aria-label="Zamknij podgląd"
-                    className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#34271d] bg-[rgba(14,14,14,0.82)] text-xl leading-none text-[#f6efe7] shadow-[0_8px_24px_rgba(0,0,0,0.22)] transition duration-300 hover:scale-[1.04] hover:border-[#c79b63] hover:text-[#c79b63]"
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#34271d] bg-[rgba(14,14,14,0.82)] text-lg leading-none text-[#f6efe7] transition duration-300 hover:scale-[1.04] hover:border-[#c79b63] hover:text-[#c79b63] sm:h-11 sm:w-11 sm:text-xl"
                   >
                     ×
                   </button>
@@ -235,7 +235,7 @@ export function CameraGallery({ camera }: Props) {
                     <button
                       type="button"
                       onClick={goPrev}
-                      className="absolute left-3 top-1/2 z-10 -translate-y-1/2 rounded-full border border-[#3a2d21] bg-[rgba(10,10,10,0.82)] px-4 py-3 text-sm font-semibold text-[#f6efe7] backdrop-blur-md transition hover:border-[#c79b63] hover:text-[#c79b63] md:left-4"
+                      className="absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full border border-[#3a2d21] bg-[rgba(10,10,10,0.82)] px-3 py-2 text-xs font-semibold text-[#f6efe7] backdrop-blur-md transition hover:border-[#c79b63] hover:text-[#c79b63] sm:left-3 sm:px-4 sm:py-3 sm:text-sm md:left-4"
                       aria-label="Poprzednie zdjęcie"
                     >
                       ←
@@ -244,7 +244,7 @@ export function CameraGallery({ camera }: Props) {
                     <button
                       type="button"
                       onClick={goNext}
-                      className="absolute right-3 top-1/2 z-10 -translate-y-1/2 rounded-full border border-[#3a2d21] bg-[rgba(10,10,10,0.82)] px-4 py-3 text-sm font-semibold text-[#f6efe7] backdrop-blur-md transition hover:border-[#c79b63] hover:text-[#c79b63] md:right-4"
+                      className="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full border border-[#3a2d21] bg-[rgba(10,10,10,0.82)] px-3 py-2 text-xs font-semibold text-[#f6efe7] backdrop-blur-md transition hover:border-[#c79b63] hover:text-[#c79b63] sm:right-3 sm:px-4 sm:py-3 sm:text-sm md:right-4"
                       aria-label="Następne zdjęcie"
                     >
                       →
@@ -254,7 +254,7 @@ export function CameraGallery({ camera }: Props) {
               </div>
 
               {images.length > 1 && (
-                <div className="mt-4 shrink-0 overflow-x-auto pb-1">
+                <div className="mt-3 shrink-0 overflow-x-auto pb-1 sm:mt-4">
                   <div className="grid min-w-max grid-flow-col gap-3">
                     {images.map((image, index) => {
                       const isActive = index === activeIndex;
@@ -264,7 +264,7 @@ export function CameraGallery({ camera }: Props) {
                           key={`${image}-lightbox-${index}`}
                           type="button"
                           onClick={() => setActiveIndex(index)}
-                          className={`relative w-24 overflow-hidden rounded-2xl border transition md:w-28 ${isActive
+                          className={`relative w-20 overflow-hidden rounded-xl border transition sm:w-24 sm:rounded-2xl md:w-28 ${isActive
                             ? "border-[#c79b63] ring-1 ring-[#c79b63]/40"
                             : "border-[#241d17] hover:border-[#3b2d20]"
                             }`}
