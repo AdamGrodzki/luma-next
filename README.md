@@ -123,7 +123,8 @@ src/
 * country
 * foundedYear
 * description
-* logo
+* logoPath
+
 
 ### Camera
 
