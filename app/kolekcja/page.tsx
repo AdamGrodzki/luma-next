@@ -116,7 +116,7 @@ export default async function CollectionPage({ searchParams }: Props) {
 
   return (
     <main className="min-h-screen bg-[#040607] text-[#f3eadf]">
-      <div className="mx-auto max-w-[1500px] px-6 py-5">
+      <div className="mx-auto max-w-[1500px] px-4 sm:px-6 py-4 sm:py-5">
         <CollectionMobileDrawers
           brands={brands}
           activeBrandName={activeBrand.name}
@@ -132,7 +132,7 @@ export default async function CollectionPage({ searchParams }: Props) {
           activeSort={sort}
         />
 
-        <div className="mt-5 grid gap-6 xl:grid-cols-[230px_minmax(0,1fr)_300px]">
+        <div className="mt-4 sm:mt-5 grid gap-4 sm:gap-6 xl:grid-cols-[230px_minmax(0,1fr)_300px]">
           <div className="hidden xl:block">
             <BrandSidebar
               brands={brands}
@@ -146,7 +146,7 @@ export default async function CollectionPage({ searchParams }: Props) {
             />
           </div>
 
-          <section className="rounded-[22px] border border-[#1f1a14] bg-[#050607] px-6 py-6 shadow-[0_0_60px_rgba(0,0,0,0.35)] md:px-8 xl:px-10 xl:py-7">
+          <section className="rounded-lg sm:rounded-[22px] border border-[#1f1a14] bg-[#050607] px-4 sm:px-6 md:px-8 py-5 sm:py-6 xl:px-10 xl:py-7 shadow-[0_0_60px_rgba(0,0,0,0.35)]">
             <CollectionHeader
               brandName={activeBrand.name}
               totalCount={totalCount}

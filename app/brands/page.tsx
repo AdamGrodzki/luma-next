@@ -51,7 +51,7 @@ export default async function BrandDetailPage({ params }: Props) {
   );
 
   return (
-    <main className="min-h-screen bg-[#040607] py-16 text-[#f3eadf]">
+    <main className="min-h-screen bg-[#040607] py-8 sm:py-12 md:py-16 text-[#f3eadf]">
       <Container>
         {/* HEADER */}
         <div className="max-w-3xl">
@@ -59,47 +59,47 @@ export default async function BrandDetailPage({ params }: Props) {
             Marka
           </p>
 
-          <h1 className="mt-4 font-serif text-5xl leading-tight">
+          <h1 className="mt-3 sm:mt-4 font-serif text-3xl sm:text-4xl md:text-5xl leading-tight">
             {brand.name}
           </h1>
 
           {brand.description && (
-            <p className="mt-6 text-lg leading-7 text-[#b7aea4]">
+            <p className="mt-4 sm:mt-6 text-sm sm:text-base md:text-lg leading-6 sm:leading-7 text-[#b7aea4]">
               {brand.description}
             </p>
           )}
         </div>
 
         {/* INFO */}
-        <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-6 sm:mt-10 grid gap-3 sm:gap-4 grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
           {brand.country && (
             <InfoCard>
-              <p className="text-sm text-[#8e867d]">Kraj</p>
-              <p className="mt-2 text-xl">{brand.country}</p>
+              <p className="text-xs sm:text-sm text-[#8e867d]">Kraj</p>
+              <p className="mt-2 text-lg sm:text-xl">{brand.country}</p>
             </InfoCard>
           )}
 
           {brand.foundedYear && (
             <InfoCard>
-              <p className="text-sm text-[#8e867d]">Założono</p>
-              <p className="mt-2 text-xl">{brand.foundedYear}</p>
+              <p className="text-xs sm:text-sm text-[#8e867d]">Założono</p>
+              <p className="mt-2 text-lg sm:text-xl">{brand.foundedYear}</p>
             </InfoCard>
           )}
 
           <InfoCard>
-            <p className="text-sm text-[#8e867d]">Modele w katalogu</p>
-            <p className="mt-2 text-xl">{brandCameras.length}</p>
+            <p className="text-xs sm:text-sm text-[#8e867d]">Modele w katalogu</p>
+            <p className="mt-2 text-lg sm:text-xl">{brandCameras.length}</p>
           </InfoCard>
         </div>
 
         {/* CAMERAS */}
-        <div className="mt-16">
-          <h2 className="text-2xl font-semibold uppercase tracking-[0.12em] text-[#e7ded3]">
+        <div className="mt-10 sm:mt-16">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-semibold uppercase tracking-[0.12em] text-[#e7ded3]">
             Modele {brand.name}
           </h2>
 
           {brandCameras.length > 0 ? (
-            <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            <div className="mt-6 sm:mt-8 grid gap-3 sm:gap-4 md:gap-6 grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
               {brandCameras.map((camera) => (
                 <CameraCard
                   key={camera.slug}
@@ -117,7 +117,7 @@ export default async function BrandDetailPage({ params }: Props) {
               ))}
             </div>
           ) : (
-            <div className="mt-6 rounded-2xl border border-[#1d1711] bg-[#090b0c] p-6 text-[#b9b0a5]">
+              <div className="mt-4 sm:mt-6 rounded-lg sm:rounded-2xl border border-[#1d1711] bg-[#090b0c] p-4 sm:p-6 text-sm sm:text-base text-[#b9b0a5]">
               Brak aparatów dla tej marki.
             </div>
           )}
