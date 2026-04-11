@@ -17,7 +17,7 @@ export default function CameraCard({ camera }: Props) {
   return (
     <Link
       href={`/cameras/${camera.slug}`}
-      className="overflow-hidden rounded-2xl border border-[#1d1711] bg-[#090b0c] transition hover:border-[#4a3827]"
+      className="overflow-hidden rounded-lg sm:rounded-2xl border border-[#1d1711] bg-[#090b0c] transition hover:border-[#4a3827]"
     >
       <div className="aspect-[4/3] bg-[#0d1012]">
         {thumb ? (
@@ -35,14 +35,14 @@ export default function CameraCard({ camera }: Props) {
         )}
       </div>
 
-      <div className="p-4">
+      <div className="p-3 sm:p-4">
         <div className="text-xs uppercase tracking-[0.14em] text-[#b4916c]">
           {camera.type || "Aparat"}
         </div>
-        <h4 className="mt-2 text-lg font-semibold text-[#f2e9de]">
+        <h4 className="mt-1.5 sm:mt-2 text-base sm:text-lg font-semibold text-[#f2e9de] line-clamp-2">
           {camera.name}
         </h4>
-        <div className="mt-3 flex items-center justify-between text-sm text-[#a9a097]">
+        <div className="mt-2 sm:mt-3 flex items-center justify-between text-xs sm:text-sm text-[#a9a097]">
           <span>Premiera</span>
           <span>{camera.year || "—"}</span>
         </div>
