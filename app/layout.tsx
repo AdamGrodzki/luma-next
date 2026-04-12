@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   },
   description: "Encyklopedia marek i aparatów oparta o Next.js i Contentful.",
   viewport: "width=device-width, initial-scale=1.0, viewport-fit=cover",
+  icons: {
+    icon: "/luma-logo.svg",
+  },
 };
 
 export default function RootLayout({
@@ -26,7 +29,7 @@ export default function RootLayout({
             <div className="grid grid-cols-[1fr_auto] items-center gap-2 md:hidden">
               <div className="flex justify-start">
                 <Link href="/">
-                  <Image src="../luma-logo.svg" alt="Luma" width={100} height={32} />
+                  <Image src="/luma-logo.svg" alt="Luma" width={100} height={32} />
                 </Link>
               </div>
               <nav className="flex items-center gap-3 text-[10px] uppercase tracking-[0.16em] text-[#8e867d]">

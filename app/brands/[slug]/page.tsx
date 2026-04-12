@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import Container from "@/components/ui/Container";
 import SectionHeader from "@/components/ui/SectionHeader";
 import InfoCard from "@/components/ui/InfoCard";
@@ -46,21 +47,36 @@ export default async function BrandDetailPage({ params }: Props) {
         </div>
 
         {/* STATS */}
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
+        <div className="mt-8 grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           <InfoCard>
-            <p className="text-sm text-[#8e867d]">Kraj</p>
-            <p className="mt-2 text-xl">{brand.country ?? "Brak danych"}</p>
+            <p className="text-m text-[#8e867d]">Kraj</p>
+            <p className="mt-2 text-4xl">{brand.country ?? "Brak danych"}</p>
           </InfoCard>
 
           <InfoCard>
-            <p className="text-sm text-[#8e867d]">Rok założenia</p>
-            <p className="mt-2 text-xl">{brand.foundedYear ?? "Brak danych"}</p>
+            <p className="text-m text-[#8e867d]">Rok założenia</p>
+            <p className="mt-2 text-4xl">{brand.foundedYear ?? "Brak danych"}</p>
           </InfoCard>
 
           <InfoCard>
-            <p className="text-sm text-[#8e867d]">Modele</p>
-            <p className="mt-2 text-xl">{brandCameras.length}</p>
+            <p className="text-m text-[#8e867d]">Modele</p>
+            <p className="mt-2 text-4xl">{brandCameras.length}</p>
           </InfoCard>
+
+          {brand.logoUrl && (
+            <InfoCard>
+              <p className="text-m text-[#8e867d] mb-3">Logo</p>
+              <div className="relative h-20 w-full">
+                <Image
+                  src={brand.logoUrl}
+                  alt={`${brand.name} logo`}
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+            </InfoCard>
+          )}
         </div>
 
         {/* CAMERAS */}
