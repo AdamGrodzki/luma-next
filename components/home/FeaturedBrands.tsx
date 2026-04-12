@@ -38,6 +38,7 @@ export default function FeaturedBrands({ brands }: Props) {
                                         alt={brand.name}
                                         width={56}
                                         height={56}
+                                        loading="lazy"
                                         className="h-12 sm:h-14 w-12 sm:w-14 rounded-xl object-contain flex-shrink-0"
                                     />
                                 ) : null}

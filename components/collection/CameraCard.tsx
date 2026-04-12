@@ -7,9 +7,10 @@ type Props = {
   camera: CollectionCameraCard & {
     imageUrl?: string | null;
   };
+  priority?: boolean;
 };
 
-export default function CameraCard({ camera }: Props) {
+export default function CameraCard({ camera, priority = false }: Props) {
   const thumb = camera.imageUrl
     ? buildContentfulImageUrl(camera.imageUrl, { w: 800, h: 520, fit: "fill" })
     : null;
@@ -26,6 +27,8 @@ export default function CameraCard({ camera }: Props) {
             alt={camera.name}
             width={800}
             height={520}
+            priority={priority}
+            loading={priority ? "eager" : "lazy"}
             className="h-full w-full object-cover"
           />
         ) : (
