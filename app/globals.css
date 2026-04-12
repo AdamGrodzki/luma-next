@@ -3,6 +3,34 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+/* ===== Kolorowa paleta projektu ===== */
+  /* Tła */
+  --bg-dark: #040607;
+  --bg-darker: #0a0a0a;
+  --bg-card: #0a0c0e;
+  --bg-input: #0d1012;
+
+  /* Tekst */
+  --text-primary: #f3eadf;
+  --text-secondary: #cbb9a5;
+  --text-muted: #8e867d;
+  --text-accent: #9f978d;
+
+  /* Bordery */
+  --border-default: #1f1a14;
+  --border-light: #2a231c;
+  --border-dark: #1d1711;
+
+  /* Akcenty */
+  --accent-primary: #c79d6a;
+  --accent-secondary: #d0a46f;
+  --accent-hover: #dcc2a2;
+  --accent-gold: #c99f6a;
+
+  /* Specjalne */
+  --special-brand-bg: #110e0b;
+  --special-badge-border: #3a2d20;
+  --special-badge-bg: #131517;
 }
 
 @theme inline {
