@@ -10,16 +10,16 @@ export function CameraStory({ camera }: Props) {
   return (
     <section 
         id="story"
-        className="space-y-6 rounded-[28px] border border-[#1d1a17] bg-[#070707] px-6 py-12 md:px-10">
+      className="space-y-6 rounded-[28px] border border-[var(--border-light)] bg-[var(--bg-card)] px-6 py-12 md:px-10">
       <div className="flex items-center justify-center gap-4">
-        <div className="h-px w-16 bg-[#8d6a42]" />
-        <h2 className="text-center text-3xl font-bold text-[#f6efe7] md:text-5xl">
+        <div className="h-px w-16 bg-[var(--accent-primary)]" />
+        <h2 className="text-center text-3xl font-bold text-[var(--text-primary)] md:text-5xl">
           Historia i Inżynieria
         </h2>
-        <div className="h-px w-16 bg-[#8d6a42]" />
+        <div className="h-px w-16 bg-[var(--accent-primary)]" />
       </div>
 
-      <div className="mx-auto max-w-4xl space-y-6 text-center text-lg leading-8 text-[#d1c3b5]">
+      <div className="mx-auto max-w-4xl space-y-6 text-center text-lg leading-8 text-[var(--text-muted)]">
         {camera.story ? <p>{camera.story}</p> : null}
         {camera.description ? <p>{camera.description}</p> : null}
       </div>

@@ -5,12 +5,12 @@
  */
 export default function CollectionLoading() {
   return (
-    <main className="min-h-screen bg-[#040607] text-[#f3eadf]">
+    <main className="min-h-screen bg-[var(--bg-dark)] text-[var(--text-primary)]">
       <div className="mx-auto max-w-[1500px] px-4 sm:px-6 py-4 sm:py-5">
         {/* Mobile Drawers Skeleton */}
-        <div className="flex items-center justify-between rounded-2xl border border-[#182027] bg-[#071015] px-4 py-3 xl:hidden animate-pulse">
-          <div className="h-6 w-20 bg-[#2a231c] rounded-full"></div>
-          <div className="h-6 w-20 bg-[#2a231c] rounded-full"></div>
+        <div className="flex items-center justify-between rounded-2xl border border-[var(--border-light)] bg-[var(--bg-darker)] px-4 py-3 xl:hidden animate-pulse">
+          <div className="h-6 w-20 bg-[var(--bg-darker)] rounded-full"></div>
+          <div className="h-6 w-20 bg-[var(--bg-darker)] rounded-full"></div>
         </div>
 
         {/* Main Grid */}

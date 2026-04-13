@@ -10,7 +10,7 @@ export default async function HomePage() {
   const [brands, cameras] = await Promise.all([getBrands(), getCameras()]);
 
   return (
-    <main className="min-h-screen bg-[#040607] text-[#f3eadf]">
+    <main className="min-h-screen bg-[var(--bg-dark)] text-[var(--text-primary)]">
       <HeroSection />
       <FeaturedBrands brands={brands} />
       <FeaturedCameras cameras={cameras} />

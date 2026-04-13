@@ -64,7 +64,7 @@ export function CameraStickyNav({ items }: Props) {
 
   return (
     <div className="sticky top-2 z-40 sm:top-3">
-      <div className="no-scrollbar overflow-x-auto rounded-2xl border border-[#2a2119] bg-[rgba(10,10,10,0.82)] px-2 py-2 backdrop-blur-xl supports-[backdrop-filter]:bg-[rgba(10,10,10,0.72)]">
+      <div className="no-scrollbar overflow-x-auto rounded-2xl border border-[var(--border-light)] px-2 py-2">
         <div className="flex min-w-max items-center gap-2">
           {visibleItems.map((item) => {
             const isActive = item.id === activeId;
@@ -76,8 +76,8 @@ export function CameraStickyNav({ items }: Props) {
                 onClick={() => handleScrollTo(item.id)}
                 className={`rounded-full px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] transition duration-300 sm:px-4 sm:text-xs ${
                   isActive
-                    ? "border border-[#c79b63] bg-[#c79b63] text-black shadow-[0_0_24px_rgba(199,155,99,0.2)]"
-                    : "border border-transparent text-[#b8aa9b] hover:border-[#3a2d21] hover:bg-[#121212] hover:text-[#f6efe7]"
+                  ? "border border-[var(--accent-primary)] bg-[var(--accent-primary)] text-[var(--bg-dark)] shadow-[0_0_24px_rgba(199,155,99,0.2)]"
+                  : "border border-transparent text-[var(--text-secondary)] hover:border-[var(--border-default)] hover:bg-[var(--bg-card)] hover:text-[var(--text-primary)]"
                 }`}
               >
                 {item.label}

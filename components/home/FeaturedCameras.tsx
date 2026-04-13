@@ -11,7 +11,7 @@ type Props = {
 
 export default function FeaturedCameras({ cameras }: Props) {
     return (
-        <section className="border-t border-[#181512] py-12 sm:py-16 md:py-20">
+        <section className="border-t border-[var(--border-light)] py-12 sm:py-16 md:py-20">
             <Container>
                 <SectionHeader
                     eyebrow="Wybrane modele"
@@ -22,7 +22,7 @@ export default function FeaturedCameras({ cameras }: Props) {
                 <div className="mt-8 sm:mt-10 grid gap-4 sm:gap-5 grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
                     {cameras.slice(0, 6).map((camera, index) => (
                         <InfoCard key={camera.id} href={`/cameras/${camera.slug}`}>
-                            <div className="overflow-hidden rounded-[18px] border border-[#1f1a14] bg-[#0f1113]">
+                            <div className="overflow-hidden rounded-[18px] border border-[var(--border-default)] bg-[var(--bg-card)]">
                                 {camera.heroImageUrl ? (
                                     <Image
                                         src={camera.heroImageUrl}
@@ -34,17 +34,17 @@ export default function FeaturedCameras({ cameras }: Props) {
                                         className="h-40 sm:h-48 md:h-56 w-full object-cover transition duration-500 hover:scale-105"
                                     />
                                 ) : (
-                                        <div className="flex h-40 sm:h-48 md:h-56 items-center justify-center text-xs text-[#7f776d]">
+                                        <div className="flex h-40 sm:h-48 md:h-56 items-center justify-center text-xs text-[var(--text-muted)]">
                                         Brak zdjęcia
                                     </div>
                                 )}
                             </div>
 
-                            <p className="mt-3 sm:mt-4 text-xs uppercase tracking-[0.16em] text-[#8e867d]">
+                            <p className="mt-3 sm:mt-4 text-xs uppercase tracking-[0.16em] text-[var(--text-muted)]">
                                 {camera.brand.name}
                             </p>
 
-                            <h3 className="mt-2 text-base sm:text-lg md:text-2xl font-semibold text-[#f3eadf]">
+                            <h3 className="mt-2 text-base sm:text-lg md:text-2xl font-semibold text-[var(--text-primary)]">
                                 {camera.name}
                             </h3>
 

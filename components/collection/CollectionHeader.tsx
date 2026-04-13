@@ -15,7 +15,7 @@ export default function CollectionHeader({
   logoUrl,
 }: Props) {
   return (
-    <div className="flex flex-col gap-5 border-b border-[#1d1813] pb-7 md:flex-row md:items-start md:justify-between">
+    <div className="flex flex-col gap-5 border-b border-[var(--border-light)] pb-7 md:flex-row md:items-start md:justify-between">
       <div className="flex items-center gap-6">
         <div className="flex h-20 w-[230px] items-center justify-center rounded-md bg-white px-6 shadow-md">
           {logoUrl ? (
@@ -34,10 +34,10 @@ export default function CollectionHeader({
         </div>
 
         <div>
-          <div className="text-sm font-semibold uppercase tracking-[0.14em] text-[#c99f6a]">
+          <div className="text-sm font-semibold uppercase tracking-[0.14em] text-[var(--accent-primary)]">
             O producencie →
           </div>
-          <div className="mt-1 text-xl text-[#e9e0d7]">
+          <div className="mt-1 text-xl text-[var(--text-primary)]">
             Znaleziono {totalCount} modeli
           </div>
         </div>
@@ -45,7 +45,7 @@ export default function CollectionHeader({
 
       <Link
         href={brandSlug ? `/brands/${brandSlug}` : "/brands"}
-        className="rounded-full border border-[#3b3024] px-4 py-2 text-center text-xs uppercase tracking-[0.16em] text-[#d7c7b3] hover:border-[#8e6a47] hover:text-white"
+        className="rounded-full border border-[var(--special-badge-border)] px-4 py-2 text-center text-xs uppercase tracking-[0.16em] text-[var(--text-secondary)] hover:border-[var(--accent-primary)] hover:text-[var(--text-primary)]"
       >
         Zobacz profil marki
       </Link>

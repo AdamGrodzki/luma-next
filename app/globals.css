@@ -1,9 +1,11 @@
 @import "tailwindcss";
 
+/* Dark mode (default) */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-/* ===== Kolorowa paleta projektu ===== */
+  --background: #0a0a0a;
+    --foreground: #ededed;
+  
+    /* ===== Kolorowa paleta projektu - DARK MODE ===== */
   /* Tła */
   --bg-dark: #040607;
   --bg-darker: #0a0a0a;
@@ -33,6 +35,40 @@
   --special-badge-bg: #131517;
 }
 
+/* Light mode */
+:root[data-theme="light"] {
+  --background: #fafaf8;
+  --foreground: #1a1815;
+
+  /* ===== Kolorowa paleta projektu - LIGHT MODE ===== */
+  /* Tła */
+  --bg-dark: #f5f0eb;
+  --bg-darker: #fafaf8;
+  --bg-card: #ffffff;
+  --bg-input: #f0ebe5;
+
+  /* Tekst */
+  --text-primary: #2a2520;
+  --text-secondary: #4a4238;
+  --text-muted: #7a6f68;
+  --text-accent: #6a5f58;
+
+  /* Bordery */
+  --border-default: #d9ccc0;
+  --border-light: #c9b8ab;
+  --border-dark: #b8a699;
+
+  /* Akcenty */
+  --accent-primary: #b8860b;
+  --accent-secondary: #c9930f;
+  --accent-hover: #a0631e;
+  --accent-gold: #b8860b;
+
+  /* Specjalne */
+  --special-brand-bg: #f5f0eb;
+  --special-badge-border: #d9ccc0;
+  --special-badge-bg: #fef9f6;
+}
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -40,15 +76,13 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }

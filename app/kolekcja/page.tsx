@@ -74,11 +74,11 @@ export default async function CollectionPage({ searchParams }: Props) {
 
   if (!activeBrand) {
     return (
-      <main className="min-h-screen bg-[#040607] text-[#f3eadf]">
+      <main className="min-h-screen bg-[var(--bg-dark)] text-[var(--text-primary)]">
         <div className="mx-auto max-w-[1500px] px-6 py-10">
-          <div className="rounded-[22px] border border-[#1f1a14] bg-[#050607] p-8">
+          <div className="rounded-[22px] border border-[var(--border-light)] bg-[var(--bg-darker)] p-8">
             <h1 className="text-3xl font-semibold">Brak danych</h1>
-            <p className="mt-4 text-[#b9b0a5]">
+            <p className="mt-4 text-[var(--text-secondary)]">
               Nie znaleziono aktywnej marki w Contentful.
             </p>
           </div>
@@ -115,7 +115,7 @@ export default async function CollectionPage({ searchParams }: Props) {
   });
 
   return (
-    <main className="min-h-screen bg-[#040607] text-[#f3eadf]">
+    <main className="min-h-screen bg-[var(--bg-dark)] text-[var(--text-primary)]">
       <div className="mx-auto max-w-[1500px] px-4 sm:px-6 py-4 sm:py-5">
         <CollectionMobileDrawers
           brands={brands}
@@ -146,7 +146,7 @@ export default async function CollectionPage({ searchParams }: Props) {
             />
           </div>
 
-          <section className="rounded-lg sm:rounded-[22px] border border-[#1f1a14] bg-[#050607] px-4 sm:px-6 md:px-8 py-5 sm:py-6 xl:px-10 xl:py-7 shadow-[0_0_60px_rgba(0,0,0,0.35)]">
+          <section className="rounded-lg sm:rounded-[22px] border border-[var(--border-light)] bg-[var(--bg-darker)] px-4 sm:px-6 md:px-8 py-5 sm:py-6 xl:px-10 xl:py-7 shadow-[0_0_60px_rgba(0,0,0,0.35)]">
             <CollectionHeader
               brandName={activeBrand.name}
               totalCount={totalCount}
@@ -156,35 +156,35 @@ export default async function CollectionPage({ searchParams }: Props) {
 
             <div className="mt-6 flex flex-wrap gap-2">
               {activeQuery && (
-                <span className="rounded-full border border-[#3b3024] px-3 py-1 text-xs text-[#d7c7b3]">
+                <span className="rounded-full border border-[var(--accent-primary)]/50 px-3 py-1 text-xs text-[var(--text-muted)]">
                   Szukaj: {activeQuery}
                 </span>
               )}
               {activeSensor && (
-                <span className="rounded-full border border-[#3b3024] px-3 py-1 text-xs text-[#d7c7b3]">
+                <span className="rounded-full border border-[var(--accent-primary)]/50 px-3 py-1 text-xs text-[var(--text-muted)]">
                   Sensor: {activeSensor}
                 </span>
               )}
               {activeType && (
-                <span className="rounded-full border border-[#3b3024] px-3 py-1 text-xs text-[#d7c7b3]">
+                <span className="rounded-full border border-[var(--accent-primary)]/50 px-3 py-1 text-xs text-[var(--text-muted)]">
                   Typ: {activeType}
                 </span>
               )}
               {typeof yearFrom === "number" && (
-                <span className="rounded-full border border-[#3b3024] px-3 py-1 text-xs text-[#d7c7b3]">
+                <span className="rounded-full border border-[var(--accent-primary)]/50 px-3 py-1 text-xs text-[var(--text-muted)]">
                   Od: {yearFrom}
                 </span>
               )}
               {typeof yearTo === "number" && (
-                <span className="rounded-full border border-[#3b3024] px-3 py-1 text-xs text-[#d7c7b3]">
+                <span className="rounded-full border border-[var(--accent-primary)]/50 px-3 py-1 text-xs text-[var(--text-muted)]">
                   Do: {yearTo}
                 </span>
               )}
             </div>
 
-            <div className="mb-8 flex flex-col gap-4 rounded-[22px] border border-[#1f1a14] bg-[#090b0c] p-4 md:flex-row md:items-center md:justify-between">
+            <div className="mb-8 flex flex-col gap-4 rounded-[22px] border border-[var(--border-default)] bg-[var(--bg-card)] p-4 md:flex-row md:items-center md:justify-between">
               <div>
-                <p className="text-sm uppercase tracking-[0.14em] text-[#8e867d]">
+                <p className="text-sm uppercase tracking-[0.14em] text-[var(--text-muted)]">
                   Sortowanie
                 </p>
 
@@ -200,8 +200,8 @@ export default async function CollectionPage({ searchParams }: Props) {
                       sort: "year-desc",
                     })}
                     className={`rounded-full border px-4 py-2 text-sm transition ${sort === "year-desc" || !sort
-                      ? "border-[#8e6a47] text-[#f3eadf]"
-                      : "border-[#2d241c] text-[#aa9f93]"
+                      ? "border-[var(--accent-primary)] text-[var(--text-primary)]"
+                      : "border-[var(--border-light)] text-[var(--text-muted)]"
                       }`}
                   >
                     Najnowsze
@@ -218,8 +218,8 @@ export default async function CollectionPage({ searchParams }: Props) {
                       sort: "year-asc",
                     })}
                     className={`rounded-full border px-4 py-2 text-sm transition ${sort === "year-asc"
-                      ? "border-[#8e6a47] text-[#f3eadf]"
-                      : "border-[#2d241c] text-[#aa9f93]"
+                      ? "border-[var(--accent-primary)] text-[var(--text-primary)]"
+                      : "border-[var(--border-light)] text-[var(--text-muted)]"
                       }`}
                   >
                     Najstarsze
@@ -236,8 +236,8 @@ export default async function CollectionPage({ searchParams }: Props) {
                       sort: "name-asc",
                     })}
                     className={`rounded-full border px-4 py-2 text-sm transition ${sort === "name-asc"
-                      ? "border-[#8e6a47] text-[#f3eadf]"
-                      : "border-[#2d241c] text-[#aa9f93]"
+                      ? "border-[var(--accent-primary)] text-[var(--text-primary)]"
+                      : "border-[var(--border-light)] text-[var(--text-muted)]"
                       }`}
                   >
                     A–Z
@@ -254,8 +254,8 @@ export default async function CollectionPage({ searchParams }: Props) {
                       sort: "name-desc",
                     })}
                     className={`rounded-full border px-4 py-2 text-sm transition ${sort === "name-desc"
-                      ? "border-[#8e6a47] text-[#f3eadf]"
-                      : "border-[#2d241c] text-[#aa9f93]"
+                      ? "border-[var(--accent-primary)] text-[var(--text-primary)]"
+                      : "border-[var(--border-light)] text-[var(--text-muted)]"
                       }`}
                   >
                     Z–A
@@ -263,8 +263,8 @@ export default async function CollectionPage({ searchParams }: Props) {
                 </div>
               </div>
 
-              <div className="text-sm text-[#a79d92]">
-                Wyników: <span className="text-[#f3eadf]">{totalCount}</span>
+              <div className="text-sm text-[var(--text-muted)]">
+                Wyników: <span className="text-[var(--text-primary)]">{totalCount}</span>
               </div>
             </div>
 
@@ -275,7 +275,7 @@ export default async function CollectionPage({ searchParams }: Props) {
                   <SensorGroup key={group.name} group={group} />
                 ))
               ) : (
-                <div className="rounded-2xl border border-[#1d1711] bg-[#090b0c] p-6 text-[#b9b0a5]">
+                  <div className="rounded-2xl border border-[var(--border-light)] bg-[var(--bg-darker)] p-6 text-[var(--text-secondary)]">
                     Brak aparatów dla wybranych filtrów.
                 </div>
               )}

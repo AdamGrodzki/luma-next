@@ -13,7 +13,7 @@ export default async function BrandsPage() {
   ]);
 
   return (
-    <main className="min-h-screen bg-[#040607] py-8 sm:py-12 md:py-16 text-[#f3eadf]">
+    <main className="min-h-screen bg-[var(--bg-dark)] py-8 sm:py-12 md:py-16 text-[var(--text-primary)]">
       <Container>
         <SectionHeader
           eyebrow="Katalog"
@@ -30,13 +30,13 @@ export default async function BrandsPage() {
             return (
               <InfoCard key={brand.id} href={`/brands/${brand.slug}`}>
                 {/* BRAND NAME */}
-                <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-[#f3eadf]">
+                <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-[var(--text-primary)]">
                   {brand.name}
                 </h2>
 
                 {/* DESCRIPTION */}
                 {brand.description && (
-                  <p className="mt-2 text-xs sm:text-sm text-[#a69d93] line-clamp-2">
+                  <p className="mt-2 text-xs sm:text-sm text-[var(--text-secondary)] line-clamp-2">
                     {brand.description}
                   </p>
                 )}
@@ -44,7 +44,7 @@ export default async function BrandsPage() {
                 {/* INFO */}
                 <div className="mt-4 flex flex-wrap gap-3">
                   {brand.country && (
-                    <span className="inline-block rounded-full bg-[#1a1511] px-3 py-1 text-xs text-[#8e867d]">
+                    <span className="inline-block rounded-full bg-[var(--special-badge-bg)] px-3 py-1 text-xs text-[var(--text-muted)]">
                       {brand.country}
                     </span>
                   )}
