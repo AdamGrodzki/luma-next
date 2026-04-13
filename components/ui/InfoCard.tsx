@@ -8,7 +8,7 @@ type Props = {
 
     export default function InfoCard({ href, children, className = "" }: Props) {
     const base =
-        "rounded-lg sm:rounded-[24px] border border-[#221b14] bg-[#0a0c0e] p-4 sm:p-5 transition hover:border-[#6b573f] hover:bg-[#0d1012]";
+        "rounded-lg sm:rounded-[24px] border border-[var(--border-default)] bg-[var(--bg-card)] p-4 sm:p-5 transition hover:border-[var(--accent-primary)] hover:bg-[var(--bg-card)]";
 
     if (href) {
         return (

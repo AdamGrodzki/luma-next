@@ -18,9 +18,9 @@ export default function CameraCard({ camera, priority = false }: Props) {
   return (
     <Link
       href={`/cameras/${camera.slug}`}
-      className="overflow-hidden rounded-lg sm:rounded-2xl border border-[#1d1711] bg-[#090b0c] transition hover:border-[#4a3827]"
+      className="overflow-hidden rounded-lg sm:rounded-2xl border border-[var(--border-default)] bg-[var(--bg-card)] transition hover:border-[var(--accent-primary)]"
     >
-      <div className="aspect-[4/3] bg-[#0d1012]">
+      <div className="aspect-[4/3] bg-[var(--bg-darker)]">
         {thumb ? (
           <Image
             src={thumb}
@@ -38,14 +38,14 @@ export default function CameraCard({ camera, priority = false }: Props) {
         )}
       </div>
 
-      <div className="p-3 sm:p-4">
-        <div className="text-xs uppercase tracking-[0.14em] text-[#b4916c]">
+      <div className="p-3 sm:p-4 bg-[var(--special-brand-bg)]">
+        <div className="text-xs uppercase tracking-[0.14em] rounded-md px-2 py-1 text-xs font-semibold uppercase tracking-[0.08em] transition-colors text-[var(--accent-primary)]">
           {camera.type || "Aparat"}
         </div>
-        <h4 className="mt-1.5 sm:mt-2 text-base sm:text-lg font-semibold text-[#f2e9de] line-clamp-2">
+        <h4 className="mt-1.5 sm:mt-2 text-base sm:text-lg font-semibold text-[var(--text-primary)] line-clamp-2">
           {camera.name}
         </h4>
-        <div className="mt-2 sm:mt-3 flex items-center justify-between text-xs sm:text-sm text-[#a9a097]">
+        <div className="mt-2 sm:mt-3 flex items-center justify-between text-xs sm:text-sm text-[var(--text-secondary)]">
           <span>Premiera</span>
           <span>{camera.year || "—"}</span>
         </div>

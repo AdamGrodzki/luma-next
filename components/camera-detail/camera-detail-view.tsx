@@ -35,9 +35,9 @@ export function CameraDetailView({ camera }: Props) {
     .map(({ id, label }) => ({ id, label }));
 
   return (
-    <main className="min-h-screen bg-[#030303] text-white">
+    <main className="min-h-screen bg-[var(--bg-dark)] text-[var(--text-primary)]">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute left-1/2 top-0 h-[280px] w-[280px] -translate-x-1/2 rounded-full bg-[#9c6b35]/10 blur-3xl md:h-[420px] md:w-[420px]" />
+        <div className="absolute left-1/2 top-0 h-[280px] w-[280px] -translate-x-1/2 rounded-full bg-[var(--accent-primary)]/10 blur-3xl md:h-[420px] md:w-[420px]" />
         <div className="absolute right-0 top-[30%] h-[220px] w-[220px] rounded-full bg-white/[0.03] blur-3xl md:h-[320px] md:w-[320px]" />
       </div>
 

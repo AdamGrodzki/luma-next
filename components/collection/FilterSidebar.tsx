@@ -96,9 +96,9 @@ export default function FilterSidebar({
   }
 
   return (
-    <aside className="rounded-[22px] border border-[#0e242c] bg-[linear-gradient(180deg,#041018_0%,#06111a_100%)] p-5 shadow-[0_0_0_1px_rgba(218,180,134,0.05)]">
+    <aside className="rounded-[22px] border border-[var(--border-light)] bg-[var(--bg-card)] p-5 shadow-[0_0_0_1px_rgba(218,180,134,0.05)]">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-semibold uppercase tracking-[0.08em] text-[#f6eee6]">
+        <h2 className="text-2xl font-semibold uppercase tracking-[0.08em] text-[var(--text-primary)]">
           Filtrowanie
         </h2>
 
@@ -107,20 +107,20 @@ export default function FilterSidebar({
             brand: activeBrandSlug,
             sort: activeSort,
           })}
-          className="text-xs uppercase tracking-[0.14em] text-[#c99f6a] hover:text-white"
+          className="text-xs uppercase tracking-[0.14em] text-[var(--accent-primary)] hover:text-[var(--accent-hover)]"
         >
           Reset
         </Link>
       </div>
 
       <form onSubmit={handleSubmit} className="mt-6 space-y-4">
-        <div className="rounded-xl border border-[#6b573f] px-4 py-3">
+        <div className="rounded-xl border border-[var(--accent-primary)] px-4 py-3">
           <input
             type="text"
             name="q"
             defaultValue={activeQuery ?? ""}
             placeholder="Szukaj aparatu..."
-            className="w-full bg-transparent text-sm text-[#f3eadf] outline-none placeholder:text-[#6f6a63]"
+            className="w-full bg-transparent text-sm text-[var(--text-primary)] outline-none placeholder:text-[var(--text-muted)]"
           />
         </div>
 
@@ -130,27 +130,27 @@ export default function FilterSidebar({
             name="yearFrom"
             defaultValue={activeYearFrom ?? ""}
             placeholder="Od roku"
-            className="rounded-xl border border-[#6b573f] bg-transparent px-4 py-3 text-sm text-[#f3eadf] outline-none placeholder:text-[#6f6a63]"
+            className="rounded-xl border border-[var(--accent-primary)] bg-transparent px-4 py-3 text-sm text-[var(--text-primary)] outline-none placeholder:text-[var(--text-muted)]"
           />
           <input
             type="number"
             name="yearTo"
             defaultValue={activeYearTo ?? ""}
             placeholder="Do roku"
-            className="rounded-xl border border-[#6b573f] bg-transparent px-4 py-3 text-sm text-[#f3eadf] outline-none placeholder:text-[#6f6a63]"
+            className="rounded-xl border border-[var(--accent-primary)] bg-transparent px-4 py-3 text-sm text-[var(--text-primary)] outline-none placeholder:text-[var(--text-muted)]"
           />
         </div>
 
         <button
           type="submit"
-          className="w-full rounded-xl border border-[#8e6a47] px-4 py-3 text-sm uppercase tracking-[0.14em] text-[#f3eadf] transition hover:bg-[#141210]"
+          className="w-full rounded-xl border border-[var(--accent-primary)] px-4 py-3 text-sm uppercase tracking-[0.14em] text-[var(--text-primary)] transition hover:bg-[var(--border-default)]"
         >
           Zastosuj
         </button>
       </form>
 
-      <div className="mt-8 border-t border-[#102730] pt-8">
-        <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-[#f3e9df]">
+      <div className="mt-8 border-t border-[var(--border-light)] pt-8">
+        <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-[var(--text-primary)]">
           • Wielkość matrycy
         </h3>
 
@@ -171,14 +171,14 @@ export default function FilterSidebar({
                   sort: activeSort,
                 })}
                 className={`flex items-center gap-3 rounded-lg px-2 py-2 text-sm transition ${isActive
-                    ? "bg-[#141210] text-[#f3eadf]"
-                    : "text-[#d8d0c7] hover:bg-[#0d1419]"
+                  ? "bg-[var(--special-brand-bg)] text-[var(--text-primary)]"
+                  : "text-[var(--text-secondary)] hover:bg-[var(--bg-darker)]"
                   }`}
               >
                 <span
                   className={`h-4 w-4 rounded-[3px] border ${isActive
-                      ? "border-[#c99f6a] bg-[#c99f6a]"
-                      : "border-[#7c8d98] bg-transparent"
+                    ? "border-[var(--accent-primary)] bg-[var(--accent-primary)]"
+                    : "border-[var(--border-default)] bg-transparent"
                     }`}
                 />
                 {item}
@@ -188,8 +188,8 @@ export default function FilterSidebar({
         </div>
       </div>
 
-      <div className="mt-8 border-t border-[#102730] pt-8">
-        <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-[#f3e9df]">
+      <div className="mt-8 border-t border-[var(--border-default)] pt-8\">
+        <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-[var(--text-primary)]">
           • Rodzaj sprzętu
         </h3>
 
@@ -210,14 +210,14 @@ export default function FilterSidebar({
                   sort: activeSort,
                 })}
                 className={`flex items-center gap-3 rounded-lg px-2 py-2 text-sm transition ${isActive
-                    ? "bg-[#141210] text-[#f3eadf]"
-                    : "text-[#d8d0c7] hover:bg-[#0d1419]"
+                  ? "bg-[var(--special-brand-bg)] text-[var(--text-primary)]"
+                  : "text-[var(--text-secondary)] hover:bg-[var(--bg-darker)]"
                   }`}
               >
                 <span
                   className={`h-4 w-4 rounded-[3px] border ${isActive
-                      ? "border-[#c99f6a] bg-[#c99f6a]"
-                      : "border-[#7c8d98] bg-transparent"
+                    ? "border-[var(--accent-primary)] bg-[var(--accent-primary)]"
+                    : "border-[var(--border-default)] bg-transparent"
                     }`}
                 />
                 {item}

@@ -29,7 +29,7 @@ export default async function BrandDetailPage({ params }: Props) {
   );
 
   return (
-    <main className="min-h-screen bg-[#040607] py-16 text-[#f3eadf]">
+    <main className="min-h-screen bg-[var(--bg-dark)] py-16 text-[var(--text-primary)]">
       <Container>
         <SectionHeader
           eyebrow="Marka"
@@ -40,7 +40,7 @@ export default async function BrandDetailPage({ params }: Props) {
         <div className="mt-6">
           <Link
             href={`/kolekcja?brand=${brand.slug}`}
-            className="inline-flex rounded-full border border-[#8e6a47] px-5 py-3 text-sm uppercase tracking-[0.14em] text-[#f3eadf] transition hover:bg-[#141210]"
+            className="inline-flex rounded-full border border-[var(--accent-primary)] px-5 py-3 text-sm uppercase tracking-[0.14em] text-[var(--text-primary)] transition hover:bg-[var(--border-default)]"
           >
             Zobacz kolekcję marki
           </Link>
@@ -49,18 +49,18 @@ export default async function BrandDetailPage({ params }: Props) {
         {/* STATS */}
         <div className="mt-8 grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           <InfoCard>
-            <p className="text-m text-[#8e867d]">Kraj</p>
-            <p className="mt-2 text-4xl">{brand.country ?? "Brak danych"}</p>
+            <p className="text-m text-[var(--text-muted)]">Kraj</p>
+            <p className="mt-2 text-4xl text-[var(--text-primary)]">{brand.country ?? "Brak danych"}</p>
           </InfoCard>
 
           <InfoCard>
-            <p className="text-m text-[#8e867d]">Rok założenia</p>
-            <p className="mt-2 text-4xl">{brand.foundedYear ?? "Brak danych"}</p>
+            <p className="text-m text-[var(--text-muted)]">Rok założenia</p>
+            <p className="mt-2 text-4xl text-[var(--text-primary)]">{brand.foundedYear ?? "Brak danych"}</p>
           </InfoCard>
 
           <InfoCard>
-            <p className="text-m text-[#8e867d]">Modele</p>
-            <p className="mt-2 text-4xl">{brandCameras.length}</p>
+            <p className="text-m text-[var(--text-muted)]">Modele</p>
+            <p className="mt-2 text-4xl text-[var(--text-primary)]">{brandCameras.length}</p>
           </InfoCard>
 
           {brand.logoUrl && (

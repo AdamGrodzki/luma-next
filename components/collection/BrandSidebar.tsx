@@ -53,12 +53,12 @@ export default function BrandSidebar({
   activeSort,
 }: Props) {
   return (
-    <aside className="rounded-[22px] border border-[#0e242c] bg-[linear-gradient(180deg,#031015_0%,#051017_100%)] p-4 shadow-[0_0_0_1px_rgba(218,180,134,0.05)]">
+    <aside className="rounded-[22px] border border-[var(--border-light)] bg-[var(--bg-card)] p-4 shadow-[0_0_0_1px_rgba(218,180,134,0.05)]">
       <div className="mb-3">
-        <h2 className="text-lg font-semibold uppercase tracking-[0.12em] text-[#d2a777]">
+        <h2 className="text-lg font-semibold uppercase tracking-[0.12em] text-[var(--accent-secondary)]">
           Marki sprzętowe
         </h2>
-        <p className="mt-1 text-xs uppercase tracking-[0.16em] text-[#b9b0a5]">
+        <p className="mt-1 text-xs uppercase tracking-[0.16em] text-[var(--text-secondary)]">
           Wybierz producenta
         </p>
       </div>
@@ -101,14 +101,14 @@ export default function BrandSidebar({
                   })}
                   aria-current={isActive ? "page" : undefined}
                   className={`group flex w-full items-center justify-between rounded-xl border px-3 py-3 text-left transition-all duration-200 ${isActive
-                    ? "border-[#9c7b53] bg-[#141210] shadow-[inset_0_0_0_1px_rgba(220,194,162,0.18),0_0_18px_rgba(181,140,99,0.08)]"
-                    : "border-[#0b1c23] bg-[#071015] hover:border-[#24414f] hover:bg-[#09141a]"
+                    ? "border-[var(--accent-primary)] bg-[var(--special-brand-bg)] shadow-[inset_0_0_0_1px_rgba(220,194,162,0.18),0_0_18px_rgba(181,140,99,0.08)]"
+                    : "border-[var(--border-default)] bg-[var(--bg-darker)] hover:border-[var(--border-light)] hover:bg-[var(--bg-card)]"
                     }`}
                 >
                   <span
                     className={`rounded-md px-2 py-1 text-xs font-semibold uppercase tracking-[0.08em] transition-colors ${isActive
-                      ? "text-[#efbf8e]"
-                      : "text-[#d2a777] group-hover:text-[#e5bb8f]"
+                      ? "text-[var(--accent-primary)]"
+                      : "text-[var(--text-secondary)] group-hover:text-[var(--text-primary)]"
                       }`}
                   >
                     {brand.name}
@@ -116,8 +116,8 @@ export default function BrandSidebar({
 
                   <span
                     className={`min-w-[28px] rounded-md px-2 py-1 text-center text-xs font-medium transition-colors ${isActive
-                      ? "bg-[#b58c63] text-black"
-                      : "bg-[#141a1e] text-[#9a968f] group-hover:bg-[#1a2328] group-hover:text-[#c4b8aa]"
+                      ? "bg-[var(--accent-primary)] text-[var(--special-brand-bg)]"
+                      : "bg-[var(--bg-darker)] text-[var(--text-muted)] group-hover:bg-[var(--bg-card)] group-hover:text-[var(--text-primary)]"
                       }`}
                   >
                     {brand.count}

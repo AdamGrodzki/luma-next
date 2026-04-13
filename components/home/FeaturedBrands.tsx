@@ -23,10 +23,10 @@ export default function FeaturedBrands({ brands }: Props) {
                         <InfoCard key={brand.id} href={`/brands/${brand.slug}`}>
                             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4">
                                 <div className="flex-1 min-w-0">
-                                    <h3 className="text-lg sm:text-2xl font-semibold text-[#f3eadf]">
+                                    <h3 className="text-lg sm:text-2xl font-semibold text-[var(--text-primary)]">
                                         {brand.name}
                                     </h3>
-                                    <p className="mt-2 sm:mt-3 text-xs sm:text-sm text-[#9f978d] truncate">
+                                    <p className="mt-2 sm:mt-3 text-xs sm:text-sm text-[var(--text-muted)] truncate">
                                         {brand.country ?? "Brak kraju"} •{" "}
                                         {brand.foundedYear ?? "Brak roku"}
                                     </p>
@@ -44,7 +44,7 @@ export default function FeaturedBrands({ brands }: Props) {
                                 ) : null}
                             </div>
 
-                            <p className="mt-3 sm:mt-4 line-clamp-2 sm:line-clamp-3 text-xs sm:text-sm leading-5 sm:leading-6 text-[#b9b0a5]">
+                            <p className="mt-3 sm:mt-4 line-clamp-2 sm:line-clamp-3 text-xs sm:text-sm leading-5 sm:leading-6 text-[var(--text-secondary)]">
                                 {brand.description ?? "Brak opisu marki."}
                             </p>
                         </InfoCard>
