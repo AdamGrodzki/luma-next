@@ -39,10 +39,6 @@ export function CameraHero({ camera }: Props) {
                   />
                 </div>
               ) : null}
-
-              <div className="inline-flex rounded-full border border-[var(--special-badge-border)] bg-[var(--special-brand-bg)] px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--accent-secondary)] sm:px-4 sm:py-2 sm:text-[11px] sm:tracking-[0.28em]">
-                {camera.brand.name}
-              </div>
             </div>
 
             <div className="space-y-3 sm:space-y-4">
@@ -84,15 +80,6 @@ export function CameraHero({ camera }: Props) {
             <div className="absolute inset-0 rounded-[24px] bg-[var(--accent-primary)]/10 blur-2xl sm:rounded-[30px]" />
 
             <div className="relative rounded-[24px] border border-[var(--border-light)] bg-[linear-gradient(180deg,var(--bg-dark)_0%,var(--bg-dark)_100%)] p-3 shadow-[0_25px_100px_rgba(0,0,0,0.45)] sm:rounded-[30px] sm:p-4">
-              <div className="mb-3 flex items-center justify-between px-1">
-                <span className="text-[10px] uppercase tracking-[0.22em] text-[var(--text-muted)] sm:tracking-[0.28em]">
-                  Hero image
-                </span>
-                <span className="text-[10px] uppercase tracking-[0.22em] text-[var(--text-muted)] sm:tracking-[0.28em]">
-                  {camera.brand.name}
-                </span>
-              </div>
-
               <div className="relative aspect-[4/3] overflow-hidden rounded-[18px] border border-[var(--border-light)] bg-[var(--bg-dark)] sm:rounded-[22px]">
                 {camera.image ? (
                   <>
