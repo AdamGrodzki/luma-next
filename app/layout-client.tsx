@@ -26,7 +26,7 @@ export default function RootLayoutClient({
                 href="/kolekcja"
                 className="whitespace-nowrap transition hover:text-[var(--accent-hover)]"
               >
-                Kol.
+                Kolekcja
               </Link>
               <Link
                 href="/brands"
@@ -38,7 +38,7 @@ export default function RootLayoutClient({
                 href="/cameras"
                 className="whitespace-nowrap transition hover:text-[var(--accent-hover)]"
               >
-                Ap.
+                Aparaty
               </Link>
             </nav>
           </div>

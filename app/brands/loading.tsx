@@ -44,9 +44,9 @@ export default function BrandDetailLoading() {
 
                 {/* Text */}
                 <div className="p-3 sm:p-4 space-y-2">
-                  <div className="h-3 w-20 bg-[#2a231c] rounded animate-pulse"></div>
-                  <div className="h-4 w-full bg-[#2a231c] rounded animate-pulse"></div>
-                  <div className="h-3 w-16 bg-[#2a231c] rounded animate-pulse"></div>
+                  <div className="h-3 w-20 bg-[var(--bg-darker)]rounded animate-pulse"></div>
+                  <div className="h-4 w-full bg-[var(--bg-darker)] rounded animate-pulse"></div>
+                  <div className="h-3 w-16 bg-[var(--bg-darker)] rounded animate-pulse"></div>
                 </div>
               </div>
             ))}

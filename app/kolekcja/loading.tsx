@@ -18,29 +18,29 @@ export default function CollectionLoading() {
           {/* Left Sidebar - Hidden on mobile */}
           <div className="hidden xl:block space-y-4">
             {[...Array(5)].map((_, i) => (
-              <div key={i} className="h-10 bg-[#2a231c] rounded-lg animate-pulse"></div>
+              <div key={i} className="h-10 bg-[var(--bg-darker)]rounded-lg animate-pulse"></div>
             ))}
           </div>
 
           {/* Main Content */}
-          <section className="rounded-lg sm:rounded-[22px] border border-[#1f1a14] bg-[#050607] px-4 sm:px-6 md:px-8 py-5 sm:py-6 xl:px-10 xl:py-7">
+          <section className="rounded-lg sm:rounded-[22px] border border-[#1f1a14] bg-[var(--bg-darker)] px-4 sm:px-6 md:px-8 py-5 sm:py-6 xl:px-10 xl:py-7">
             {/* Header Skeleton */}
             <div className="mb-6 space-y-3">
-              <div className="h-8 w-32 bg-[#2a231c] rounded-lg animate-pulse"></div>
-              <div className="h-6 w-24 bg-[#2a231c] rounded-lg animate-pulse"></div>
+              <div className="h-8 w-32 bg-[var(--bg-dark)] rounded-lg animate-pulse"></div>
+              <div className="h-6 w-24 bg-[var(--bg-dark)] rounded-lg animate-pulse"></div>
             </div>
 
             {/* Grid of Cards */}
             <div className="grid gap-4 grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
               {[...Array(6)].map((_, i) => (
-                <div key={i} className="overflow-hidden rounded-lg border border-[#1f1a14] bg-[#090b0c]">
+                <div key={i} className="overflow-hidden rounded-lg border border-[#1f1a14] bg-[var(--bg-dark)]">
                   {/* Image Skeleton */}
-                  <div className="aspect-[4/3] bg-[#2a231c] animate-pulse"></div>
+                  <div className="aspect-[4/3] bg-[var(--bg-dark)] animate-pulse"></div>
                   {/* Text Skeleton */}
                   <div className="p-3 sm:p-4 space-y-2">
-                    <div className="h-3 w-16 bg-[#2a231c] rounded animate-pulse"></div>
-                    <div className="h-4 w-full bg-[#2a231c] rounded animate-pulse"></div>
-                    <div className="h-4 w-20 bg-[#2a231c] rounded animate-pulse"></div>
+                    <div className="h-3 w-16 bg-[var(--bg-darker)] rounded animate-pulse"></div>
+                    <div className="h-4 w-full bg-[var(--bg-darker)] rounded animate-pulse"></div>
+                    <div className="h-4 w-20 bg-[var(--bg-darker)] rounded animate-pulse"></div>
                   </div>
                 </div>
               ))}
@@ -50,7 +50,7 @@ export default function CollectionLoading() {
           {/* Right Sidebar - Hidden on mobile */}
           <div className="hidden xl:block space-y-4">
             {[...Array(5)].map((_, i) => (
-              <div key={i} className="h-10 bg-[#2a231c] rounded-lg animate-pulse"></div>
+              <div key={i} className="h-10 bg-[var(--bg-darker)] rounded-lg animate-pulse"></div>
             ))}
           </div>
         </div>
