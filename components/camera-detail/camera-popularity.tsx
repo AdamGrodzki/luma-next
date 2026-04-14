@@ -20,8 +20,8 @@ export function CameraPopularity({ camera }: Props) {
       </div>
 
       <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-        <div className="rounded-[24px] border border-[var(--border-light)] bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.08),_transparent_45%),_var(--bg-dark)] p-7">
-          <div className="mb-6 inline-flex rounded-md bg-white px-4 py-2 text-xs font-black uppercase tracking-[0.2em] text-black">
+        <div className="rounded-[24px] border border-[var(--border-light)] bg-[var(--bg-dark)] p-7">
+          <div className="mb-6 inline-flex rounded-md px-4 py-2 text-xs font-black uppercase tracking-[0.2em] text-black bg-[var(--accent-primary)]">
             {popularity.label}
           </div>
 

@@ -44,16 +44,16 @@ export default async function BrandsPage() {
                 {/* INFO */}
                 <div className="mt-4 flex flex-wrap gap-3">
                   {brand.country && (
-                    <span className="inline-block rounded-full bg-[var(--special-badge-bg)] px-3 py-1 text-xs text-[var(--text-muted)]">
+                    <span className="inline-block rounded-full bg-[var(--special-badge-bg)] px-3 py-1 text-xs text-[var(--text-secondary)]">
                       {brand.country}
                     </span>
                   )}
                   {brand.foundedYear && (
-                    <span className="inline-block rounded-full bg-[#1a1511] px-3 py-1 text-xs text-[#8e867d]">
+                    <span className="bg-[var(--special-badge-bg)] px-3 py-1 text-xs text-[var(--text-secondary)]">
                       {brand.foundedYear}
                     </span>
                   )}
-                  <span className="inline-block rounded-full bg-[#1a1511] px-3 py-1 text-xs text-[#8e867d]">
+                  <span className="bg-[var(--special-badge-bg)] px-3 py-1 text-xs text-[var(--text-secondary)]">
                     {brandCameras.length} modeli
                   </span>
                 </div>

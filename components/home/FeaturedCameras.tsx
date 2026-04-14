@@ -20,7 +20,7 @@ export default function FeaturedCameras({ cameras }: Props) {
                 />
 
                 <div className="mt-8 sm:mt-10 grid gap-4 sm:gap-5 grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
-                    {cameras.slice(0, 6).map((camera, index) => (
+                    {!cameras.slice(0, 6).map((camera, index) => (
                         <InfoCard key={camera.id} href={`/cameras/${camera.slug}`}>
                             <div className="overflow-hidden rounded-[18px] border border-[var(--border-default)] bg-[var(--bg-card)]">
                                 {camera.heroImageUrl ? (
