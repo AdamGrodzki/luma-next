@@ -26,7 +26,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="group relative flex h-9 w-9 items-center justify-center rounded-lg border border-current transition-all duration-300"
+      className="group relative flex h-9 w-9 items-center justify-center rounded-lg border border-current transition-all duration-300 cursor-pointer"
       style={{
         borderColor: 'var(--border-light)',
         backgroundColor: theme === 'dark' ? 'rgba(206, 178, 142, 0.05)' : 'rgba(206, 178, 142, 0.08)',
