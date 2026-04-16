@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import ThemeToggle from "@/components/ui/ThemeToggle";
+import ScrollToTopButton from "@/components/ui/ScrollToTopButton";
 
 export default function RootLayoutClient({
   children,
@@ -80,6 +81,7 @@ export default function RootLayoutClient({
       </header>
 
       {children}
+      <ScrollToTopButton />
     </>
   );
 }
