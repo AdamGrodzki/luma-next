@@ -28,6 +28,7 @@ export default function CameraCard({ camera, priority = false }: Props) {
             width={800}
             height={520}
             priority={priority}
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             loading={priority ? "eager" : "lazy"}
             className="h-full w-full object-cover"
           />
