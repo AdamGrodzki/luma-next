@@ -51,16 +51,16 @@ function Drawer({ side, title, open, onClose, children }: DrawerProps) {
             : "translate-x-full"
         }`}
       >
-        <div className="flex h-full flex-col bg-[#040607] p-4 shadow-2xl">
-          <div className="mb-4 flex items-center justify-between border-b border-[#2a231c] pb-4">
-            <h2 className="text-sm uppercase tracking-[0.18em] text-[#d7c7b3]">
+        <div className="flex h-full flex-col bg-[var(--bg-dark)] p-4 shadow-2xl">
+          <div className="mb-4 flex items-center justify-between border-b border-[var(--border-default)] pb-4">
+            <h2 className="text-sm uppercase tracking-[0.18em] text-[var(--text-muted)]">
               {title}
             </h2>
 
             <button
               type="button"
               onClick={onClose}
-              className="rounded-full border border-[#3b3024] px-3 py-1 text-xs uppercase tracking-[0.16em] text-[#d7c7b3]"
+              className="rounded-full border border-[#3b3024] px-3 py-1 text-xs uppercase tracking-[0.16em] text-[var(--text-primary)] transition hover:bg-[var(--bg-card)]"
             >
               Zamknij
             </button>
@@ -92,23 +92,23 @@ export default function CollectionMobileDrawers({
 
   return (
     <>
-      <div className="flex items-center justify-between rounded-2xl border border-[#182027] bg-[#071015] px-4 py-3 xl:hidden">
+      <div className="flex items-center justify-between rounded-2xl border border-[var(--border-default)] bg-[var(--bg-dark)] px-4 py-3 xl:hidden">
         <button
           type="button"
           onClick={() => setBrandsOpen(true)}
-          className="rounded-full border border-[#3b3024] px-4 py-2 text-xs uppercase tracking-[0.16em] text-[#d7c7b3]"
+          className="rounded-full border border-[var(--border-default)] px-4 py-2 text-xs uppercase tracking-[0.16em] text-[var(--text-primary)]"
         >
           Marki
         </button>
 
-        <div className="text-center text-sm uppercase tracking-[0.18em] text-[#bfae97]">
+        <div className="text-center text-sm uppercase tracking-[0.18em] text-[var(--text-muted)]">
           {activeBrandName} • {totalCount} modeli
         </div>
 
         <button
           type="button"
           onClick={() => setFiltersOpen(true)}
-          className="rounded-full border border-[#3b3024] px-4 py-2 text-xs uppercase tracking-[0.16em] text-[#d7c7b3]"
+          className="rounded-full border border-[var(--border-default)] px-4 py-2 text-xs uppercase tracking-[0.16em] text-[var(--text-primary)]"
         >
           Filtry
         </button>

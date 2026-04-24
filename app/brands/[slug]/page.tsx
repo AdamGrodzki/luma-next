@@ -81,7 +81,7 @@ export default async function BrandDetailPage({ params }: Props) {
 
         {/* CAMERAS */}
         <div className="mt-14">
-          <h2 className="text-3xl font-serif text-[#f3eadf]">
+          <h2 className="text-3xl font-serif text-[var(--text-primary)]">
             Modele marki
           </h2>
 

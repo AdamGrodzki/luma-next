@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { ThemeProvider } from "./providers";
 import RootLayoutClient from "../app/layout-client";
@@ -14,6 +14,13 @@ export const metadata: Metadata = {
     icon: "/luma-logo.svg",
   },
 };
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1.0,
+  viewportFit: "cover",
+};
+
 
 export default function RootLayout({
   children,

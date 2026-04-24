@@ -10,7 +10,7 @@ export function CameraRelated({ camera }: Props) {
   if (!camera.related.length) return null;
 
   return (
-    <section 
+    <section
         id="related"
       className="space-y-8 rounded-[28px] border border-[var(--border-light)] bg-[var(--bg-card)] px-6 py-10 md:px-10">
       <div className="text-center">
@@ -32,6 +32,7 @@ export function CameraRelated({ camera }: Props) {
                   src={related.image}
                   alt={related.name}
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                   className="object-cover transition duration-500 group-hover:scale-[1.03]"
                 />
               ) : (
