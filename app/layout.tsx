@@ -9,7 +9,6 @@ export const metadata: Metadata = {
     template: "%s | Luma Camera Encyclopedia",
   },
   description: "Encyklopedia marek i aparatów oparta o Next.js i Contentful.",
-  viewport: "width=device-width, initial-scale=1.0, viewport-fit=cover",
   icons: {
     icon: "/luma-logo.svg",
   },
