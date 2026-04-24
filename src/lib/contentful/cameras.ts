@@ -1,11 +1,7 @@
 import { contentful } from "../client";
+import { safeContentfulCall } from "./error-handler";
+import { getAssetUrl } from "./assets";
 import type { Brand, Camera } from "@/src/types/contentful";
-
-function assetUrl(asset: any): string | null {
-  const url = asset?.fields?.file?.url;
-  if (!url) return null;
-  return url.startsWith("//") ? `https:${url}` : url;
-}
 
 function mapBrand(item: any): Brand {
   return {
@@ -15,7 +11,7 @@ function mapBrand(item: any): Brand {
     country: item.fields.country ?? null,
     foundedYear: item.fields.foundedYear ?? null,
     description: item.fields.description ?? null,
-    logoUrl: assetUrl(item.fields.logo),
+    logoUrl: getAssetUrl(item.fields.logo),
   };
 }
 
@@ -74,37 +70,49 @@ function mapCamera(item: any): Camera {
 
     recommendedLenses: item.fields.recommendedLenses ?? [],
 
-    heroImageUrl: assetUrl(item.fields.heroImage),
+    heroImageUrl: getAssetUrl(item.fields.heroImage),
     galleryUrls: Array.isArray(item.fields.gallery)
       ? item.fields.gallery
-          .map((asset: any) => assetUrl(asset))
+        .map((asset: any) => getAssetUrl(asset))
           .filter((url: string | null): url is string => Boolean(url))
       : [],
   };
 }
 
 export async function getCameras(): Promise<Camera[]> {
-  const res = await contentful.getEntries({
-    content_type: "camera",
-    include: 2,
-    order: ["fields.releaseYear", "fields.name"],
-  });
+  return safeContentfulCall(
+    async () => {
+      const res = await contentful.getEntries({
+        content_type: "camera",
+        include: 2,
+        order: ["fields.releaseYear", "fields.name"],
+      });
 
-  return res.items.map(mapCamera);
+      return res.items.map(mapCamera);
+    },
+    [],
+    "getCameras"
+  );
 }
 
 export async function getCameraBySlug(slug: string): Promise<Camera | null> {
-  const res = await contentful.getEntries({
-    content_type: "camera",
-    "fields.slug": slug,
-    include: 2,
-    limit: 1,
-  });
+  return safeContentfulCall(
+    async () => {
+      const res = await contentful.getEntries({
+        content_type: "camera",
+        "fields.slug": slug,
+        include: 2,
+        limit: 1,
+      });
 
-  const item = res.items[0];
-  if (!item) return null;
+      const item = res.items[0];
+      if (!item) return null;
 
-  return mapCamera(item);
+      return mapCamera(item);
+    },
+    null,
+    `getCameraBySlug(${slug})`
+  );
 }
 
 export async function getRelatedCameras(
@@ -115,26 +123,35 @@ export async function getRelatedCameras(
     limit?: number;
   }
 ): Promise<Camera[]> {
-  const res = await contentful.getEntries({
-    content_type: "camera",
-    include: 2,
-    limit: options.limit ?? 3,
-  });
+  return safeContentfulCall(
+    async () => {
+  // Fetch cameras excluding current one
+      const res = await contentful.getEntries({
+        content_type: "camera",
+        include: 2,
+        "fields.slug[ne]": currentSlug,
+        limit: 50, // Fetch enough to have options after filtering
+        order: ["-fields.releaseYear"],
+      });
 
-  const all = res.items.map(mapCamera);
+      let cameras = res.items.map(mapCamera);
 
-  return all
-    .filter((camera) => camera.slug !== currentSlug)
-    .filter((camera) => {
-      const sameBrand = options.brandSlug
-        ? camera.brand.slug === options.brandSlug
-        : false;
+      // Filter by brand or sensor format
+      cameras = cameras.filter((camera) => {
+        const sameBrand = options.brandSlug
+          ? camera.brand.slug === options.brandSlug
+          : false;
 
-      const sameSensor = options.sensorFormat
-        ? camera.sensorFormat === options.sensorFormat
-        : false;
+        const sameSensor = options.sensorFormat
+          ? camera.sensorFormat === options.sensorFormat
+          : false;
 
-      return sameBrand || sameSensor;
-    })
-    .slice(0, options.limit ?? 3);
+        return sameBrand || sameSensor;
+      });
+
+      return cameras.slice(0, options.limit ?? 3);
+    },
+    [],
+    `getRelatedCameras(${currentSlug})`
+  );
 }
