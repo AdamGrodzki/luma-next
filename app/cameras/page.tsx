@@ -50,19 +50,29 @@ export default async function CamerasPage() {
                 {camera.name}
               </h2>
 
-              {/* BADGES */}
-              <div className="mt-3 sm:mt-4 flex flex-wrap gap-1.5 sm:gap-2">
+              {/* BADGES - Optimized for mobile */}
+              <div className="mt-3 sm:mt-4 flex flex-wrap items-center gap-1.5 sm:gap-2">
                 {camera.cameraType && <Badge>{camera.cameraType}</Badge>}
-                {camera.sensorFormat && <Badge>{camera.sensorFormat}</Badge>}
-                {camera.releaseYear && <Badge>{camera.releaseYear}</Badge>}
+                {camera.sensorFormat && <Badge variant="secondary">{camera.sensorFormat}</Badge>}
+                {camera.releaseYear && (
+                  <span className="hidden sm:inline-block">
+                    <Badge variant="secondary">{camera.releaseYear}</Badge>
+                  </span>
+                )}
               </div>
 
-              {/* EXTRA */}
-              {camera.mount && (
-                <p className="mt-3 sm:mt-4 text-xs sm:text-sm text-[var(--text-secondary)]">
-                  Mount: {camera.mount}
-                </p>
-              )}
+              {/* EXTRA - Show year on mobile here instead */}
+              <div className="mt-2.5 sm:mt-3 text-xs sm:text-sm text-[var(--text-secondary)]">
+                {camera.mount && (
+                  <span>Mount: {camera.mount}</span>
+                )}
+                {camera.releaseYear && (
+                  <span className="sm:hidden">
+                    {camera.mount && ' • '}
+                    {camera.releaseYear}
+                  </span>
+                )}
+              </div>
             </InfoCard>
           ))}
         </div>

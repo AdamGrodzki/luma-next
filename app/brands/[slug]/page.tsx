@@ -71,7 +71,7 @@ export default async function BrandDetailPage({ params }: Props) {
                   src={brand.logoUrl}
                   alt={`${brand.name} logo`}
                   fill
-                  className="object-contain"
+                  className="object-contain dark:invert-0"
                   priority
                 />
               </div>

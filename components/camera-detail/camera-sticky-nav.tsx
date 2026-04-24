@@ -63,9 +63,9 @@ export function CameraStickyNav({ items }: Props) {
   if (!visibleItems.length) return null;
 
   return (
-    <div className="sticky top-2 z-40 sm:top-3">
-      <div className="no-scrollbar overflow-x-auto rounded-2xl border border-[var(--border-light)] px-2 py-2">
-        <div className="flex min-w-max items-center gap-2">
+    <div className="sticky top-16 z-30 md:top-3">
+      <div className="backdrop-blur-md bg-[var(--bg-dark)]/80 no-scrollbar overflow-x-auto rounded-xl sm:rounded-2xl border border-[var(--border-light)] px-2 py-2 sm:px-3 sm:py-2.5 shadow-lg">
+        <div className="flex min-w-max items-center gap-1.5 sm:gap-2">
           {visibleItems.map((item) => {
             const isActive = item.id === activeId;
 
@@ -74,10 +74,10 @@ export function CameraStickyNav({ items }: Props) {
                 key={item.id}
                 type="button"
                 onClick={() => handleScrollTo(item.id)}
-                className={`rounded-full px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] transition duration-300 sm:px-4 sm:text-xs ${
+                className={`whitespace-nowrap rounded-lg sm:rounded-full px-2.5 py-1.5 sm:px-4 sm:py-2 text-[9px] sm:text-[10px] md:text-xs font-semibold uppercase tracking-[0.12em] sm:tracking-[0.18em] transition-all duration-300 ${
                   isActive
-                  ? "border border-[var(--accent-primary)] bg-[var(--accent-primary)] text-[var(--bg-dark)] shadow-[0_0_24px_rgba(199,155,99,0.2)]"
-                  : "border border-transparent text-[var(--text-secondary)] hover:border-[var(--border-default)] hover:bg-[var(--bg-card)] hover:text-[var(--text-primary)]"
+                  ? "border-2 border-[var(--accent-primary)] bg-[var(--accent-primary)]/20 text-[var(--accent-primary)] shadow-md"
+                  : "border border-[var(--border-light)] text-[var(--text-secondary)] hover:border-[var(--accent-primary)]/50 hover:bg-[var(--bg-card)] hover:text-[var(--text-primary)]"
                 }`}
               >
                 {item.label}

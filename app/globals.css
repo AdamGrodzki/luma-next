@@ -101,3 +101,12 @@ a img[src*="luma-logo"] {
 :root[data-theme="dark"] a img[src*="luma-logo"] {
   filter: brightness(1);
 }
+/* Hide scrollbar for horizontal scroll */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

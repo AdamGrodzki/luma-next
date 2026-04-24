@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 import ScrollToTopButton from "@/components/ui/ScrollToTopButton";
+import MobileMenu from "@/components/ui/MobileMenu";
 
 export default function RootLayoutClient({
   children,
@@ -14,34 +15,12 @@ export default function RootLayoutClient({
     <>
       <header className="border-b border-[var(--border-light)] px-4 py-3 transition-colors duration-300 sm:px-6 sm:py-4">
         <div className="mx-auto max-w-[1500px]">
-          {/* Mobile/Tablet: Stacked layout */}
-          <div className="grid grid-cols-[1fr_auto] items-center gap-2 md:hidden">
-            <div className="flex justify-start">
-              <Link href="/">
-                <Image src="/luma-logo.svg" alt="Luma" width={100} height={32} />
-              </Link>
-            </div>
-            <nav className="flex items-center gap-3 text-[10px] uppercase tracking-[0.16em] text-[var(--text-muted)] transition-colors duration-300">
-              <ThemeToggle />
-              <Link
-                href="/kolekcja"
-                className="whitespace-nowrap transition hover:text-[var(--accent-hover)]"
-              >
-                Kolekcja
-              </Link>
-              <Link
-                href="/brands"
-                className="whitespace-nowrap transition hover:text-[var(--accent-hover)]"
-              >
-                Marki
-              </Link>
-              <Link
-                href="/cameras"
-                className="whitespace-nowrap transition hover:text-[var(--accent-hover)]"
-              >
-                Aparaty
-              </Link>
-            </nav>
+          {/* Mobile/Tablet: Logo + Hamburger Menu */}
+          <div className="flex items-center justify-between md:hidden">
+            <Link href="/">
+              <Image src="/luma-logo.svg" alt="Luma" width={100} height={32} />
+            </Link>
+            <MobileMenu />
           </div>
 
           {/* Desktop: 3-column grid layout */}
