@@ -29,6 +29,7 @@ export default function MobileMenu() {
   const menuItems = [
     { href: '/kolekcja', label: 'Kolekcja' },
     { href: '/brands', label: 'Marki' },
+    { href: '/o-nas', label: 'O Nas' },
     { href: '/cameras', label: 'Aparaty' },
   ];
 
