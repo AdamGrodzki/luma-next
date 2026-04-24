@@ -194,9 +194,9 @@ Projekt wykonany jako część portfolio frontendowego Adam Grodzki.
 
 ---
 
-## 🌍 Demo (opcjonalnie)
+## 🌍 Demo
 
-[https://your-app.vercel.app](https://your-app.vercel.app)
+[https://luma-next-kappa.vercel.app)]
 
 ---
 
