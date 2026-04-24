@@ -38,6 +38,12 @@ export default function RootLayoutClient({
               >
                 Marki
               </Link>
+              <Link
+                href="/o-nas"
+                className="whitespace-nowrap transition hover:text-[var(--accent-hover)]"
+              >
+                O Nas
+              </Link>
             </nav>
 
             <div className="flex justify-center">
