@@ -93,6 +93,30 @@ export async function getCameras(): Promise<Camera[]> {
   return res.items.map(mapCamera);
 }
 
+export async function getCamerasPaginated(page: number = 1, limit: number = 12): Promise<{
+  cameras: Camera[];
+  total: number;
+  totalPages: number;
+  currentPage: number;
+}> {
+  const skip = (page - 1) * limit;
+
+  const res = await contentful.getEntries({
+    content_type: "camera",
+    include: 2,
+    order: ["fields.releaseYear", "fields.name"],
+    limit,
+    skip,
+  });
+
+  return {
+    cameras: res.items.map(mapCamera),
+    total: res.total,
+    totalPages: Math.ceil(res.total / limit),
+    currentPage: page,
+  };
+}
+
 export async function getCameraBySlug(slug: string): Promise<Camera | null> {
   const res = await contentful.getEntries({
     content_type: "camera",

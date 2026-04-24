@@ -1,14 +1,23 @@
-import { getCameras } from "@/src/lib/contentful/cameras";
+import { getCamerasPaginated } from "@/src/lib/contentful/cameras";
 import Container from "@/components/ui/Container";
 import SectionHeader from "@/components/ui/SectionHeader";
 import InfoCard from "@/components/ui/InfoCard";
 import Badge from "@/components/ui/Badge";
+import Pagination from "@/components/ui/Pagination";
 import Image from "next/image";
 
 export const revalidate = 60;
 
-export default async function CamerasPage() {
-  const cameras = await getCameras();
+const CAMERAS_PER_PAGE = 6;
+
+interface CamerasPageProps {
+  searchParams: Promise<{ page?: string }>;
+}
+
+export default async function CamerasPage({ searchParams }: CamerasPageProps) {
+  const params = await searchParams;
+  const page = Math.max(1, Number(params.page) || 1);
+  const { cameras, total, totalPages, currentPage } = await getCamerasPaginated(page, CAMERAS_PER_PAGE);
 
   return (
     <main className="min-h-screen bg-[var(--bg-dark)] py-8 sm:py-12 md:py-16 text-[var(--text-primary)]">
@@ -16,7 +25,7 @@ export default async function CamerasPage() {
         <SectionHeader
           eyebrow="Katalog"
           title="Aparaty"
-          description="Przeglądaj modele aparatów pobierane z Contentful."
+          description={`Przeglądaj modele aparatów. ${total} modeli w naszej bazie danych.`}
         />
 
         <div className="mt-8 sm:mt-12 grid gap-4 sm:gap-5 md:gap-6 grid-cols-2 sm:grid-cols-2 lg:grid-cols-3">
@@ -76,6 +85,12 @@ export default async function CamerasPage() {
             </InfoCard>
           ))}
         </div>
+
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          baseUrl="/cameras"
+        />
       </Container>
     </main>
   );
