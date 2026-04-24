@@ -63,7 +63,7 @@ export default function RootLayoutClient({
 
             <div className="flex justify-center">
               <Link href="/">
-                <Image src="/luma-logo.svg" alt="Luma Camera Encyclopedia" width={120} height={40} />
+                <Image src="../luma-logo.svg" alt="Luma Camera Encyclopedia" width={120} height={40} />
               </Link>
             </div>
 

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useSharedObserver } from "./observer-context";
 
 type Props = {
   children: React.ReactNode;
@@ -20,24 +19,30 @@ export function RevealOnScroll({
 }: Props) {
   const ref = useRef<HTMLDivElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const { observe, unobserve } = useSharedObserver();
 
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
 
-    observe(
-      element,
-      (isIntersecting) => {
-        setIsVisible(isIntersecting);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          if (once) observer.unobserve(element);
+        } else if (!once) {
+          setIsVisible(false);
+        }
       },
-      once
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -8% 0px",
+      }
     );
 
-    return () => {
-      unobserve(element);
-    };
-  }, [observe, unobserve, once]);
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, [once]);
 
   return (
     <div
