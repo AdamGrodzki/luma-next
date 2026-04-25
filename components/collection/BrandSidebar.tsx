@@ -52,6 +52,9 @@ export default function BrandSidebar({
   activeYearTo,
   activeSort,
 }: Props) {
+  const totalCameras = brands.reduce((sum, brand) => sum + brand.count, 0);
+  const isAllBrandsActive = !activeBrandSlug || activeBrandSlug === "all";
+
   return (
     <aside className="rounded-[22px] border border-[var(--border-light)] bg-[var(--bg-card)] p-4 shadow-[0_0_0_1px_rgba(218,180,134,0.05)]">
       <div className="mb-3">
@@ -84,7 +87,45 @@ export default function BrandSidebar({
     "
         >
           <div className="space-y-3 py-1 pr-3">
-            {brands.map((brand) => {
+            {/* All Brands Option */}
+            <Link
+              href={buildBrandUrl({
+                brand: "all",
+                sensor: activeSensor,
+                type: activeType,
+                q: activeQuery,
+                yearFrom: activeYearFrom,
+                yearTo: activeYearTo,
+                sort: activeSort,
+              })}
+              aria-current={isAllBrandsActive ? "page" : undefined}
+              className={`group flex w-full items-center justify-between rounded-xl border px-3 py-3 text-left transition-all duration-200 ${isAllBrandsActive
+                  ? "border-[var(--accent-primary)] bg-[var(--special-brand-bg)] shadow-[inset_0_0_0_1px_rgba(220,194,162,0.18),0_0_18px_rgba(181,140,99,0.08)]"
+                  : "border-[var(--border-default)] bg-[var(--bg-darker)] hover:border-[var(--border-light)] hover:bg-[var(--bg-card)]"
+                }`}
+            >
+              <span
+                className={`rounded-md px-2 py-1 text-xs font-semibold uppercase tracking-[0.08em] transition-colors ${isAllBrandsActive
+                    ? "text-[var(--accent-primary)]"
+                    : "text-[var(--text-secondary)] group-hover:text-[var(--text-primary)]"
+                  }`}
+              >
+                Wszystkie marki
+              </span>
+
+              <span
+                className={`min-w-[28px] rounded-md px-2 py-1 text-center text-xs font-medium transition-colors ${isAllBrandsActive
+                    ? "bg-[var(--accent-primary)] text-[var(--special-brand-bg)]"
+                    : "bg-[var(--bg-darker)] text-[var(--text-muted)] group-hover:bg-[var(--bg-card)] group-hover:text-[var(--text-primary)]"
+                  }`}
+              >
+                {totalCameras}
+              </span>
+            </Link>
+
+            {brands
+              .filter((brand) => brand.count > 0) // Only show brands with matching cameras
+              .map((brand) => {
               const isActive = brand.slug === activeBrandSlug;
 
               return (

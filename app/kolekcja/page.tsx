@@ -61,7 +61,7 @@ export default async function CollectionPage({ searchParams }: Props) {
       ? Number(params.yearTo)
       : undefined;
 
-  const { brands, activeBrand, sensorGroups, totalCount } =
+  const { brands, activeBrand, sensorGroups, totalCount, isGlobalView } =
     await getCollectionData({
       activeBrandSlug,
       sensor: activeSensor,
@@ -72,20 +72,9 @@ export default async function CollectionPage({ searchParams }: Props) {
       sort
     });
 
-  if (!activeBrand) {
-    return (
-      <main className="min-h-screen bg-[var(--bg-dark)] text-[var(--text-primary)]">
-        <div className="mx-auto max-w-[1500px] px-6 py-10">
-          <div className="rounded-[22px] border border-[var(--border-light)] bg-[var(--bg-darker)] p-8">
-            <h1 className="text-3xl font-semibold">Brak danych</h1>
-            <p className="mt-4 text-[var(--text-secondary)]">
-              Nie znaleziono aktywnej marki w Contentful.
-            </p>
-          </div>
-        </div>
-      </main>
-    );
-  }
+  const displayBrandName = isGlobalView ? "Wszystkie marki" : activeBrand?.name || "Nieznana marka";
+  const displayBrandSlug = isGlobalView ? "all" : activeBrand?.slug || undefined;
+  const displayLogoUrl = isGlobalView ? null : activeBrand?.logoUrl;
 
   function buildQueryString(
     params: Record<string, string | number | undefined>
@@ -119,11 +108,11 @@ export default async function CollectionPage({ searchParams }: Props) {
       <div className="mx-auto max-w-[1500px] px-4 sm:px-6 py-4 sm:py-5">
         <CollectionMobileDrawers
           brands={brands}
-          activeBrandName={activeBrand.name}
+          activeBrandName={displayBrandName}
           totalCount={totalCount}
           sensorFilters={sensorFilters}
           typeFilters={typeFilters}
-          activeBrandSlug={activeBrand.slug}
+          activeBrandSlug={displayBrandSlug}
           activeSensor={activeSensor}
           activeType={activeType}
           activeQuery={activeQuery}
@@ -136,7 +125,7 @@ export default async function CollectionPage({ searchParams }: Props) {
           <div className="hidden xl:block">
             <BrandSidebar
               brands={brands}
-              activeBrandSlug={activeBrand.slug}
+              activeBrandSlug={displayBrandSlug}
               activeSensor={activeSensor}
               activeType={activeType}
               activeQuery={activeQuery}
@@ -148,10 +137,11 @@ export default async function CollectionPage({ searchParams }: Props) {
 
           <section className="rounded-lg sm:rounded-[22px] border border-[var(--border-light)] bg-[var(--bg-darker)] px-4 sm:px-6 md:px-8 py-5 sm:py-6 xl:px-10 xl:py-7 shadow-[0_0_60px_rgba(0,0,0,0.35)]">
             <CollectionHeader
-              brandName={activeBrand.name}
+              brandName={displayBrandName}
               totalCount={totalCount}
-              brandSlug={activeBrand.slug}
-              logoUrl={activeBrand.logoUrl}
+              brandSlug={displayBrandSlug}
+              logoUrl={displayLogoUrl}
+              isGlobalView={isGlobalView}
             />
 
             <div className="mt-6 flex flex-wrap gap-2">
@@ -191,7 +181,7 @@ export default async function CollectionPage({ searchParams }: Props) {
                 <div className="mt-3 flex flex-wrap gap-2">
                   <Link
                     href={buildQueryString({
-                      brand: activeBrand.slug,
+                      brand: displayBrandSlug,
                       sensor: activeSensor,
                       type: activeType,
                       q: activeQuery,
@@ -209,7 +199,7 @@ export default async function CollectionPage({ searchParams }: Props) {
 
                   <Link
                     href={buildQueryString({
-                      brand: activeBrand.slug,
+                      brand: displayBrandSlug,
                       sensor: activeSensor,
                       type: activeType,
                       q: activeQuery,
@@ -227,7 +217,7 @@ export default async function CollectionPage({ searchParams }: Props) {
 
                   <Link
                     href={buildQueryString({
-                      brand: activeBrand.slug,
+                      brand: displayBrandSlug,
                       sensor: activeSensor,
                       type: activeType,
                       q: activeQuery,
@@ -245,7 +235,7 @@ export default async function CollectionPage({ searchParams }: Props) {
 
                   <Link
                     href={buildQueryString({
-                      brand: activeBrand.slug,
+                      brand: displayBrandSlug,
                       sensor: activeSensor,
                       type: activeType,
                       q: activeQuery,
@@ -286,7 +276,7 @@ export default async function CollectionPage({ searchParams }: Props) {
             <FilterSidebar
               sensorFilters={sensorFilters}
               typeFilters={typeFilters}
-              activeBrandSlug={activeBrand.slug}
+              activeBrandSlug={displayBrandSlug}
               activeSensor={activeSensor}
               activeType={activeType}
               activeQuery={activeQuery}
