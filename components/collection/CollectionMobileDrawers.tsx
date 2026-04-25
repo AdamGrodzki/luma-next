@@ -21,6 +21,7 @@ type Props = {
 };
 
 type DrawerProps = {
+  id: string;
   side: "left" | "right";
   title: string;
   open: boolean;
@@ -28,7 +29,7 @@ type DrawerProps = {
   children: React.ReactNode;
 };
 
-function Drawer({ side, title, open, onClose, children }: DrawerProps) {
+function Drawer({ id, side, title, open, onClose, children }: DrawerProps) {
   return (
     <>
       <div
@@ -38,9 +39,11 @@ function Drawer({ side, title, open, onClose, children }: DrawerProps) {
             : "pointer-events-none opacity-0"
         }`}
         onClick={onClose}
+        aria-hidden={!open}
       />
 
       <div
+        id={id}
         className={`fixed top-0 z-50 h-full w-[88vw] max-w-[380px] transition duration-300 ${
           side === "left" ? "left-0" : "right-0"
         } ${
@@ -50,6 +53,10 @@ function Drawer({ side, title, open, onClose, children }: DrawerProps) {
             ? "-translate-x-full"
             : "translate-x-full"
         }`}
+        role="dialog"
+        aria-modal="true"
+        aria-label={title}
+        aria-hidden={!open}
       >
         <div className="flex h-full flex-col bg-[var(--bg-dark)] p-4 shadow-2xl">
           <div className="mb-4 flex items-center justify-between border-b border-[var(--border-default)] pb-4">
@@ -61,6 +68,7 @@ function Drawer({ side, title, open, onClose, children }: DrawerProps) {
               type="button"
               onClick={onClose}
               className="rounded-full border border-[#3b3024] px-3 py-1 text-xs uppercase tracking-[0.16em] text-[var(--text-primary)] transition hover:bg-[var(--bg-card)]"
+              aria-label={`Close ${title.toLowerCase()} drawer`}
             >
               Zamknij
             </button>
@@ -97,6 +105,9 @@ export default function CollectionMobileDrawers({
           type="button"
           onClick={() => setBrandsOpen(true)}
           className="rounded-full border border-[var(--border-default)] px-4 py-2 text-xs uppercase tracking-[0.16em] text-[var(--text-primary)]"
+          aria-expanded={brandsOpen}
+          aria-controls="brands-drawer"
+          aria-label="Open brands filter"
         >
           Marki
         </button>
@@ -109,12 +120,16 @@ export default function CollectionMobileDrawers({
           type="button"
           onClick={() => setFiltersOpen(true)}
           className="rounded-full border border-[var(--border-default)] px-4 py-2 text-xs uppercase tracking-[0.16em] text-[var(--text-primary)]"
+          aria-expanded={filtersOpen}
+          aria-controls="filters-drawer"
+          aria-label="Open filters"
         >
           Filtry
         </button>
       </div>
 
       <Drawer
+        id="brands-drawer"
         side="left"
         title="Marki"
         open={brandsOpen}
@@ -133,6 +148,7 @@ export default function CollectionMobileDrawers({
       </Drawer>
 
       <Drawer
+        id="filters-drawer"
         side="right"
         title="Filtry"
         open={filtersOpen}
