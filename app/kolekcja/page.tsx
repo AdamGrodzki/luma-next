@@ -123,16 +123,18 @@ export default async function CollectionPage({ searchParams }: Props) {
 
         <div className="mt-4 sm:mt-5 grid gap-4 sm:gap-6 xl:grid-cols-[230px_minmax(0,1fr)_300px]">
           <div className="hidden xl:block">
-            <BrandSidebar
-              brands={brands}
-              activeBrandSlug={displayBrandSlug}
-              activeSensor={activeSensor}
-              activeType={activeType}
-              activeQuery={activeQuery}
-              activeYearFrom={yearFrom}
-              activeYearTo={yearTo}
-              activeSort={sort}
-            />
+            <div className="sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
+              <BrandSidebar
+                brands={brands}
+                activeBrandSlug={displayBrandSlug}
+                activeSensor={activeSensor}
+                activeType={activeType}
+                activeQuery={activeQuery}
+                activeYearFrom={yearFrom}
+                activeYearTo={yearTo}
+                activeSort={sort}
+              />
+            </div>
           </div>
 
           <section className="rounded-lg sm:rounded-[22px] border border-[var(--border-light)] bg-[var(--bg-darker)] px-4 sm:px-6 md:px-8 py-5 sm:py-6 xl:px-10 xl:py-7 shadow-[0_0_60px_rgba(0,0,0,0.35)]">
@@ -273,17 +275,19 @@ export default async function CollectionPage({ searchParams }: Props) {
           </section>
 
           <div className="hidden xl:block">
-            <FilterSidebar
-              sensorFilters={sensorFilters}
-              typeFilters={typeFilters}
-              activeBrandSlug={displayBrandSlug}
-              activeSensor={activeSensor}
-              activeType={activeType}
-              activeQuery={activeQuery}
-              activeYearFrom={yearFrom}
-              activeYearTo={yearTo}
-              activeSort={sort}
-            />
+            <div className="sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
+              <FilterSidebar
+                sensorFilters={sensorFilters}
+                typeFilters={typeFilters}
+                activeBrandSlug={displayBrandSlug}
+                activeSensor={activeSensor}
+                activeType={activeType}
+                activeQuery={activeQuery}
+                activeYearFrom={yearFrom}
+                activeYearTo={yearTo}
+                activeSort={sort}
+              />
+            </div>
           </div>
         </div>
       </div>

@@ -49,7 +49,7 @@ export default function Pagination({ currentPage, totalPages, baseUrl }: Paginat
       {currentPage > 1 ? (
         <Link
           href={getPageUrl(currentPage - 1)}
-          className="px-3 sm:px-4 py-2 rounded-lg border border-[var(--border-light)] bg-[var(--bg-darker)] text-[var(--text-secondary)] hover:bg-[var(--bg-dark)] hover:text-[var(--text-primary)] hover:border-[var(--border-medium)] transition-all text-sm font-medium"
+          className="min-h-[44px] flex items-center justify-center px-4 sm:px-5 py-3 rounded-lg border border-[var(--border-light)] bg-[var(--bg-darker)] text-[var(--text-secondary)] hover:bg-[var(--bg-dark)] hover:text-[var(--text-primary)] hover:border-[var(--border-medium)] transition-all text-sm font-medium"
           aria-label="Previous page"
         >
           <span className="hidden sm:inline">Poprzednia</span>
@@ -58,7 +58,7 @@ export default function Pagination({ currentPage, totalPages, baseUrl }: Paginat
       ) : (
         <button
           disabled
-          className="px-3 sm:px-4 py-2 rounded-lg border border-[var(--border-light)] bg-[var(--bg-darker)] text-[var(--text-muted)] cursor-not-allowed text-sm font-medium opacity-50"
+            className="min-h-[44px] flex items-center justify-center px-4 sm:px-5 py-3 rounded-lg border border-[var(--border-light)] bg-[var(--bg-darker)] text-[var(--text-muted)] cursor-not-allowed text-sm font-medium opacity-50"
           aria-label="Previous page"
         >
           <span className="hidden sm:inline">Poprzednia</span>
@@ -73,7 +73,7 @@ export default function Pagination({ currentPage, totalPages, baseUrl }: Paginat
             return (
               <span
                 key={`ellipsis-${index}`}
-                className="px-2 py-2 text-[var(--text-muted)] text-sm"
+                className="px-2 py-3 text-[var(--text-muted)] text-sm"
               >
                 ...
               </span>
@@ -88,7 +88,7 @@ export default function Pagination({ currentPage, totalPages, baseUrl }: Paginat
               key={pageNumber}
               href={getPageUrl(pageNumber)}
               className={`
-                min-w-[40px] px-3 py-2 rounded-lg text-sm font-medium transition-all text-center
+                min-w-[44px] min-h-[44px] flex items-center justify-center px-3 py-3 rounded-lg text-sm font-medium transition-all
                 ${
                   isActive
                     ? "bg-[var(--accent-primary)] text-white border-2 border-[var(--accent-primary)]"
@@ -108,7 +108,7 @@ export default function Pagination({ currentPage, totalPages, baseUrl }: Paginat
       {currentPage < totalPages ? (
         <Link
           href={getPageUrl(currentPage + 1)}
-          className="px-3 sm:px-4 py-2 rounded-lg border border-[var(--border-light)] bg-[var(--bg-darker)] text-[var(--text-secondary)] hover:bg-[var(--bg-dark)] hover:text-[var(--text-primary)] hover:border-[var(--border-medium)] transition-all text-sm font-medium"
+          className="min-h-[44px] flex items-center justify-center px-4 sm:px-5 py-3 rounded-lg border border-[var(--border-light)] bg-[var(--bg-darker)] text-[var(--text-secondary)] hover:bg-[var(--bg-dark)] hover:text-[var(--text-primary)] hover:border-[var(--border-medium)] transition-all text-sm font-medium"
           aria-label="Next page"
         >
           <span className="hidden sm:inline">Następna</span>
@@ -117,7 +117,7 @@ export default function Pagination({ currentPage, totalPages, baseUrl }: Paginat
       ) : (
         <button
           disabled
-          className="px-3 sm:px-4 py-2 rounded-lg border border-[var(--border-light)] bg-[var(--bg-darker)] text-[var(--text-muted)] cursor-not-allowed text-sm font-medium opacity-50"
+            className="min-h-[44px] flex items-center justify-center px-4 sm:px-5 py-3 rounded-lg border border-[var(--border-light)] bg-[var(--bg-darker)] text-[var(--text-muted)] cursor-not-allowed text-sm font-medium opacity-50"
           aria-label="Next page"
         >
           <span className="hidden sm:inline">Następna</span>

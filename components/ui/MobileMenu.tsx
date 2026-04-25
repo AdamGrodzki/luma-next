@@ -39,7 +39,9 @@ export default function MobileMenu() {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-[5px] transition-all"
-        aria-label="Toggle menu"
+        aria-label={isOpen ? 'Close menu' : 'Open menu'}
+        aria-expanded={isOpen}
+        aria-controls="mobile-menu"
       >
         <span
           className={`block h-[2px] w-6 rounded-full transition-all duration-300 ${
@@ -68,13 +70,18 @@ export default function MobileMenu() {
           isOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
         }`}
         onClick={() => setIsOpen(false)}
+        aria-hidden={!isOpen}
       />
 
       {/* Menu Drawer */}
       <div
+        id="mobile-menu"
         className={`fixed right-0 top-0 z-40 flex h-full w-[280px] flex-col bg-[var(--bg-dark)] border-l-2 border-[var(--border-light)] shadow-2xl transition-transform duration-300 ease-out ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
+        aria-hidden={!isOpen}
+        role="dialog"
+        aria-modal="true"
       >
         {/* Menu Header */}
         <div className="flex items-center border-b border-[var(--border-light)] px-6 py-5">
