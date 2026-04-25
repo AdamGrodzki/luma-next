@@ -19,7 +19,7 @@ export function CameraHero({ camera }: Props) {
       </div>
 
       <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-[0.04]">
-        <div className="absolute right-[-8px] top-4 text-[52px] font-black uppercase leading-none tracking-[-0.04em] text-white sm:text-[80px] md:text-[120px] xl:right-[-20px] xl:top-6 xl:text-[220px]">
+        <div className="absolute left-1/2 top-4 -translate-x-1/2 text-[52px] font-black uppercase leading-none tracking-[-0.04em] text-[var(--text-primary)] sm:text-[80px] md:text-[120px] xl:top-6 xl:text-[220px]">
           {watermark}
         </div>
       </div>
