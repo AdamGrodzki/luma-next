@@ -76,9 +76,6 @@ export function CameraGallery({ camera }: Props) {
         className="scroll-mt-24 space-y-6 rounded-[24px] border border-[var(--border-light)] bg-[linear-gradient(180deg,var(--bg-dark)_0%,var(--bg-dark)_100%)] px-4 py-6 sm:rounded-[28px] sm:px-5 sm:py-8 md:px-8 md:py-10 xl:rounded-[32px] xl:px-10 xl:py-12"
 >
         <div className="text-center">
-          <p className="mb-3 text-[11px] uppercase tracking-[0.35em] text-[var(--text-muted)]">
-            Visual archive
-          </p>
           <h2 className="text-3xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl">
             Galeria Modelu
           </h2>
