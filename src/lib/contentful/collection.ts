@@ -33,8 +33,8 @@ function normalizeSensorGroupName(sensorFormat: string | null | undefined): stri
     const value = normalizeText(sensorFormat);
 
     if (
-        value.includes("full frame") ||
         value.includes("pelna klatka") ||
+        value.includes("full frame") ||
         value === "ff"
     ) {
         return "Pełna Klatka";
