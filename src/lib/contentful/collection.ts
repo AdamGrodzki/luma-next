@@ -114,32 +114,24 @@ export async function getCollectionData(
     activeBrand: Brand | null;
     sensorGroups: CollectionSensorGroup[];
     totalCount: number;
+    isGlobalView: boolean;
 }> {
     const [brands, cameras] = await Promise.all([getBrands(), getCameras()]);
 
-    const activeBrand =
-        brands.find((brand) => brand.slug === filters?.activeBrandSlug) ??
-        brands[0] ??
-        null;
+    // If activeBrandSlug is explicitly provided, find that brand
+    // If it's "all" or not provided, show all brands
+    const activeBrand = filters?.activeBrandSlug && filters.activeBrandSlug !== "all"
+        ? brands.find((brand) => brand.slug === filters.activeBrandSlug) ?? null
+        : null;
 
-    const collectionBrands: CollectionBrand[] = brands.map((brand) => ({
-        slug: brand.slug,
-        name: brand.name,
-        count: cameras.filter((camera) => camera.brand.slug === brand.slug).length,
-        active: activeBrand ? brand.slug === activeBrand.slug : false,
-    }));
+    const isGlobalView = !activeBrand;
 
-    if (!activeBrand) {
-        return {
-            brands: collectionBrands,
-            activeBrand: null,
-            sensorGroups: [],
-            totalCount: 0,
-        };
-    }
+    // Start with all cameras (or brand-specific if activeBrand exists)
+    let filtered = activeBrand
+        ? cameras.filter((camera) => camera.brand.slug === activeBrand.slug)
+        : cameras;
 
-    let filtered = cameras.filter((camera) => camera.brand.slug === activeBrand.slug);
-
+    // Apply common filters (sensor, type, search, years)
     if (filters?.sensor) {
         filtered = filtered.filter(
             (camera) => normalizeSensorGroupName(camera.sensorFormat) === filters.sensor
@@ -153,7 +145,6 @@ export async function getCollectionData(
     if (filters?.q) {
         filtered = filtered.filter((camera) => matchesSearch(camera, filters.q!));
     }
-
 
     if (typeof filters?.yearFrom === "number") {
         filtered = filtered.filter(
@@ -169,19 +160,64 @@ export async function getCollectionData(
         );
     }
 
+    // Calculate brand counts based on filtered results (without brand filter)
+    // This shows how many cameras match the filters for each brand
+    let camerasForCounting = cameras;
+
+    if (filters?.sensor) {
+        camerasForCounting = camerasForCounting.filter(
+            (camera) => normalizeSensorGroupName(camera.sensorFormat) === filters.sensor
+        );
+    }
+
+    if (filters?.type) {
+        camerasForCounting = camerasForCounting.filter(
+            (camera) => camera.cameraType === filters.type
+        );
+    }
+
+    if (filters?.q) {
+        camerasForCounting = camerasForCounting.filter(
+            (camera) => matchesSearch(camera, filters.q!)
+        );
+    }
+
+    if (typeof filters?.yearFrom === "number") {
+        camerasForCounting = camerasForCounting.filter(
+            (camera) =>
+                camera.releaseYear == null || camera.releaseYear >= filters.yearFrom!
+        );
+    }
+
+    if (typeof filters?.yearTo === "number") {
+        camerasForCounting = camerasForCounting.filter(
+            (camera) =>
+                camera.releaseYear == null || camera.releaseYear <= filters.yearTo!
+        );
+    }
+
+    const collectionBrands: CollectionBrand[] = brands.map((brand) => ({
+        slug: brand.slug,
+        name: brand.name,
+        count: camerasForCounting.filter((camera) => camera.brand.slug === brand.slug).length,
+        active: activeBrand ? brand.slug === activeBrand.slug : false,
+    }));
+
     const groupedMap = new Map<string, CollectionCameraCard[]>();
 
     for (const camera of filtered) {
         const groupName = normalizeSensorGroupName(camera.sensorFormat);
         const existing = groupedMap.get(groupName) ?? [];
 
-    existing.push({
-        name: camera.name,
-        slug: camera.slug,
-        year: camera.releaseYear,
-        type: camera.cameraType,
-        imageUrl: camera.heroImageUrl || camera.galleryUrls[0] || null,
-    });
+        existing.push({
+            name: camera.name,
+            slug: camera.slug,
+            year: camera.releaseYear,
+            type: camera.cameraType,
+            imageUrl: camera.heroImageUrl || camera.galleryUrls[0] || null,
+            brandName: camera.brand.name,
+            brandSlug: camera.brand.slug,
+        });
 
         groupedMap.set(groupName, existing);
     }
@@ -196,12 +232,12 @@ export async function getCollectionData(
                 filters?.sort
             );
 
-        return {
-            name,
-            count: groupCameras.length,
-            expanded: index === 0,
-            cameras: groupCameras,
-        };
+            return {
+                name,
+                count: groupCameras.length,
+                expanded: index === 0,
+                cameras: groupCameras,
+            };
         });
 
     return {
@@ -209,5 +245,6 @@ export async function getCollectionData(
         activeBrand,
         sensorGroups,
         totalCount: filtered.length,
+        isGlobalView,
     };
 }

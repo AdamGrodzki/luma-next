@@ -11,6 +11,8 @@ export type CollectionCameraCard = {
   year?: number | null;
   type?: string | null;
   imageUrl?: string | null;
+  brandName?: string;
+  brandSlug?: string;
 };
 
 export type CollectionSensorGroup = {

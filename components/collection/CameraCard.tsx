@@ -40,6 +40,11 @@ export default function CameraCard({ camera, priority = false }: Props) {
       </div>
 
       <div className="p-3 sm:p-4 bg-[var(--special-brand-bg)]">
+        {camera.brandName && (
+          <div className="text-xs uppercase tracking-[0.16em] text-[var(--text-muted)] mb-1">
+            {camera.brandName}
+          </div>
+        )}
         <div className="text-xs uppercase tracking-[0.14em] rounded-md px-2 py-1 text-xs font-semibold uppercase tracking-[0.08em] transition-colors text-[var(--accent-primary)]">
           {camera.type || "Aparat"}
         </div>
