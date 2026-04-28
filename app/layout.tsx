@@ -1,7 +1,15 @@
 import type { Metadata, Viewport } from "next";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./providers";
 import RootLayoutClient from "../app/layout-client";
+
+const montserrat = Montserrat({
+  subsets: ["latin", "latin-ext"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-montserrat",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -28,7 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pl" suppressHydrationWarning data-theme="dark">
-      <body className="bg-[var(--bg-dark)] text-[var(--text-primary)] antialiased transition-colors duration-300">
+      <body className={`${montserrat.variable} bg-[var(--bg-dark)] text-[var(--text-primary)] antialiased transition-colors duration-300`}>
         <ThemeProvider>
           <RootLayoutClient>{children}</RootLayoutClient>
         </ThemeProvider>
