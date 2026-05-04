@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getBrands } from "@/src/lib/contentful/brands";
 import { getCameras } from "@/src/lib/contentful/cameras";
 import Container from "@/components/ui/Container";
@@ -29,10 +30,23 @@ export default async function BrandsPage() {
 
             return (
               <InfoCard key={brand.id} href={`/brands/${brand.slug}`}>
-                {/* BRAND NAME */}
-                <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-[var(--text-primary)]">
-                  {brand.name}
-                </h2>
+                <div className="flex items-start justify-between gap-3">
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-[var(--text-primary)] flex-1">
+                    {brand.name}
+                  </h2>
+                  {brand.logoUrl && (
+                    <div className="rounded-lg p-1.25 flex-shrink-0 bg-white/100">
+                      <Image
+                        src={brand.logoUrl}
+                        alt={`${brand.name} logo`}
+                        width={48}
+                        height={48}
+                        loading="lazy"
+                        className="w-10 h-10 object-contain"
+                      />
+                    </div>
+                  )}
+                </div>
 
                 {/* DESCRIPTION */}
                 {brand.description && (
