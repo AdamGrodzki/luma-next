@@ -123,7 +123,7 @@ export default async function CollectionPage({ searchParams }: Props) {
 
         <div className="mt-4 sm:mt-5 grid gap-4 sm:gap-6 xl:grid-cols-[230px_minmax(0,1fr)_300px]">
           <div className="hidden xl:block">
-            <div className="sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
+            <div className="sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto [scrollbar-width:thin] [scrollbar-color:#7e6244_transparent] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#7e6244] hover:[&::-webkit-scrollbar-thumb]:bg-[#a88359]">
               <BrandSidebar
                 brands={brands}
                 activeBrandSlug={displayBrandSlug}
@@ -275,7 +275,7 @@ export default async function CollectionPage({ searchParams }: Props) {
           </section>
 
           <div className="hidden xl:block">
-            <div className="sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
+            <div className="sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto [scrollbar-width:thin] [scrollbar-color:#7e6244_transparent] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#7e6244] hover:[&::-webkit-scrollbar-thumb]:bg-[#a88359]">
               <FilterSidebar
                 sensorFilters={sensorFilters}
                 typeFilters={typeFilters}
