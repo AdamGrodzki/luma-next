@@ -113,7 +113,24 @@ export default function FilterSidebar({
         </Link>
       </div>
 
-      <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+      <div
+        className="
+          mt-4
+          h-[min(68vh,720px)]
+          overflow-y-auto
+          overflow-x-hidden
+          overscroll-contain
+          [scrollbar-gutter:stable]
+          [scrollbar-width:thin]
+          [scrollbar-color:#7e6244_transparent]
+          [&::-webkit-scrollbar]:w-2
+          [&::-webkit-scrollbar-track]:bg-transparent
+          [&::-webkit-scrollbar-thumb]:rounded-full
+          [&::-webkit-scrollbar-thumb]:bg-[#7e6244]
+          hover:[&::-webkit-scrollbar-thumb]:bg-[#a88359]
+        "
+      >
+        <form onSubmit={handleSubmit} className="mt-2 space-y-4 pr-2">
         <div className="rounded-xl border border-[var(--accent-primary)] px-4 py-3">
           <input
             type="text"
@@ -149,7 +166,7 @@ export default function FilterSidebar({
         </button>
       </form>
 
-      <div className="mt-8 border-t border-[var(--border-light)] pt-8">
+        <div className="mt-8 border-t border-[var(--border-light)] pt-8 pr-2">
         <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-[var(--text-primary)]">
           • Wielkość matrycy
         </h3>
@@ -188,7 +205,7 @@ export default function FilterSidebar({
         </div>
       </div>
 
-      <div className="mt-8 border-t border-[var(--border-default)] pt-8\">
+        <div className="mt-8 border-t border-[var(--border-default)] pt-8 pr-2">
         <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-[var(--text-primary)]">
           • Rodzaj sprzętu
         </h3>
@@ -225,6 +242,7 @@ export default function FilterSidebar({
             );
           })}
         </div>
+      </div>
       </div>
     </aside>
   );

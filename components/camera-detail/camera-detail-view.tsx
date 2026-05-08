@@ -1,8 +1,8 @@
 import { CameraHero } from "./camera-hero";
 import { CameraGallery } from "./camera-gallery";
 import { CameraStory } from "./camera-story";
-import { CameraPopularity } from "./camera-popularity";
-import { CameraMarketValue } from "./camera-market-value";
+// import { CameraPopularity } from "./camera-popularity";
+// import { CameraMarketValue } from "./camera-market-value";
 import { CameraSpecs } from "./camera-specs";
 import { CameraRelated } from "./camera-related";
 import { CameraStickyNav } from "./camera-sticky-nav";
@@ -26,8 +26,8 @@ export function CameraDetailView({ camera }: Props) {
       label: "Historia",
       show: Boolean(camera.story || camera.description),
     },
-    { id: "popularity", label: "Popularność", show: true },
-    { id: "market", label: "Rynek", show: true },
+    // { id: "popularity", label: "Popularność", show: true },
+    // { id: "market", label: "Rynek", show: true },
     { id: "specs", label: "Specyfikacja", show: Boolean(camera.specs?.length) },
     { id: "related", label: "Podobne", show: Boolean(camera.related?.length) },
   ]
@@ -56,13 +56,13 @@ export function CameraDetailView({ camera }: Props) {
           <CameraStory camera={camera} />
         </RevealOnScroll>
 
-        <RevealOnScroll delay={100}>
+        {/* <RevealOnScroll delay={100}>
           <CameraPopularity camera={camera} />
         </RevealOnScroll>
 
         <RevealOnScroll delay={120}>
           <CameraMarketValue camera={camera} />
-        </RevealOnScroll>
+        </RevealOnScroll> */}
 
         <RevealOnScroll delay={140}>
           <CameraSpecs camera={camera} />
