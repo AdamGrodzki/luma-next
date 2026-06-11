@@ -1,42 +1,44 @@
-import { contentful } from "../client";
+import { contentful, withContentfulErrorHandling } from "../client";
 import { getAssetUrl } from "./assets";
-import type { Brand } from "@/src/types/contentful";
+import type { Brand, BrandEntry, BrandEntrySkeleton } from "@/src/types/contentful";
+
+/** Mapuje surowy entry Contentful na typ Brand */
+export function mapBrand(item: BrandEntry): Brand {
+  const fields = item.fields;
+  return {
+    id: item.sys.id,
+    name: fields.name,
+    slug: fields.slug,
+    country: fields.country ?? null,
+    foundedYear: fields.foundedYear ?? null,
+    description: fields.description ?? null,
+    logoUrl: getAssetUrl(fields.logo),
+  };
+}
 
 export async function getBrands(): Promise<Brand[]> {
-    const res = await contentful.getEntries({
-        content_type: "brand",
-        order: ["fields.name"],
-        include: 2,
+  return withContentfulErrorHandling(async () => {
+    const res = await contentful.getEntries<BrandEntrySkeleton>({
+      content_type: "brand",
+      order: ["fields.name"] as any,
+      include: 2,
     });
 
-    return res.items.map((item: any) => ({
-        id: item.sys.id,
-        name: item.fields.name,
-        slug: item.fields.slug,
-        country: item.fields.country ?? null,
-        foundedYear: item.fields.foundedYear ?? null,
-        description: item.fields.description ?? null,
-        logoUrl: getAssetUrl(item.fields.logo),
-    }));
-    }
+    return res.items.map(mapBrand);
+  }, "fetch brands");
+}
 
-    export async function getBrandBySlug(slug: string): Promise<Brand | null> {
-    const res = await contentful.getEntries({
-        content_type: "brand",
-        "fields.slug": slug,
-        limit: 1,
+export async function getBrandBySlug(slug: string): Promise<Brand | null> {
+  return withContentfulErrorHandling(async () => {
+    const res = await contentful.getEntries<BrandEntrySkeleton>({
+      content_type: "brand",
+      "fields.slug": slug,
+      limit: 1,
     });
 
-    const item: any = res.items[0];
+    const item = res.items[0];
     if (!item) return null;
 
-    return {
-        id: item.sys.id,
-        name: item.fields.name,
-        slug: item.fields.slug,
-        country: item.fields.country ?? null,
-        foundedYear: item.fields.foundedYear ?? null,
-        description: item.fields.description ?? null,
-        logoUrl: getAssetUrl(item.fields.logo),
-    };
+    return mapBrand(item);
+  }, `fetch brand by slug: ${slug}`);
 }

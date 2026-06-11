@@ -1,96 +1,85 @@
-import { contentful } from "../client";
-import type { Brand, Camera } from "@/src/types/contentful";
+import { contentful, withContentfulErrorHandling } from "../client";
+import { getAssetUrl } from "./assets";
+import { mapBrand } from "./brands";
+import type { Camera, CameraEntry, CameraEntrySkeleton, BrandEntry } from "@/src/types/contentful";
 
-function assetUrl(asset: any): string | null {
-  const url = asset?.fields?.file?.url;
-  if (!url) return null;
-  return url.startsWith("//") ? `https:${url}` : url;
-}
+const UNKNOWN_BRAND = {
+  id: "unknown",
+  name: "Unknown",
+  slug: "unknown",
+  country: null,
+  foundedYear: null,
+  description: null,
+  logoUrl: null,
+} as const;
 
-function mapBrand(item: any): Brand {
-  return {
-    id: item.sys.id,
-    name: item.fields.name,
-    slug: item.fields.slug,
-    country: item.fields.country ?? null,
-    foundedYear: item.fields.foundedYear ?? null,
-    description: item.fields.description ?? null,
-    logoUrl: assetUrl(item.fields.logo),
-  };
-}
-
-function mapCamera(item: any): Camera {
-  const brandEntry = item.fields.brand;
+function mapCamera(item: CameraEntry): Camera {
+  const fields = item.fields;
+  const brandEntry = fields.brand as BrandEntry | undefined;
 
   return {
     id: item.sys.id,
-    name: item.fields.name,
-    slug: item.fields.slug,
+    name: fields.name,
+    slug: fields.slug,
 
-    brand: brandEntry ? mapBrand(brandEntry) : {
-      id: "unknown",
-      name: "Unknown",
-      slug: "unknown",
-      country: null,
-      foundedYear: null,
-      description: null,
-      logoUrl: null,
-    },
+    brand: brandEntry ? mapBrand(brandEntry) : UNKNOWN_BRAND,
 
-    cameraType: item.fields.cameraType ?? null,
-    sensorFormat: item.fields.sensorFormat ?? null,
-    mount: item.fields.mount ?? null,
-    releaseYear: item.fields.releaseYear ?? null,
+    cameraType: fields.cameraType ?? null,
+    sensorFormat: fields.sensorFormat ?? null,
+    mount: fields.mount ?? null,
+    releaseYear: fields.releaseYear ?? null,
 
-    description: item.fields.description ?? null,
-    shortDescription: item.fields.shortDescription ?? null,
-    story: item.fields.story ?? null,
+    description: fields.description ?? null,
+    shortDescription: fields.shortDescription ?? null,
+    story: fields.story ?? null,
 
-    launchPrice: item.fields.launchPrice ?? null,
-    weight: item.fields.weight ?? null,
-    dimensions: item.fields.dimensions ?? null,
-    weatherSealed: item.fields.weatherSealed ?? null,
+    launchPrice: fields.launchPrice ?? null,
+    weight: fields.weight ?? null,
+    dimensions: fields.dimensions ?? null,
+    weatherSealed: fields.weatherSealed ?? null,
 
-    maxResolution: item.fields.maxResolution ?? null,
-    isoRange: item.fields.isoRange ?? null,
-    continuousShooting: item.fields.continuousShooting ?? null,
-    imageProcessor: item.fields.imageProcessor ?? null,
+    maxResolution: fields.maxResolution ?? null,
+    isoRange: fields.isoRange ?? null,
+    continuousShooting: fields.continuousShooting ?? null,
+    imageProcessor: fields.imageProcessor ?? null,
 
-    videoSpecs: item.fields.videoSpecs ?? null,
-    micPort: item.fields.micPort ?? null,
-    headphonePort: item.fields.headphonePort ?? null,
+    videoSpecs: fields.videoSpecs ?? null,
+    micPort: fields.micPort ?? null,
+    headphonePort: fields.headphonePort ?? null,
 
-    screenSpecs: item.fields.screenSpecs ?? null,
-    touchscreen: item.fields.touchscreen ?? null,
-    wireless: item.fields.wireless ?? null,
-    storageTypes: item.fields.storageTypes ?? null,
+    screenSpecs: fields.screenSpecs ?? null,
+    touchscreen: fields.touchscreen ?? null,
+    wireless: fields.wireless ?? null,
+    storageTypes: fields.storageTypes ?? null,
 
-    popularityScore: item.fields.popularityScore ?? null,
-    popularityLabel: item.fields.popularityLabel ?? null,
+    popularityScore: fields.popularityScore ?? null,
+    popularityLabel: fields.popularityLabel ?? null,
 
-    marketPriceMin: item.fields.marketPriceMin ?? null,
-    marketPriceAvg: item.fields.marketPriceAvg ?? null,
-    marketPriceMax: item.fields.marketPriceMax ?? null,
+    marketPriceMin: fields.marketPriceMin ?? null,
+    marketPriceAvg: fields.marketPriceAvg ?? null,
+    marketPriceMax: fields.marketPriceMax ?? null,
 
-    recommendedLenses: item.fields.recommendedLenses ?? [],
+    recommendedLenses: (fields.recommendedLenses as string[] | undefined) ?? [],
 
-    heroImageUrl: assetUrl(item.fields.heroImage),
-    galleryUrls: Array.isArray(item.fields.gallery)
-      ? item.fields.gallery
-          .map((asset: any) => assetUrl(asset))
-          .filter((url: string | null): url is string => Boolean(url))
+    heroImageUrl: getAssetUrl(fields.heroImage),
+    galleryUrls: Array.isArray(fields.gallery)
+      ? fields.gallery
+          .map((asset) => getAssetUrl(asset))
+          .filter((url): url is string => Boolean(url))
       : [],
   };
 }
 
 export async function getCameras(): Promise<Camera[]> {
-  const res = await contentful.getEntries({
-    content_type: "camera",
-    include: 2,
-    order: ["fields.releaseYear", "fields.name"],
-  });
+  return withContentfulErrorHandling(async () => {
+    const res = await contentful.getEntries<CameraEntrySkeleton>({
+      content_type: "camera",
+      include: 2,
+      order: ["fields.releaseYear", "fields.name"] as any,
+    });
 
-  return res.items.map(mapCamera);
+    return res.items.map(mapCamera);
+  }, "fetch cameras");
 }
 
 export async function getCamerasPaginated(page: number = 1, limit: number = 12): Promise<{
@@ -99,36 +88,40 @@ export async function getCamerasPaginated(page: number = 1, limit: number = 12):
   totalPages: number;
   currentPage: number;
 }> {
-  const skip = (page - 1) * limit;
+  return withContentfulErrorHandling(async () => {
+    const skip = (page - 1) * limit;
 
-  const res = await contentful.getEntries({
-    content_type: "camera",
-    include: 2,
-    order: ["fields.releaseYear", "fields.name"],
-    limit,
-    skip,
-  });
+    const res = await contentful.getEntries<CameraEntrySkeleton>({
+      content_type: "camera",
+      include: 2,
+      order: ["fields.releaseYear", "fields.name"] as any,
+      limit,
+      skip,
+    });
 
-  return {
-    cameras: res.items.map(mapCamera),
-    total: res.total,
-    totalPages: Math.ceil(res.total / limit),
-    currentPage: page,
-  };
+    return {
+      cameras: res.items.map(mapCamera),
+      total: res.total,
+      totalPages: Math.ceil(res.total / limit),
+      currentPage: page,
+    };
+  }, `fetch cameras page ${page}`);
 }
 
 export async function getCameraBySlug(slug: string): Promise<Camera | null> {
-  const res = await contentful.getEntries({
-    content_type: "camera",
-    "fields.slug": slug,
-    include: 2,
-    limit: 1,
-  });
+  return withContentfulErrorHandling(async () => {
+    const res = await contentful.getEntries<CameraEntrySkeleton>({
+      content_type: "camera",
+      "fields.slug": slug,
+      include: 2,
+      limit: 1,
+    });
 
-  const item = res.items[0];
-  if (!item) return null;
+    const item = res.items[0];
+    if (!item) return null;
 
-  return mapCamera(item);
+    return mapCamera(item);
+  }, `fetch camera by slug: ${slug}`);
 }
 
 export async function getRelatedCameras(
@@ -139,26 +132,28 @@ export async function getRelatedCameras(
     limit?: number;
   }
 ): Promise<Camera[]> {
-  const res = await contentful.getEntries({
-    content_type: "camera",
-    include: 2,
-    limit: options.limit ?? 3,
-  });
+  return withContentfulErrorHandling(async () => {
+    const res = await contentful.getEntries<CameraEntrySkeleton>({
+      content_type: "camera",
+      include: 2,
+      limit: options.limit ?? 3,
+    });
 
-  const all = res.items.map(mapCamera);
+    const all = res.items.map(mapCamera);
 
-  return all
-    .filter((camera) => camera.slug !== currentSlug)
-    .filter((camera) => {
-      const sameBrand = options.brandSlug
-        ? camera.brand.slug === options.brandSlug
-        : false;
+    return all
+      .filter((camera) => camera.slug !== currentSlug)
+      .filter((camera) => {
+        const sameBrand = options.brandSlug
+          ? camera.brand.slug === options.brandSlug
+          : false;
 
-      const sameSensor = options.sensorFormat
-        ? camera.sensorFormat === options.sensorFormat
-        : false;
+        const sameSensor = options.sensorFormat
+          ? camera.sensorFormat === options.sensorFormat
+          : false;
 
-      return sameBrand || sameSensor;
-    })
-    .slice(0, options.limit ?? 3);
+        return sameBrand || sameSensor;
+      })
+      .slice(0, options.limit ?? 3);
+  }, `fetch related cameras for: ${currentSlug}`);
 }
