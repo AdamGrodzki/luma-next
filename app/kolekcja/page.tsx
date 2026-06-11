@@ -91,18 +91,6 @@ export default async function CollectionPage({ searchParams }: Props) {
     return query ? `?${query}` : "";
   }
 
-  console.log("RAW searchParams", params);
-
-  console.log("PAGE parsed", {
-    brand: params.brand,
-    sensor: params.sensor,
-    type: params.type,
-    q: params.q,
-    yearFrom: params.yearFrom,
-    yearTo: params.yearTo,
-    sort: params.sort,
-  });
-
   return (
     <main className="min-h-screen bg-[var(--bg-dark)] text-[var(--text-primary)]">
       <div className="mx-auto max-w-[1500px] px-4 sm:px-6 py-4 sm:py-5">
