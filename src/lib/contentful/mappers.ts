@@ -21,6 +21,7 @@ export function mapContentfulCameraToDetail(
     gallery: camera.galleryUrls ?? [],
     description: camera.description ?? null,
     story: camera.story ?? camera.description ?? null,
+    msrp: camera.msrp ?? null,
 
     heroStats: [
       {
@@ -82,59 +83,138 @@ export function mapContentfulCameraToDetail(
 
     specs: [
       {
-        title: "General",
+        title: "Price",
         items: [
-          { label: "Producent", value: camera.brand.name },
-          { label: "Model", value: camera.name },
-          { label: "Typ aparatu", value: camera.cameraType ?? "Brak danych" },
           {
-            label: "Data premiery",
-            value: camera.releaseYear ? String(camera.releaseYear) : "Brak danych",
-          },
-          {
-            label: "Cena startowa",
-            value: camera.launchPrice ?? "Brak danych",
+            label: "Sugerowana cena detaliczna producenta",
+            value: camera.msrp ?? "Brak danych",
           },
         ],
       },
       {
-        title: "Sensor",
+        title: "Body",
         items: [
-          { label: "Format sensora", value: camera.sensorFormat ?? "Brak danych" },
+          { label: "Typ obudowy", value: camera.bodyType ?? "Brak danych" },
           {
-            label: "Maks. rozdzielczość",
-            value: camera.maxResolution ?? "Brak danych",
+            label: "Waga",
+            value: camera.weight ? `${camera.weight} g` : "Brak danych",
           },
-          { label: "Zakres ISO", value: camera.isoRange ?? "Brak danych" },
-          {
-            label: "Procesor obrazu",
-            value: camera.imageProcessor ?? "Brak danych",
-          },
-        ],
-      },
-      {
-        title: "Performance",
-        items: [
+          { label: "Wymiary", value: camera.dimensions ?? "Brak danych" },
+          { label: "Mocowanie obiektyvu", value: camera.mount ?? "Brak danych" },
+          { label: "Ekran LCD", value: camera.articulatedLcd ?? "Brak danych" },
           {
             label: "Zdjęcia seryjne",
             value: camera.continuousShooting ?? "Brak danych",
           },
-          { label: "Mocowanie", value: camera.mount ?? "Brak danych" },
+          { label: "Typ wizjera", value: camera.viewfinderType ?? "Brak danych" },
           {
-            label: "Uszczelnienie",
+            label: "Pokrycie wizjera",
+            value: camera.viewfinderCoverage ?? "Brak danych",
+          },
+          {
+            label: "Powiększenie wizjera",
+            value: camera.viewfinderMagnification ?? "Brak danych",
+          },
+          {
+            label: "Rozdzielczość wizjera",
+            value: camera.viewfinderResolution
+              ? `${camera.viewfinderResolution.toLocaleString('pl-PL')}`
+              : "Brak danych",
+          },
+        ],
+      },
+      {
+        title: "Optics",
+        items: [
+          { label: "Rozmiar sensora", value: camera.sensorFormat ?? "Brak danych" },
+          { label: "Typ sensora", value: camera.sensorType ?? "Brak danych" },
+          {
+            label: "Stabilizacja obrazu",
+            value: camera.imageStabilization ?? "Brak danych",
+          },
+          {
+            label: "Maks. rozdzielczość",
+            value: camera.maxResolution ?? "Brak danych",
+          },
+          {
+            label: "Efektywne piksele",
+            value: camera.effectivePixels
+              ? `${camera.effectivePixels} megapikseli`
+              : "Brak danych",
+          },
+          {
+            label: "Procesor obrazu",
+            value: camera.imageProcessor ?? "Brak danych",
+          },
+          {
+            label: "Punkty ostrości",
+            value: camera.numberFocusPoints ?? "Brak danych",
+          },
+          {
+            label: "Ostrość ręczna",
             value:
-              camera.weatherSealed == null
+              camera.manualFocus == null
                 ? "Brak danych"
-                : camera.weatherSealed
+                : camera.manualFocus
                 ? "Tak"
                 : "Nie",
+          },
+          { label: "Autofocus", value: camera.autofocus == null ? "Brak danych" : camera.autofocus ? "Tak" : "Nie" },
+        ],
+      },
+      {
+        title: "Image",
+        items: [
+          { label: "Zakres ISO", value: camera.isoRange ?? "Brak danych" },
+          {
+            label: "ISO wzmocnione (min)",
+            value: camera.isoBoostMin ?? "Brak danych",
+          },
+          {
+            label: "ISO wzmocnione (max)",
+            value: camera.isoBoostMax ?? "Brak danych",
+          },
+          {
+            label: "Presety balansu bieli",
+            value: camera.whiteBalancePresets ?? "Brak danych",
+          },
+          {
+            label: "Niestandardowy balans bieli",
+            value:
+              camera.customWhiteBalance == null
+                ? "Brak danych"
+                : camera.customWhiteBalance
+                ? "Tak"
+                : "Nie",
+          },
+          { label: "Formaty plików", value: camera.fileFormat ?? "Brak danych" },
+          {
+            label: "Jakość JPEG",
+            value: camera.jpegQualityLevels ?? "Brak danych",
+          },
+          { label: "Proporcje obrazu", value: camera.imageRatio ?? "Brak danych" },
+          {
+            label: "Tryby ekspozycji",
+            value: camera.exposureModes ?? "Brak danych",
+          },
+          {
+            label: "Maks. czas otwarcia",
+            value: camera.maxShutterSpeed ?? "Brak danych",
+          },
+          {
+            label: "Min. czas otwarcia",
+            value: camera.minShutterSpeed ?? "Brak danych",
+          },
+          {
+            label: "Kompensacja ekspozycji",
+            value: camera.exposureCompensation ?? "Brak danych",
           },
         ],
       },
       {
         title: "Video",
         items: [
-          { label: "Video", value: camera.videoSpecs ?? "Brak danych" },
+          { label: "Specyfikacja wideo", value: camera.videoSpecs ?? "Brak danych" },
           {
             label: "Port mikrofonu",
             value:
@@ -166,16 +246,56 @@ export function mapContentfulCameraToDetail(
           },
           { label: "Łączność", value: camera.wireless ?? "Brak danych" },
           { label: "Nośniki", value: camera.storageTypes ?? "Brak danych" },
+          { label: "Wersja USB", value: camera.usbVersion ?? "Brak danych" },
+          {
+            label: "Ładowanie USB",
+            value:
+              camera.usbCharging == null
+                ? "Brak danych"
+                : camera.usbCharging
+                ? "Tak"
+                : "Nie",
+          },
         ],
       },
       {
-        title: "Body",
+        title: "Miscellaneous",
         items: [
           {
-            label: "Waga",
-            value: camera.weight ? `${camera.weight} g` : "Brak danych",
+            label: "Wbudowany flash",
+            value:
+              camera.builtInFlash == null
+                ? "Brak danych"
+                : camera.builtInFlash
+                ? "Tak"
+                : "Nie",
           },
-          { label: "Wymiary", value: camera.dimensions ?? "Brak danych" },
+          {
+            label: "GPS",
+            value: camera.gps == null ? "Brak danych" : camera.gps ? "Tak" : "Nie",
+          },
+          {
+            label: "Live view",
+            value:
+              camera.liveView == null ? "Brak danych" : camera.liveView ? "Tak" : "Nie",
+          },
+          {
+            label: "Samowyzwalacz",
+            value:
+              camera.selfTimer == null
+                ? "Brak danych"
+                : camera.selfTimer
+                ? "Tak"
+                : "Nie",
+          },
+          {
+            label: "Opis baterii",
+            value: camera.batteryDescription ?? "Brak danych",
+          },
+          {
+            label: "Czas pracy baterii (CIPA)",
+            value: camera.batteryCipa ?? "Brak danych",
+          },
           {
             label: "Kraj marki",
             value: camera.brand.country ?? "Brak danych",

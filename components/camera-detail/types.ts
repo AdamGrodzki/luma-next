@@ -17,7 +17,7 @@ export type CameraSpecGroup = {
   title: string;
   items: {
     label: string;
-    value: string;
+    value: string | number;
   }[];
 };
 
@@ -43,6 +43,7 @@ export type CameraDetailData = {
   gallery?: string[];
   description?: string | null;
   story?: string | null;
+  msrp?: string | null;
 
   heroStats: CameraHeroStat[];
 

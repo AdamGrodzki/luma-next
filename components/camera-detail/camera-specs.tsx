@@ -35,7 +35,7 @@ export function CameraSpecs({ camera }: Props) {
           >
             <div className="mb-5 flex items-center gap-3 border-b border-[var(--border-light)] pb-4 sm:gap-4">
               <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-[var(--border-light)] bg-[var(--bg-dark)] text-xs text-[var(--accent-primary)] sm:h-8 sm:w-8 sm:text-sm">
-                •
+                • 
               </span>
               <div>
                 <h3 className="text-xl font-bold text-[var(--text-primary)] sm:text-2xl">
