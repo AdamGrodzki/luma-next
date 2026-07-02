@@ -1,7 +1,26 @@
 import { CameraDetailData } from "./types";
+import {
+  DollarSign,
+  Camera,
+  Focus,
+  Image as ImageIcon,
+  Video,
+  Wifi,
+  Settings,
+} from "lucide-react";
 
 type Props = {
   camera: CameraDetailData;
+};
+
+const sectionIcons: Record<string, React.ComponentType<{ className: string }>> = {
+  "Price": DollarSign,
+  "Body": Camera,
+  "Optics": Focus,
+  "Image": ImageIcon,
+  "Video": Video,
+  "Display & Connectivity": Wifi,
+  "Miscellaneous": Settings,
 };
 
 export function CameraSpecs({ camera }: Props) {
@@ -24,36 +43,44 @@ export function CameraSpecs({ camera }: Props) {
         </p>
       </div>
 
-      <div className="grid gap-5 xl:grid-cols-2 xl:gap-8">
+      <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3 xl:gap-6">
         {camera.specs.map((group, index) => (
           <div
             key={group.title}
-            className="rounded-[22px] border border-[var(--border-light)] bg-[linear-gradient(180deg,var(--bg-dark)_0%,var(--bg-darker)_100%)] p-4 transition duration-300 hover:-translate-y-[2px] hover:border-[var(--border-light)] hover:shadow-[0_18px_40px_rgba(0,0,0,0.22)] sm:rounded-[26px] sm:p-5 md:p-6"
+            className="group overflow-hidden rounded-[18px] border border-[var(--border-light)] bg-gradient-to-br from-[var(--bg-dark)] to-[var(--bg-darker)] p-5 transition duration-300 hover:border-[var(--accent-primary)]/30 hover:shadow-lg hover:shadow-[var(--accent-primary)]/10 sm:rounded-[22px] sm:p-6"
             style={{
-              transitionDelay: `${index * 40}ms`,
+              transitionDelay: `${index * 30}ms`,
             }}
           >
-            <div className="mb-5 flex items-center gap-3 border-b border-[var(--border-light)] pb-4 sm:gap-4">
-              <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-[var(--border-light)] bg-[var(--bg-dark)] text-xs text-[var(--accent-primary)] sm:h-8 sm:w-8 sm:text-sm">
-                • 
-              </span>
-              <div>
-                <h3 className="text-xl font-bold text-[var(--text-primary)] sm:text-2xl">
-                  {group.title}
-                </h3>
-                <p className="mt-1 text-xs text-[var(--text-muted)] sm:text-sm">
-                  Sekcja parametrów technicznych
-                </p>
+            <div className="mb-6 space-y-3 border-b border-[var(--border-light)] pb-4">
+              <div className="flex items-start gap-3">
+                {(() => {
+                  const Icon = sectionIcons[group.title];
+                  return Icon ? (
+                    <Icon className="w-6 h-6 sm:w-7 sm:h-7 flex-shrink-0 text-[var(--accent-primary)]" />
+                  ) : null;
+                })()}
+                <div className="flex-1">
+                  <h3 className="text-lg font-bold text-[var(--text-primary)] sm:text-xl">
+                    {group.title}
+                  </h3>
+                  <p className="mt-1 text-xs text-[var(--text-muted)] sm:text-sm">
+                    {group.items.length} parametr{group.items.length !== 1 ? "ów" : "u"}
+                  </p>
+                </div>
               </div>
             </div>
 
-            <div className="grid gap-x-8 gap-y-4 sm:grid-cols-2 sm:gap-y-5">
-              {group.items.map((item) => (
-                <div key={item.label} className="border-b border-[var(--border-light)] pb-4">
-                  <div className="mb-2 text-[10px] font-medium uppercase tracking-[0.22em] text-[var(--text-muted)] sm:tracking-[0.28em]">
+            <div className="space-y-4">
+              {group.items.map((item, itemIndex) => (
+                <div
+                  key={item.label}
+                  className="group/item border-l-2 border-[var(--border-light)] pl-3 transition-all duration-200 hover:border-[var(--accent-primary)]/50"
+                >
+                  <div className="mb-1.5 text-[9px] font-semibold uppercase tracking-[0.3em] text-[var(--text-muted)] group-hover/item:text-[var(--accent-primary)]/70 sm:text-[10px] sm:tracking-[0.35em]">
                     {item.label}
                   </div>
-                  <div className="text-sm leading-6 text-[var(--text-primary)] sm:text-[15px] sm:leading-7 md:text-base">
+                  <div className="text-sm font-medium leading-5 text-[var(--text-primary)] group-hover/item:text-[var(--accent-primary)] sm:text-[15px] sm:leading-6">
                     {item.value}
                   </div>
                 </div>

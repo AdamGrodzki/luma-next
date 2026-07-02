@@ -86,7 +86,7 @@ export function mapContentfulCameraToDetail(
         title: "Price",
         items: [
           {
-            label: "Sugerowana cena detaliczna producenta",
+            label: "Sugerowana cena producenta",
             value: camera.msrp ?? "Brak danych",
           },
         ],
@@ -100,7 +100,7 @@ export function mapContentfulCameraToDetail(
             value: camera.weight ? `${camera.weight} g` : "Brak danych",
           },
           { label: "Wymiary", value: camera.dimensions ?? "Brak danych" },
-          { label: "Mocowanie obiektyvu", value: camera.mount ?? "Brak danych" },
+          { label: "Mocowanie obiektyfu", value: camera.mount ?? "Brak danych" },
           { label: "Ekran LCD", value: camera.articulatedLcd ?? "Brak danych" },
           {
             label: "Zdjęcia seryjne",
@@ -110,16 +110,6 @@ export function mapContentfulCameraToDetail(
           {
             label: "Pokrycie wizjera",
             value: camera.viewfinderCoverage ?? "Brak danych",
-          },
-          {
-            label: "Powiększenie wizjera",
-            value: camera.viewfinderMagnification ?? "Brak danych",
-          },
-          {
-            label: "Rozdzielczość wizjera",
-            value: camera.viewfinderResolution
-              ? `${camera.viewfinderResolution.toLocaleString('pl-PL')}`
-              : "Brak danych",
           },
         ],
       },
@@ -159,7 +149,10 @@ export function mapContentfulCameraToDetail(
                 ? "Tak"
                 : "Nie",
           },
-          { label: "Autofocus", value: camera.autofocus == null ? "Brak danych" : camera.autofocus ? "Tak" : "Nie" },
+          {
+            label: "Autofocus",
+            value: camera.autofocus == null ? "Brak danych" : camera.autofocus ? "Tak" : "Nie",
+          },
         ],
       },
       {
@@ -199,11 +192,11 @@ export function mapContentfulCameraToDetail(
           },
           {
             label: "Maks. czas otwarcia",
-            value: camera.maxShutterSpeed ?? "Brak danych",
+            value: camera.maxShutterSpeed ? `${camera.maxShutterSpeed} sec` : "Brak danych",
           },
           {
             label: "Min. czas otwarcia",
-            value: camera.minShutterSpeed ?? "Brak danych",
+            value: camera.minShutterSpeed ? `${camera.minShutterSpeed} sec` : "Brak danych",
           },
           {
             label: "Kompensacja ekspozycji",
@@ -234,7 +227,6 @@ export function mapContentfulCameraToDetail(
       {
         title: "Display & Connectivity",
         items: [
-          { label: "Ekran", value: camera.screenSpecs ?? "Brak danych" },
           {
             label: "Dotyk",
             value:
@@ -244,8 +236,6 @@ export function mapContentfulCameraToDetail(
                 ? "Tak"
                 : "Nie",
           },
-          { label: "Łączność", value: camera.wireless ?? "Brak danych" },
-          { label: "Nośniki", value: camera.storageTypes ?? "Brak danych" },
           { label: "Wersja USB", value: camera.usbVersion ?? "Brak danych" },
           {
             label: "Ładowanie USB",
