@@ -83,15 +83,6 @@ export function mapContentfulCameraToDetail(
 
     specs: [
       {
-        title: "Price",
-        items: [
-          {
-            label: "Sugerowana cena producenta",
-            value: camera.msrp ?? "Brak danych",
-          },
-        ],
-      },
-      {
         title: "Body",
         items: [
           { label: "Typ obudowy", value: camera.bodyType ?? "Brak danych" },
@@ -101,102 +92,103 @@ export function mapContentfulCameraToDetail(
           },
           { label: "Wymiary", value: camera.dimensions ?? "Brak danych" },
           { label: "Mocowanie obiektyfu", value: camera.mount ?? "Brak danych" },
-          { label: "Ekran LCD", value: camera.articulatedLcd ?? "Brak danych" },
-          {
-            label: "Zdjęcia seryjne",
-            value: camera.continuousShooting ?? "Brak danych",
-          },
+        ],
+      },
+      {
+        title: "Viewfinder",
+        items: [
           { label: "Typ wizjera", value: camera.viewfinderType ?? "Brak danych" },
           {
             label: "Pokrycie wizjera",
             value: camera.viewfinderCoverage ?? "Brak danych",
           },
+          {
+            label: "Powiększenie wizjera",
+            value: camera.viewFinderMagnification ?? "Brak danych",
+          },
+          {
+            label: "Rozdzielczość wizjera",
+            value: camera.viewFinderResolution
+              ? `${camera.viewFinderResolution} k-dot`
+              : "Brak danych",
+          },
         ],
       },
       {
-        title: "Optics",
+        title: "Display & Controls",
+        items: [
+          { label: "Ekran LCD", value: camera.articulatedLcd ?? "Brak danych" },
+          {
+            label: "Zdjęcia seryjne",
+            value: camera.continuousShooting ?? "Brak danych",
+          },
+          {
+            label: "Dotyk",
+            value:
+              camera.touchscreen == null
+                ? "Brak danych"
+                : camera.touchscreen
+                ? "Tak"
+                : "Nie",
+          },
+          {
+            label: "Live view",
+            value:
+              camera.liveView == null ? "Brak danych" : camera.liveView ? "Tak" : "Nie",
+          },
+        ],
+      },
+      {
+        title: "Sensor & Focus",
         items: [
           { label: "Rozmiar sensora", value: camera.sensorFormat ?? "Brak danych" },
           { label: "Typ sensora", value: camera.sensorType ?? "Brak danych" },
           {
-            label: "Stabilizacja obrazu",
-            value: camera.imageStabilization ?? "Brak danych",
-          },
-          {
-            label: "Maks. rozdzielczość",
-            value: camera.maxResolution ?? "Brak danych",
-          },
-          {
             label: "Efektywne piksele",
             value: camera.effectivePixels
-              ? `${camera.effectivePixels} megapikseli`
+              ? `${camera.effectivePixels} Mpx`
               : "Brak danych",
-          },
-          {
-            label: "Procesor obrazu",
-            value: camera.imageProcessor ?? "Brak danych",
           },
           {
             label: "Punkty ostrości",
             value: camera.numberFocusPoints ?? "Brak danych",
           },
           {
-            label: "Ostrość ręczna",
-            value:
-              camera.manualFocus == null
-                ? "Brak danych"
-                : camera.manualFocus
-                ? "Tak"
-                : "Nie",
-          },
-          {
             label: "Autofocus",
-            value: camera.autofocus == null ? "Brak danych" : camera.autofocus ? "Tak" : "Nie",
+            value: camera.autofocus ?? "Brak danych",
           },
+
         ],
       },
       {
-        title: "Image",
+        title: "Image Processing",
         items: [
+          {
+            label: "Stabilizacja obrazu",
+            value: camera.imageStabilization ?? "Brak danych",
+          },
           { label: "Zakres ISO", value: camera.isoRange ?? "Brak danych" },
           {
-            label: "ISO wzmocnione (min)",
-            value: camera.isoBoostMin ?? "Brak danych",
+            label: "ISO wzmocnione",
+            value: camera.isoBoostMin && camera.isoBoostMax
+              ? `${camera.isoBoostMin}-${camera.isoBoostMax}`
+              : "Brak danych",
           },
-          {
-            label: "ISO wzmocnione (max)",
-            value: camera.isoBoostMax ?? "Brak danych",
-          },
-          {
-            label: "Presety balansu bieli",
-            value: camera.whiteBalancePresets ?? "Brak danych",
-          },
-          {
-            label: "Niestandardowy balans bieli",
-            value:
-              camera.customWhiteBalance == null
-                ? "Brak danych"
-                : camera.customWhiteBalance
-                ? "Tak"
-                : "Nie",
-          },
+
           { label: "Formaty plików", value: camera.fileFormat ?? "Brak danych" },
-          {
-            label: "Jakość JPEG",
-            value: camera.jpegQualityLevels ?? "Brak danych",
-          },
           { label: "Proporcje obrazu", value: camera.imageRatio ?? "Brak danych" },
-          {
-            label: "Tryby ekspozycji",
-            value: camera.exposureModes ?? "Brak danych",
-          },
+        ],
+      },
+      {
+        title: "Exposure",
+        items: [
           {
             label: "Maks. czas otwarcia",
-            value: camera.maxShutterSpeed ? `${camera.maxShutterSpeed} sec` : "Brak danych",
+            value: camera.maxShutterSpeed ?? "Brak danych",
           },
           {
             label: "Min. czas otwarcia",
-            value: camera.minShutterSpeed ? `${camera.minShutterSpeed} sec` : "Brak danych",
+            value: camera.minShutterSpeed ?? "Brak danych",
           },
           {
             label: "Kompensacja ekspozycji",
@@ -207,35 +199,16 @@ export function mapContentfulCameraToDetail(
       {
         title: "Video",
         items: [
-          { label: "Specyfikacja wideo", value: camera.videoSpecs ?? "Brak danych" },
           {
             label: "Port mikrofonu",
             value:
               camera.micPort == null ? "Brak danych" : camera.micPort ? "Tak" : "Nie",
           },
-          {
-            label: "Port słuchawkowy",
-            value:
-              camera.headphonePort == null
-                ? "Brak danych"
-                : camera.headphonePort
-                ? "Tak"
-                : "Nie",
-          },
         ],
       },
       {
-        title: "Display & Connectivity",
+        title: "Connectivity",
         items: [
-          {
-            label: "Dotyk",
-            value:
-              camera.touchscreen == null
-                ? "Brak danych"
-                : camera.touchscreen
-                ? "Tak"
-                : "Nie",
-          },
           { label: "Wersja USB", value: camera.usbVersion ?? "Brak danych" },
           {
             label: "Ładowanie USB",
@@ -246,10 +219,14 @@ export function mapContentfulCameraToDetail(
                 ? "Tak"
                 : "Nie",
           },
+          {
+            label: "GPS",
+            value: camera.gps == null ? "None" : camera.gps ? "Tak" : "Nie",
+          },
         ],
       },
       {
-        title: "Miscellaneous",
+        title: "Power & Misc",
         items: [
           {
             label: "Wbudowany flash",
@@ -259,15 +236,6 @@ export function mapContentfulCameraToDetail(
                 : camera.builtInFlash
                 ? "Tak"
                 : "Nie",
-          },
-          {
-            label: "GPS",
-            value: camera.gps == null ? "Brak danych" : camera.gps ? "Tak" : "Nie",
-          },
-          {
-            label: "Live view",
-            value:
-              camera.liveView == null ? "Brak danych" : camera.liveView ? "Tak" : "Nie",
           },
           {
             label: "Samowyzwalacz",
@@ -283,7 +251,7 @@ export function mapContentfulCameraToDetail(
             value: camera.batteryDescription ?? "Brak danych",
           },
           {
-            label: "Czas pracy baterii (CIPA)",
+            label: "Czas pracy (CIPA)",
             value: camera.batteryCipa ?? "Brak danych",
           },
           {

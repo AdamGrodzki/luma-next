@@ -67,8 +67,8 @@ export interface CameraEntrySkeleton {
     articulatedLcd?: EntryFieldTypes.Symbol;
     viewfinderType?: EntryFieldTypes.Symbol;
     viewfinderCoverage?: EntryFieldTypes.Symbol;
-    viewfinderMagnification?: EntryFieldTypes.Symbol;
-    viewfinderResolution?: EntryFieldTypes.Integer;
+    viewFinderMagnification?: EntryFieldTypes.Symbol;
+    viewFinderResolution?: EntryFieldTypes.Integer;
     imageStabilization?: EntryFieldTypes.Symbol;
     effectivePixels?: EntryFieldTypes.Integer;
     numberFocusPoints?: EntryFieldTypes.Integer;
@@ -166,8 +166,8 @@ export type Camera = {
   articulatedLcd?: string | null;
   viewfinderType?: string | null;
   viewfinderCoverage?: string | null;
-  viewfinderMagnification?: string | null;
-  viewfinderResolution?: number | null;
+  viewFinderMagnification?: string | null;
+  viewFinderResolution?: number | null;
   imageStabilization?: string | null;
   effectivePixels?: number | null;
   numberFocusPoints?: number | null;

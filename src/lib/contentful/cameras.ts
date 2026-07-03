@@ -68,14 +68,13 @@ function mapCamera(item: CameraEntry): Camera {
           .filter((url): url is string => Boolean(url))
       : [],
 
-    msrp: fields.msrp ?? null,
     bodyType: fields.bodyType ?? null,
     sensorType: fields.sensorType ?? null,
     articulatedLcd: fields.articulatedLcd ?? null,
     viewfinderType: fields.viewfinderType ?? null,
     viewfinderCoverage: fields.viewfinderCoverage ?? null,
-    viewfinderMagnification: fields.viewfinderMagnification ?? null,
-    viewfinderResolution: fields.viewfinderResolution ?? null,
+    viewFinderMagnification: fields.viewFinderMagnification ?? null,
+    viewFinderResolution: fields.viewFinderResolution ?? null,
     imageStabilization: fields.imageStabilization ?? null,
     effectivePixels: fields.effectivePixels ?? null,
     numberFocusPoints: fields.numberFocusPoints ?? null,
