@@ -1,0 +1,322 @@
+[
+  {
+    "id": "msrp",
+    "name": "MSRP",
+    "type": "Symbol",
+    "localized": false,
+    "required": false,
+    "validations": [],
+    "disabled": false,
+    "omitted": false
+  },
+  {
+    "id": "bodyType",
+    "name": "Body Type",
+    "type": "Symbol",
+    "localized": false,
+    "required": false,
+    "validations": [],
+    "disabled": false,
+    "omitted": false
+  },
+  {
+    "id": "sensorType",
+    "name": "Sensor Type",
+    "type": "Symbol",
+    "localized": false,
+    "required": false,
+    "validations": [],
+    "disabled": false,
+    "omitted": false
+  },
+  {
+    "id": "articulatedLcd",
+    "name": "Articulated LCD",
+    "type": "Symbol",
+    "localized": false,
+    "required": false,
+    "validations": [],
+    "disabled": false,
+    "omitted": false
+  },
+  {
+    "id": "viewfinderType",
+    "name": "Viewfinder Type",
+    "type": "Symbol",
+    "localized": false,
+    "required": false,
+    "validations": [],
+    "disabled": false,
+    "omitted": false
+  },
+  {
+    "id": "viewfinderCoverage",
+    "name": "Viewfinder Coverage",
+    "type": "Symbol",
+    "localized": false,
+    "required": false,
+    "validations": [],
+    "disabled": false,
+    "omitted": false
+  },
+  {
+    "id": "viewfinderMagnification",
+    "name": "Viewfinder Magnification",
+    "type": "Symbol",
+    "localized": false,
+    "required": false,
+    "validations": [],
+    "disabled": false,
+    "omitted": false
+  },
+  {
+    "id": "viewfinderResolution",
+    "name": "Viewfinder Resolution",
+    "type": "Integer",
+    "localized": false,
+    "required": false,
+    "validations": [],
+    "disabled": false,
+    "omitted": false
+  },
+  {
+    "id": "imageStabilization",
+    "name": "Image Stabilization",
+    "type": "Symbol",
+    "localized": false,
+    "required": false,
+    "validations": [],
+    "disabled": false,
+    "omitted": false
+  },
+  {
+    "id": "effectivePixels",
+    "name": "Effective Pixels",
+    "type": "Integer",
+    "localized": false,
+    "required": false,
+    "validations": [],
+    "disabled": false,
+    "omitted": false
+  },
+  {
+    "id": "numberFocusPoints",
+    "name": "Number of Focus Points",
+    "type": "Integer",
+    "localized": false,
+    "required": false,
+    "validations": [],
+    "disabled": false,
+    "omitted": false
+  },
+  {
+    "id": "autofocus",
+    "name": "Autofocus Types",
+    "type": "Symbol",
+    "localized": false,
+    "required": false,
+    "validations": [],
+    "disabled": false,
+    "omitted": false
+  },
+  {
+    "id": "manualFocus",
+    "name": "Manual Focus",
+    "type": "Boolean",
+    "localized": false,
+    "required": false,
+    "validations": [],
+    "disabled": false,
+    "omitted": false
+  },
+  {
+    "id": "whiteBalancePresets",
+    "name": "White Balance Presets",
+    "type": "Integer",
+    "localized": false,
+    "required": false,
+    "validations": [],
+    "disabled": false,
+    "omitted": false
+  },
+  {
+    "id": "customWhiteBalance",
+    "name": "Custom White Balance",
+    "type": "Boolean",
+    "localized": false,
+    "required": false,
+    "validations": [],
+    "disabled": false,
+    "omitted": false
+  },
+  {
+    "id": "fileFormat",
+    "name": "File Format",
+    "type": "Symbol",
+    "localized": false,
+    "required": false,
+    "validations": [],
+    "disabled": false,
+    "omitted": false
+  },
+  {
+    "id": "jpegQualityLevels",
+    "name": "JPEG Quality Levels",
+    "type": "Symbol",
+    "localized": false,
+    "required": false,
+    "validations": [],
+    "disabled": false,
+    "omitted": false
+  },
+  {
+    "id": "imageRatio",
+    "name": "Image Ratio",
+    "type": "Symbol",
+    "localized": false,
+    "required": false,
+    "validations": [],
+    "disabled": false,
+    "omitted": false
+  },
+  {
+    "id": "exposureModes",
+    "name": "Exposure Modes",
+    "type": "Symbol",
+    "localized": false,
+    "required": false,
+    "validations": [],
+    "disabled": false,
+    "omitted": false
+  },
+  {
+    "id": "maxShutterSpeed",
+    "name": "Maximum Shutter Speed",
+    "type": "Symbol",
+    "localized": false,
+    "required": false,
+    "validations": [],
+    "disabled": false,
+    "omitted": false
+  },
+  {
+    "id": "minShutterSpeed",
+    "name": "Minimum Shutter Speed",
+    "type": "Symbol",
+    "localized": false,
+    "required": false,
+    "validations": [],
+    "disabled": false,
+    "omitted": false
+  },
+  {
+    "id": "exposureCompensation",
+    "name": "Exposure Compensation",
+    "type": "Symbol",
+    "localized": false,
+    "required": false,
+    "validations": [],
+    "disabled": false,
+    "omitted": false
+  },
+  {
+    "id": "isoBoostMin",
+    "name": "ISO Boost Minimum",
+    "type": "Integer",
+    "localized": false,
+    "required": false,
+    "validations": [],
+    "disabled": false,
+    "omitted": false
+  },
+  {
+    "id": "isoBoostMax",
+    "name": "ISO Boost Maximum",
+    "type": "Integer",
+    "localized": false,
+    "required": false,
+    "validations": [],
+    "disabled": false,
+    "omitted": false
+  },
+  {
+    "id": "builtInFlash",
+    "name": "Built In Flash",
+    "type": "Boolean",
+    "localized": false,
+    "required": false,
+    "validations": [],
+    "disabled": false,
+    "omitted": false
+  },
+  {
+    "id": "gps",
+    "name": "GPS",
+    "type": "Boolean",
+    "localized": false,
+    "required": false,
+    "validations": [],
+    "disabled": false,
+    "omitted": false
+  },
+  {
+    "id": "liveView",
+    "name": "Live View",
+    "type": "Boolean",
+    "localized": false,
+    "required": false,
+    "validations": [],
+    "disabled": false,
+    "omitted": false
+  },
+  {
+    "id": "selfTimer",
+    "name": "Self Timer",
+    "type": "Boolean",
+    "localized": false,
+    "required": false,
+    "validations": [],
+    "disabled": false,
+    "omitted": false
+  },
+  {
+    "id": "usbVersion",
+    "name": "USB Version",
+    "type": "Symbol",
+    "localized": false,
+    "required": false,
+    "validations": [],
+    "disabled": false,
+    "omitted": false
+  },
+  {
+    "id": "usbCharging",
+    "name": "USB Charging",
+    "type": "Boolean",
+    "localized": false,
+    "required": false,
+    "validations": [],
+    "disabled": false,
+    "omitted": false
+  },
+  {
+    "id": "batteryDescription",
+    "name": "Battery Description",
+    "type": "Symbol",
+    "localized": false,
+    "required": false,
+    "validations": [],
+    "disabled": false,
+    "omitted": false
+  },
+  {
+    "id": "batteryCipa",
+    "name": "Battery Life CIPA",
+    "type": "Integer",
+    "localized": false,
+    "required": false,
+    "validations": [],
+    "disabled": false,
+    "omitted": false
+  }
+]

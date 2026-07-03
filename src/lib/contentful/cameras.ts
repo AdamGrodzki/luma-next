@@ -67,6 +67,38 @@ function mapCamera(item: CameraEntry): Camera {
           .map((asset) => getAssetUrl(asset))
           .filter((url): url is string => Boolean(url))
       : [],
+
+    bodyType: fields.bodyType ?? null,
+    sensorType: fields.sensorType ?? null,
+    articulatedLcd: fields.articulatedLcd ?? null,
+    viewfinderType: fields.viewfinderType ?? null,
+    viewfinderCoverage: fields.viewfinderCoverage ?? null,
+    viewFinderMagnification: fields.viewFinderMagnification ?? null,
+    viewFinderResolution: fields.viewFinderResolution ?? null,
+    imageStabilization: fields.imageStabilization ?? null,
+    effectivePixels: fields.effectivePixels ?? null,
+    numberFocusPoints: fields.numberFocusPoints ?? null,
+    autofocus: fields.autofocus ?? null,
+    manualFocus: fields.manualFocus ?? null,
+    whiteBalancePresets: fields.whiteBalancePresets ?? null,
+    customWhiteBalance: fields.customWhiteBalance ?? null,
+    fileFormat: fields.fileFormat ?? null,
+    jpegQualityLevels: fields.jpegQualityLevels ?? null,
+    imageRatio: fields.imageRatio ?? null,
+    exposureModes: fields.exposureModes ?? null,
+    maxShutterSpeed: fields.maxShutterSpeed ?? null,
+    minShutterSpeed: fields.minShutterSpeed ?? null,
+    exposureCompensation: fields.exposureCompensation ?? null,
+    isoBoostMin: fields.isoBoostMin ?? null,
+    isoBoostMax: fields.isoBoostMax ?? null,
+    builtInFlash: fields.builtInFlash ?? null,
+    gps: fields.gps ?? null,
+    liveView: fields.liveView ?? null,
+    selfTimer: fields.selfTimer ?? null,
+    usbVersion: fields.usbVersion ?? null,
+    usbCharging: fields.usbCharging ?? null,
+    batteryDescription: fields.batteryDescription ?? null,
+    batteryCipa: fields.batteryCipa ?? null,
   };
 }
 
