@@ -20,25 +20,6 @@ type Props = {
   }>;
 };
 
-const sensorFilters = [
-  "Średni Format",
-  "Pełna Klatka",
-  "APS-H",
-  "APS-C",
-  '1"',
-  "Inne",
-];
-
-const typeFilters = [
-  "Bezlusterkowiec",
-  "Bridge",
-  "Dalmierz",
-  "Kamera Filmowa",
-  "Kompakt",
-  "Lustrzanka",
-  "Średni Format",
-];
-
 export const revalidate = 60;
 
 export default async function CollectionPage({ searchParams }: Props) {
@@ -61,7 +42,7 @@ export default async function CollectionPage({ searchParams }: Props) {
       ? Number(params.yearTo)
       : undefined;
 
-  const { brands, activeBrand, sensorGroups, totalCount, isGlobalView } =
+  const { brands, activeBrand, sensorGroups, totalCount, isGlobalView, bodyTypeFilters, sensorTypeFilters } =
     await getCollectionData({
       activeBrandSlug,
       sensor: activeSensor,
@@ -93,13 +74,13 @@ export default async function CollectionPage({ searchParams }: Props) {
 
   return (
     <main className="min-h-screen bg-[var(--bg-dark)] text-[var(--text-primary)]">
-      <div className="mx-auto max-w-[1500px] px-4 sm:px-6 py-4 sm:py-5">
+      <div className="mx-auto w-full max-w-[1800px] px-3 sm:px-4 lg:px-5 py-4 sm:py-5">
         <CollectionMobileDrawers
           brands={brands}
           activeBrandName={displayBrandName}
           totalCount={totalCount}
-          sensorFilters={sensorFilters}
-          typeFilters={typeFilters}
+          sensorFilters={sensorTypeFilters}
+          typeFilters={bodyTypeFilters}
           activeBrandSlug={displayBrandSlug}
           activeSensor={activeSensor}
           activeType={activeType}
@@ -265,8 +246,8 @@ export default async function CollectionPage({ searchParams }: Props) {
           <div className="hidden xl:block">
             <div className="sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto [scrollbar-width:thin] [scrollbar-color:#7e6244_transparent] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#7e6244] hover:[&::-webkit-scrollbar-thumb]:bg-[#a88359]">
               <FilterSidebar
-                sensorFilters={sensorFilters}
-                typeFilters={typeFilters}
+                sensorFilters={sensorTypeFilters}
+                typeFilters={bodyTypeFilters}
                 activeBrandSlug={displayBrandSlug}
                 activeSensor={activeSensor}
                 activeType={activeType}

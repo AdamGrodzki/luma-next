@@ -171,7 +171,7 @@ export default function FilterSidebar({
           • Sensor Size
         </h3>
 
-        <div className="mt-5 space-y-3">
+        <div className="mt-5 space-y-3 uppercase">
           {sensorFilters.map((item) => {
             const isActive = activeSensor === item;
 
@@ -207,7 +207,7 @@ export default function FilterSidebar({
 
         <div className="mt-8 border-t border-[var(--border-default)] pt-8 pr-2">
         <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-[var(--text-primary)]">
-          • Type of Equipment
+          • Body Type
         </h3>
 
         <div className="mt-5 space-y-3">

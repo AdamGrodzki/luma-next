@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import {ArrowRight, ArrowLeft } from "lucide-react";
 
 interface PaginationProps {
   currentPage: number;
@@ -44,7 +45,7 @@ export default function Pagination({ currentPage, totalPages, baseUrl }: Paginat
   };
 
   return (
-    <nav className="flex items-center justify-center gap-2 mt-12" aria-label="Pagination">
+    <nav className="flex items-center justify-center gap-2 mt-20" aria-label="Pagination">
       {/* Previous Button */}
       {currentPage > 1 ? (
         <Link
@@ -53,7 +54,7 @@ export default function Pagination({ currentPage, totalPages, baseUrl }: Paginat
           aria-label="Previous page"
         >
           <span className="hidden sm:inline">Previous</span>
-          <span className="sm:hidden">←</span>
+          <span className="sm:hidden"><ArrowLeft /></span>
         </Link>
       ) : (
         <button
@@ -62,7 +63,7 @@ export default function Pagination({ currentPage, totalPages, baseUrl }: Paginat
           aria-label="Previous page"
         >
           <span className="hidden sm:inline">Previous</span>
-          <span className="sm:hidden">←</span>
+          <span className="sm:hidden"><ArrowLeft /></span>
         </button>
       )}
 
@@ -112,7 +113,7 @@ export default function Pagination({ currentPage, totalPages, baseUrl }: Paginat
           aria-label="Next page"
         >
           <span className="hidden sm:inline">Next</span>
-          <span className="sm:hidden">→</span>
+          <span className="sm:hidden"><ArrowRight /></span>
         </Link>
       ) : (
         <button
@@ -121,7 +122,7 @@ export default function Pagination({ currentPage, totalPages, baseUrl }: Paginat
           aria-label="Next page"
         >
           <span className="hidden sm:inline">Next</span>
-          <span className="sm:hidden">→</span>
+          <span className="sm:hidden"><ArrowRight /></span>
         </button>
       )}
     </nav>

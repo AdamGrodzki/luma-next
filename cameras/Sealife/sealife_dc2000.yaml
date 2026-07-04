@@ -1,0 +1,50 @@
+name: SeaLife DC2000
+slug: sealife-dc2000
+Brand: SeaLife
+releaseYear: 2016
+BodyType: Large sensor compact
+WeightIncBatteries: 234 g (0.52 lb / 8.25 oz)
+Dimensions: 116 x 67 x 36 mm (4.57 x 2.64 x 1.42″)
+LensMount: ""
+ArticulatedLCD: Fixed
+ContinuousDrive: 10.0 fps
+ViewfinderType: None
+SensorSize: 1″ (13.2 x 8.8 mm)
+SensorType: BSI-CMOS
+ImageStabilization: Optical
+EffectivePixels: 20 megapixels
+NumberOfFocusPoints: ""
+ISO: Auto, 125-25600
+FileFormat:
+  - JPEG (Exif v2.3)
+  - Raw (DNG)
+ImageRatioWh:
+  - 1:1
+  - 4:3
+  - 3:2
+  - 16:9
+MaximumShutterSpeed: 1/2000 sec
+MinimumShutterSpeed: 15 sec
+ExposureCompensation: ±2
+TouchScreen: "No"
+BuiltInFlash: "Yes"
+GPS: None
+LiveView: "Yes"
+MicrophonePort: "No"
+SelfTimer: Yes (2 or 10 secs, double)
+USB: USB 2.0 (480 Mbit/sec)
+USBCharging: "Yes"
+BatteryDescription: FJ-SLB-10A lithium-ion battery & USB charger
+BatteryLifeCIPA: "200"
+ViewfinderCoverage: ""
+viewFinderMagnification: ""
+viewFinderResolution: ""
+Autofocus:
+  - Contrast Detect (sensor)
+  - Multi-area
+  - Center
+  - Tracking
+  - Single
+  - Continuous
+  - Face Detection
+  - Live View

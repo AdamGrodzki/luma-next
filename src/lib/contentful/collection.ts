@@ -27,6 +27,16 @@ function normalizeText(value: string | null | undefined): string {
         .replace(/[\u0300-\u036f]/g, "");
 }
 
+function normalizeSensorType(sensorType: string | null | undefined): string {
+    if (!sensorType) return "Unknown";
+    
+    return sensorType
+        .toLowerCase()
+        .trim()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+}
+
 function normalizeSensorGroupName(sensorSize: string | null | undefined): string {
     if (!sensorSize) return "Inne";
 
@@ -115,6 +125,8 @@ export async function getCollectionData(
     sensorGroups: CollectionSensorGroup[];
     totalCount: number;
     isGlobalView: boolean;
+    bodyTypeFilters: string[];
+    sensorTypeFilters: string[];
 }> {
     const [brands, cameras] = await Promise.all([getBrands(), getCameras()]);
 
@@ -134,12 +146,12 @@ export async function getCollectionData(
     // Apply common filters (sensor, type, search, years)
     if (filters?.sensor) {
         filtered = filtered.filter(
-            (camera) => normalizeSensorGroupName(camera.sensorSize) === filters.sensor
+            (camera) => normalizeSensorType(camera.sensorType) === normalizeSensorType(filters.sensor)
         );
     }
 
     if (filters?.type) {
-        filtered = filtered.filter((camera) => camera.cameraType === filters.type);
+        filtered = filtered.filter((camera) => camera.bodyType === filters.type);
     }
 
     if (filters?.q) {
@@ -166,13 +178,13 @@ export async function getCollectionData(
 
     if (filters?.sensor) {
         camerasForCounting = camerasForCounting.filter(
-            (camera) => normalizeSensorGroupName(camera.sensorSize) === filters.sensor
+            (camera) => normalizeSensorType(camera.sensorType) === normalizeSensorType(filters.sensor)
         );
     }
 
     if (filters?.type) {
         camerasForCounting = camerasForCounting.filter(
-            (camera) => camera.cameraType === filters.type
+            (camera) => camera.bodyType === filters.type
         );
     }
 
@@ -204,10 +216,11 @@ export async function getCollectionData(
     }));
 
     const groupedMap = new Map<string, CollectionCameraCard[]>();
+    const sensorTypeDisplayNames = new Map<string, string>();
 
     for (const camera of filtered) {
-        const groupName = normalizeSensorGroupName(camera.sensorSize);
-        const existing = groupedMap.get(groupName) ?? [];
+        const normalizedGroupName = normalizeSensorType(camera.sensorType);
+        const existing = groupedMap.get(normalizedGroupName) ?? [];
 
         existing.push({
             name: camera.name,
@@ -219,26 +232,51 @@ export async function getCollectionData(
             brandSlug: camera.brand.slug,
         });
 
-        groupedMap.set(groupName, existing);
+        groupedMap.set(normalizedGroupName, existing);
+        // Store the original display name for this normalized key
+        if (camera.sensorType) {
+            sensorTypeDisplayNames.set(normalizedGroupName, camera.sensorType);
+        }
     }
 
-    const order = ["Średni Format", "Pełna Klatka", "APS-H", "APS-C", '1"', "Inne"];
+    // Sort sensor types alphabetically
+    const order = Array.from(groupedMap.keys()).sort();
 
     const sensorGroups: CollectionSensorGroup[] = order
-        .filter((name) => groupedMap.has(name))
-        .map((name, index) => {
+        .map((normalizedName, index) => {
             const groupCameras = sortCollectionCameras(
-                groupedMap.get(name) ?? [],
+                groupedMap.get(normalizedName) ?? [],
                 filters?.sort
             );
 
+            // Use the original display name if available, otherwise use the normalized name
+            const displayName = sensorTypeDisplayNames.get(normalizedName) || normalizedName;
+
             return {
-                name,
+                name: displayName,
                 count: groupCameras.length,
                 expanded: index === 0,
                 cameras: groupCameras,
             };
         });
+
+    // Collect unique bodyType values from all cameras for filters
+    const bodyTypeSet = new Set<string>();
+    for (const camera of cameras) {
+        if (camera.bodyType) {
+            bodyTypeSet.add(camera.bodyType);
+        }
+    }
+    const bodyTypeFilters = Array.from(bodyTypeSet).sort();
+
+    // Collect unique sensorType values from all cameras for filters
+    const sensorTypeSet = new Set<string>();
+    for (const camera of cameras) {
+        if (camera.sensorType) {
+            sensorTypeSet.add(normalizeSensorType(camera.sensorType));
+        }
+    }
+    const sensorTypeFilters = Array.from(sensorTypeSet).sort();
 
     return {
         brands: collectionBrands,
@@ -246,5 +284,7 @@ export async function getCollectionData(
         sensorGroups,
         totalCount: filtered.length,
         isGlobalView,
+        bodyTypeFilters,
+        sensorTypeFilters,
     };
 }
