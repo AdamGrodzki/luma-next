@@ -21,7 +21,6 @@ export function mapContentfulCameraToDetail(
     gallery: camera.galleryUrls ?? [],
     description: camera.description ?? null,
     story: camera.story ?? camera.description ?? null,
-    msrp: camera.msrp ?? null,
 
     heroStats: [
       {
@@ -30,15 +29,15 @@ export function mapContentfulCameraToDetail(
       },
       {
         label: "Matryca",
-        value: camera.sensorFormat ?? "Brak danych",
+        value: camera.sensorSize ?? "Brak danych",
       },
       {
         label: "Typ",
-        value: camera.cameraType ?? "Brak danych",
+        value: camera.bodyType ?? "Brak danych",
       },
       {
         label: "Mocowanie",
-        value: camera.mount ?? "Brak danych",
+        value: camera.lensMount ?? "Brak danych",
       },
     ],
 
@@ -88,10 +87,10 @@ export function mapContentfulCameraToDetail(
           { label: "Typ obudowy", value: camera.bodyType ?? "Brak danych" },
           {
             label: "Waga",
-            value: camera.weight ? `${camera.weight} g` : "Brak danych",
+            value: camera.WeightIncBatteries ? `${camera.WeightIncBatteries} g` : "Brak danych",
           },
           { label: "Wymiary", value: camera.dimensions ?? "Brak danych" },
-          { label: "Mocowanie obiektyfu", value: camera.mount ?? "Brak danych" },
+          { label: "Mocowanie obiektyfu", value: camera.lensMount ?? "Brak danych" },
         ],
       },
       {
@@ -120,7 +119,7 @@ export function mapContentfulCameraToDetail(
           { label: "Ekran LCD", value: camera.articulatedLcd ?? "Brak danych" },
           {
             label: "Zdjęcia seryjne",
-            value: camera.continuousShooting ?? "Brak danych",
+            value: camera.continuousDrive ?? "Brak danych",
           },
           {
             label: "Dotyk",
@@ -141,7 +140,7 @@ export function mapContentfulCameraToDetail(
       {
         title: "Sensor & Focus",
         items: [
-          { label: "Rozmiar sensora", value: camera.sensorFormat ?? "Brak danych" },
+          { label: "Rozmiar sensora", value: camera.sensorSize ?? "Brak danych" },
           { label: "Typ sensora", value: camera.sensorType ?? "Brak danych" },
           {
             label: "Efektywne piksele",
@@ -151,7 +150,7 @@ export function mapContentfulCameraToDetail(
           },
           {
             label: "Punkty ostrości",
-            value: camera.numberFocusPoints ?? "Brak danych",
+            value: camera.numberOfFocusPoints ?? "Brak danych",
           },
           {
             label: "Autofocus",
@@ -167,16 +166,16 @@ export function mapContentfulCameraToDetail(
             label: "Stabilizacja obrazu",
             value: camera.imageStabilization ?? "Brak danych",
           },
-          { label: "Zakres ISO", value: camera.isoRange ?? "Brak danych" },
+          { label: "Zakres ISO", value: camera.ISO ?? "Brak danych" },
           {
             label: "ISO wzmocnione",
             value: camera.isoBoostMin && camera.isoBoostMax
-              ? `${camera.isoBoostMin}-${camera.isoBoostMax}`
+              ? `${camera.isoBoostMin} - ${camera.isoBoostMax}`
               : "Brak danych",
           },
 
           { label: "Formaty plików", value: camera.fileFormat ?? "Brak danych" },
-          { label: "Proporcje obrazu", value: camera.imageRatio ?? "Brak danych" },
+          { label: "Proporcje obrazu", value: camera.ImageRatioWh ?? "Brak danych" },
         ],
       },
       {
@@ -184,11 +183,11 @@ export function mapContentfulCameraToDetail(
         items: [
           {
             label: "Maks. czas otwarcia",
-            value: camera.maxShutterSpeed ?? "Brak danych",
+            value: camera.maximumShutterSpeed ?? "Brak danych",
           },
           {
             label: "Min. czas otwarcia",
-            value: camera.minShutterSpeed ?? "Brak danych",
+            value: camera.minimumShutterSpeed ?? "Brak danych",
           },
           {
             label: "Kompensacja ekspozycji",
@@ -202,14 +201,14 @@ export function mapContentfulCameraToDetail(
           {
             label: "Port mikrofonu",
             value:
-              camera.micPort == null ? "Brak danych" : camera.micPort ? "Tak" : "Nie",
+              camera.microphonePort == null ? "Brak danych" : camera.microphonePort ? "Tak" : "Nie",
           },
         ],
       },
       {
         title: "Connectivity",
         items: [
-          { label: "Wersja USB", value: camera.usbVersion ?? "Brak danych" },
+          { label: "Wersja USB", value: camera.USB ?? "Brak danych" },
           {
             label: "Ładowanie USB",
             value:
@@ -221,7 +220,7 @@ export function mapContentfulCameraToDetail(
           },
           {
             label: "GPS",
-            value: camera.gps == null ? "None" : camera.gps ? "Tak" : "Nie",
+            value: camera.GPS == null ? "None" : camera.GPS ? "Tak" : "Nie",
           },
         ],
       },
@@ -252,7 +251,7 @@ export function mapContentfulCameraToDetail(
           },
           {
             label: "Czas pracy (CIPA)",
-            value: camera.batteryCipa ?? "Brak danych",
+            value: camera.batteryLifeCIPA ?? "Brak danych",
           },
           {
             label: "Kraj marki",
@@ -274,7 +273,7 @@ export function mapContentfulCameraToDetail(
       name: related.name,
       image: related.heroImageUrl ?? null,
       releaseYear: related.releaseYear ?? null,
-      sensorFormat: related.sensorFormat ?? null,
+      sensorSize: related.sensorSize ?? null,
       brand: related.brand.name,
     })),
   };

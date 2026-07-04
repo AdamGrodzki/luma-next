@@ -132,7 +132,7 @@ src/
 * slug
 * brand (reference)
 * cameraType
-* sensorFormat
+* sensorSize
 * mount
 * releaseYear
 * description

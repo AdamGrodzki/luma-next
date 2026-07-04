@@ -51,7 +51,7 @@ export default function FeaturedCameras({ cameras }: Props) {
 
                             <div className="mt-3 sm:mt-4 flex flex-wrap gap-1.5 sm:gap-2">
                                 {camera.cameraType && <Badge>{camera.cameraType}</Badge>}
-                                {camera.sensorFormat && <Badge variant="secondary">{camera.sensorFormat}</Badge>}
+                                {camera.sensorSize && <Badge variant="secondary">{camera.sensorSize}</Badge>}
                             </div>
                         </InfoCard>
                     ))}

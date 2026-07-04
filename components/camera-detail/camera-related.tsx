@@ -44,7 +44,7 @@ export function CameraRelated({ camera }: Props) {
 
             <div className="space-y-3 p-5">
               <p className="text-xs uppercase tracking-[0.24em] text-[var(--accent-primary)]">
-                {related.brand}
+                {related.brand} 
               </p>
 
               <h3 className="text-2xl font-semibold text-[var(--text-primary)]">
@@ -52,7 +52,7 @@ export function CameraRelated({ camera }: Props) {
               </h3>
 
               <p className="text-sm text-[var(--text-secondary)]">
-                {related.releaseYear ?? "—"} • {related.sensorFormat ?? "—"}
+                {related.releaseYear ?? "—"} • {related.sensorSize ?? "—"}
               </p>
             </div>
           </Link>
