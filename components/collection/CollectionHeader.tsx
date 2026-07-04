@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import {Globe } from "lucide-react";
 
 type Props = {
   brandName: string;
@@ -23,7 +24,7 @@ export default function CollectionHeader({
           // Global view - show a styled title without logo box
           <div className="flex items-center gap-4">
             <div className="flex h-20 w-20 items-center justify-center rounded-full border-2 border-[var(--accent-primary)] bg-gradient-to-br from-[var(--special-brand-bg)] to-[var(--bg-darker)]">
-              <span className="text-3xl">🌐</span>
+              <span className="text-3xl"><Globe height={48} width={48} color="var(--accent-primary)" /></span>
             </div>
             <div>
               <h1 className="text-2xl font-bold tracking-tight text-[var(--text-primary)] sm:text-3xl">
