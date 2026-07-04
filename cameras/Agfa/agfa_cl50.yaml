@@ -1,0 +1,39 @@
+name: Agfa ePhoto CL50
+slug: agfa-ephoto-cl50
+Brand: Agfa
+releaseYear: 1999
+BodyType: Compact
+WeightIncBatteries: ""
+Dimensions: ""
+LensMount: ""
+ArticulatedLCD: ""
+ContinuousDrive: 2.0 fps
+ViewfinderType: Optical (tunnel)
+SensorSize: ""
+SensorType: CCD
+ImageStabilization: "No"
+EffectivePixels: 1 megapixels
+NumberOfFocusPoints: ""
+ISO: "100"
+FileFormat: ""
+ImageRatioWh: "4:3"
+MaximumShutterSpeed: 1/500 sec
+MinimumShutterSpeed: 1/2 sec
+ExposureCompensation: ±3 (at 1 EV steps)
+TouchScreen: "No"
+BuiltInFlash: "Yes"
+GPS: ""
+LiveView: "Yes"
+MicrophonePort: ""
+SelfTimer: "Yes"
+USB: ""
+USBCharging: ""
+BatteryDescription: AA (4) batteries (NiMH recommended)
+BatteryLifeCIPA: ""
+ViewfinderCoverage: ""
+viewFinderMagnification: ""
+viewFinderResolution: ""
+Autofocus:
+    - Contrast Detect (sensor)
+    - Single
+    - Live View

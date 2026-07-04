@@ -1,0 +1,39 @@
+name: Agfa ePhoto CL30 Clik!
+slug: agfa-ephoto-cl30-clik
+Brand: Agfa
+releaseYear: 1999
+BodyType: Compact
+WeightIncBatteries: 300 g (0.66 lb / 10.58 oz)
+Dimensions: 128 x 80 x 37 mm (5.04 x 3.15 x 1.46″)
+LensMount: ""
+ArticulatedLCD: ""
+ContinuousDrive: ""
+ViewfinderType: Optical (tunnel)
+SensorSize: ""
+SensorType: CCD
+ImageStabilization: "No"
+EffectivePixels: 1 megapixels
+NumberOfFocusPoints: ""
+ISO: "100"
+FileFormat: ""
+ImageRatioWh: "4:3"
+MaximumShutterSpeed: 1/700 sec
+MinimumShutterSpeed: 1/30 sec
+ExposureCompensation: ±2 (at 1/2 EV steps)
+TouchScreen: "No"
+BuiltInFlash: "Yes"
+GPS: ""
+LiveView: "Yes"
+MicrophonePort: ""
+SelfTimer: "Yes"
+USB: USB 1.0 (1.5 Mbit/sec)
+USBCharging: ""
+BatteryDescription: AA (4) batteries (NiMH recommended)
+BatteryLifeCIPA: ""
+ViewfinderCoverage: ""
+viewFinderMagnification: ""
+viewFinderResolution: ""
+Autofocus:
+    - Contrast Detect (sensor)
+    - Single
+    - Live View

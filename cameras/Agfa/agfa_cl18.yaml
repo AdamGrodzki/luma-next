@@ -1,0 +1,36 @@
+name: Agfa ePhoto CL18
+slug: agfa-ephoto-cl18
+Brand: Agfa
+releaseYear: 2000
+BodyType: Compact
+WeightIncBatteries: ""
+Dimensions: ""
+LensMount: ""
+ArticulatedLCD: ""
+ContinuousDrive: ""
+ViewfinderType: Optical (tunnel)
+SensorSize: ""
+SensorType: CCD
+ImageStabilization: "No"
+EffectivePixels: 0 megapixels
+NumberOfFocusPoints: ""
+ISO: "100"
+FileFormat: ""
+ImageRatioWh: "4:3"
+MaximumShutterSpeed: ""
+MinimumShutterSpeed: ""
+ExposureCompensation: ""
+TouchScreen: "No"
+BuiltInFlash: "Yes"
+GPS: ""
+LiveView: "Yes"
+MicrophonePort: ""
+SelfTimer: "Yes"
+USB: ""
+USBCharging: ""
+BatteryDescription: AA (2) batteries (NiMH recommended)
+BatteryLifeCIPA: ""
+ViewfinderCoverage: ""
+viewFinderMagnification: ""
+viewFinderResolution: ""
+Autofocus: []
