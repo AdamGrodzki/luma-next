@@ -17,7 +17,7 @@ export type NormalizedCamera = {
   releaseYear?: number;
   cameraType?: string;
   mount?: string;
-  sensorFormat?: string;
+  sensorSize?: string;
   description?: string;
   specs?: Record<string, unknown>;
   status?: string;

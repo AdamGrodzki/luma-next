@@ -25,8 +25,8 @@ function mapCamera(item: CameraEntry): Camera {
     brand: brandEntry ? mapBrand(brandEntry) : UNKNOWN_BRAND,
 
     cameraType: fields.cameraType ?? null,
-    sensorFormat: fields.sensorFormat ?? null,
-    mount: fields.mount ?? null,
+    sensorSize: fields.sensorSize ?? null,
+    lensMount: fields.lensMount ?? null,
     releaseYear: fields.releaseYear ?? null,
 
     description: fields.description ?? null,
@@ -34,17 +34,17 @@ function mapCamera(item: CameraEntry): Camera {
     story: fields.story ?? null,
 
     launchPrice: fields.launchPrice ?? null,
-    weight: fields.weight ?? null,
+    WeightIncBatteries: fields.WeightIncBatteries ?? null,
     dimensions: fields.dimensions ?? null,
     weatherSealed: fields.weatherSealed ?? null,
 
     maxResolution: fields.maxResolution ?? null,
-    isoRange: fields.isoRange ?? null,
-    continuousShooting: fields.continuousShooting ?? null,
+    ISO: fields.ISO ?? null,
+    continuousDrive: fields.continuousDrive ?? null,
     imageProcessor: fields.imageProcessor ?? null,
 
     videoSpecs: fields.videoSpecs ?? null,
-    micPort: fields.micPort ?? null,
+    microphonePort: fields.microphonePort ?? null,
     headphonePort: fields.headphonePort ?? null,
 
     screenSpecs: fields.screenSpecs ?? null,
@@ -77,28 +77,28 @@ function mapCamera(item: CameraEntry): Camera {
     viewFinderResolution: fields.viewFinderResolution ?? null,
     imageStabilization: fields.imageStabilization ?? null,
     effectivePixels: fields.effectivePixels ?? null,
-    numberFocusPoints: fields.numberFocusPoints ?? null,
+    numberOfFocusPoints: fields.numberOfFocusPoints ?? null,
     autofocus: fields.autofocus ?? null,
     manualFocus: fields.manualFocus ?? null,
     whiteBalancePresets: fields.whiteBalancePresets ?? null,
     customWhiteBalance: fields.customWhiteBalance ?? null,
     fileFormat: fields.fileFormat ?? null,
     jpegQualityLevels: fields.jpegQualityLevels ?? null,
-    imageRatio: fields.imageRatio ?? null,
+    ImageRatioWh: fields.imageRatioWh ?? null,
     exposureModes: fields.exposureModes ?? null,
-    maxShutterSpeed: fields.maxShutterSpeed ?? null,
-    minShutterSpeed: fields.minShutterSpeed ?? null,
+    maximumShutterSpeed: fields.maximumShutterSpeed ?? null,
+    minimumShutterSpeed: fields.minimumShutterSpeed ?? null,
     exposureCompensation: fields.exposureCompensation ?? null,
     isoBoostMin: fields.isoBoostMin ?? null,
     isoBoostMax: fields.isoBoostMax ?? null,
     builtInFlash: fields.builtInFlash ?? null,
-    gps: fields.gps ?? null,
+    GPS: fields.GPS ?? null,
     liveView: fields.liveView ?? null,
     selfTimer: fields.selfTimer ?? null,
-    usbVersion: fields.usbVersion ?? null,
+    USB: fields.USB ?? null,
     usbCharging: fields.usbCharging ?? null,
     batteryDescription: fields.batteryDescription ?? null,
-    batteryCipa: fields.batteryCipa ?? null,
+    batteryLifeCIPA: fields.batteryLifeCIPA ?? null,
   };
 }
 
@@ -160,7 +160,7 @@ export async function getRelatedCameras(
   currentSlug: string,
   options: {
     brandSlug?: string | null;
-    sensorFormat?: string | null;
+    sensorSize?: string | null;
     limit?: number;
   }
 ): Promise<Camera[]> {
@@ -180,8 +180,8 @@ export async function getRelatedCameras(
           ? camera.brand.slug === options.brandSlug
           : false;
 
-        const sameSensor = options.sensorFormat
-          ? camera.sensorFormat === options.sensorFormat
+        const sameSensor = options.sensorSize
+          ? camera.sensorSize === options.sensorSize
           : false;
 
         return sameBrand || sameSensor;

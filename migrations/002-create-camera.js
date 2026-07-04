@@ -35,8 +35,8 @@ module.exports = function (migration) {
     .name('Mount')
     .type('Symbol');
 
-  camera.createField('sensorFormat')
-    .name('Sensor format')
+  camera.createField('sensorSize')
+    .name('Sensor size')
     .type('Symbol');
 
   camera.createField('description')

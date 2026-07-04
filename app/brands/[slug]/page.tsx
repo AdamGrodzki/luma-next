@@ -97,7 +97,7 @@ export default async function BrandDetailPage({ params }: Props) {
                 </h3>
 
                 <p className="mt-3 text-sm text-[#a69d93]">
-                  {camera.releaseYear ?? "—"} • {camera.sensorFormat ?? "—"}
+                  {camera.releaseYear ?? "—"} • {camera.sensorSize ?? "—"}
                 </p>
               </InfoCard>
             ))}

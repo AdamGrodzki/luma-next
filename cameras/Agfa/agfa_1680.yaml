@@ -1,0 +1,39 @@
+    name: Agfa ePhoto 1680
+    slug: agfa-ephoto-1680
+    Brand: Agfa
+    releaseYear: 1998
+    BodyType: Compact
+    WeightIncBatteries: 420 g (0.93 lb / 14.82 oz)
+    Dimensions: 158 x 92 x 52 mm (6.22 x 3.62 x 2.05″)
+    LensMount: ""
+    ArticulatedLCD: ""
+    ContinuousDrive: ""
+    ViewfinderType: None
+    SensorSize: ""
+    SensorType: CCD
+    ImageStabilization: "No"
+    EffectivePixels: 1 megapixels
+    NumberOfFocusPoints: ""
+    ISO: "100"
+    FileFormat: ""
+    ImageRatioWh: "4:3"
+    MaximumShutterSpeed: 1/500 sec
+    MinimumShutterSpeed: 1/2 sec
+    ExposureCompensation: ±3 (at 1 EV steps)
+    TouchScreen: "No"
+    BuiltInFlash: "Yes"
+    GPS: ""
+    LiveView: "Yes"
+    MicrophonePort: ""
+    SelfTimer: Yes (5 or 10 sec)
+    USB: ""
+    USBCharging: ""
+    BatteryDescription: AA NiMH (4) batteries (supplied)
+    BatteryLifeCIPA: ""
+    ViewfinderCoverage: ""
+    viewFinderMagnification: ""
+    viewFinderResolution: ""
+    Autofocus:
+        - Contrast Detect (sensor)
+        - Single
+        - Live View

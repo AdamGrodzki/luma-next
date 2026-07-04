@@ -32,22 +32,22 @@ export interface CameraEntrySkeleton {
     slug: EntryFieldTypes.Text;
     brand?: EntryFieldTypes.EntryLink<BrandEntrySkeleton>;
     cameraType?: EntryFieldTypes.Text;
-    sensorFormat?: EntryFieldTypes.Text;
-    mount?: EntryFieldTypes.Text;
+    sensorSize?: EntryFieldTypes.Text;
+    lensMount?: EntryFieldTypes.Text;
     releaseYear?: EntryFieldTypes.Integer;
     description?: EntryFieldTypes.Text;
     shortDescription?: EntryFieldTypes.Text;
     story?: EntryFieldTypes.Text;
     launchPrice?: EntryFieldTypes.Text;
-    weight?: EntryFieldTypes.Number;
+    WeightIncBatteries?: EntryFieldTypes.Number;
     dimensions?: EntryFieldTypes.Text;
     weatherSealed?: EntryFieldTypes.Boolean;
     maxResolution?: EntryFieldTypes.Text;
-    isoRange?: EntryFieldTypes.Text;
-    continuousShooting?: EntryFieldTypes.Text;
+    ISO?: EntryFieldTypes.Text;
+    continuousDrive?: EntryFieldTypes.Text;
     imageProcessor?: EntryFieldTypes.Text;
     videoSpecs?: EntryFieldTypes.Text;
-    micPort?: EntryFieldTypes.Boolean;
+    microphonePort?: EntryFieldTypes.Boolean;
     headphonePort?: EntryFieldTypes.Boolean;
     screenSpecs?: EntryFieldTypes.Text;
     touchscreen?: EntryFieldTypes.Boolean;
@@ -71,28 +71,28 @@ export interface CameraEntrySkeleton {
     viewFinderResolution?: EntryFieldTypes.Integer;
     imageStabilization?: EntryFieldTypes.Symbol;
     effectivePixels?: EntryFieldTypes.Integer;
-    numberFocusPoints?: EntryFieldTypes.Integer;
+    numberOfFocusPoints?: EntryFieldTypes.Integer;
     autofocus?: EntryFieldTypes.Symbol;
     manualFocus?: EntryFieldTypes.Boolean;
     whiteBalancePresets?: EntryFieldTypes.Integer;
     customWhiteBalance?: EntryFieldTypes.Boolean;
     fileFormat?: EntryFieldTypes.Symbol;
     jpegQualityLevels?: EntryFieldTypes.Symbol;
-    imageRatio?: EntryFieldTypes.Symbol;
+    imageRatioWh?: EntryFieldTypes.Symbol;
     exposureModes?: EntryFieldTypes.Symbol;
-    maxShutterSpeed?: EntryFieldTypes.Symbol;
-    minShutterSpeed?: EntryFieldTypes.Symbol;
+    maximumShutterSpeed?: EntryFieldTypes.Symbol;
+    minimumShutterSpeed?: EntryFieldTypes.Symbol;
     exposureCompensation?: EntryFieldTypes.Symbol;
     isoBoostMin?: EntryFieldTypes.Integer;
     isoBoostMax?: EntryFieldTypes.Integer;
     builtInFlash?: EntryFieldTypes.Boolean;
-    gps?: EntryFieldTypes.Boolean;
+    GPS?: EntryFieldTypes.Boolean;
     liveView?: EntryFieldTypes.Boolean;
     selfTimer?: EntryFieldTypes.Boolean;
-    usbVersion?: EntryFieldTypes.Symbol;
+    USB?: EntryFieldTypes.Symbol;
     usbCharging?: EntryFieldTypes.Boolean;
     batteryDescription?: EntryFieldTypes.Symbol;
-    batteryCipa?: EntryFieldTypes.Integer;
+    batteryLifeCIPA?: EntryFieldTypes.Integer;
   };
 }
 
@@ -121,8 +121,8 @@ export type Camera = {
   brand: Brand;
 
   cameraType?: string | null;
-  sensorFormat?: string | null;
-  mount?: string | null;
+  sensorSize?: string | null;
+  lensMount?: string | null;
   releaseYear?: number | null;
 
   description?: string | null;
@@ -130,17 +130,17 @@ export type Camera = {
   story?: string | null;
 
   launchPrice?: string | null;
-  weight?: number | null;
+  WeightIncBatteries?: number | null;
   dimensions?: string | null;
   weatherSealed?: boolean | null;
 
   maxResolution?: string | null;
-  isoRange?: string | null;
-  continuousShooting?: string | null;
+  ISO?: string | null;
+  continuousDrive?: string | null;
   imageProcessor?: string | null;
 
   videoSpecs?: string | null;
-  micPort?: boolean | null;
+  microphonePort?: boolean | null;
   headphonePort?: boolean | null;
 
   screenSpecs?: string | null;
@@ -170,26 +170,26 @@ export type Camera = {
   viewFinderResolution?: number | null;
   imageStabilization?: string | null;
   effectivePixels?: number | null;
-  numberFocusPoints?: number | null;
+  numberOfFocusPoints?: number | null;
   autofocus?: string | null;
   manualFocus?: boolean | null;
   whiteBalancePresets?: number | null;
   customWhiteBalance?: boolean | null;
   fileFormat?: string | null;
   jpegQualityLevels?: string | null;
-  imageRatio?: string | null;
+  ImageRatioWh?: string | null;
   exposureModes?: string | null;
-  maxShutterSpeed?: string | null;
-  minShutterSpeed?: string | null;
+  maximumShutterSpeed?: string | null;
+  minimumShutterSpeed?: string | null;
   exposureCompensation?: string | null;
   isoBoostMin?: number | null;
   isoBoostMax?: number | null;
   builtInFlash?: boolean | null;
-  gps?: boolean | null;
+  GPS?: boolean | null;
   liveView?: boolean | null;
   selfTimer?: boolean | null;
-  usbVersion?: string | null;
+  USB?: string | null;
   usbCharging?: boolean | null;
   batteryDescription?: string | null;
-  batteryCipa?: number | null;
+  batteryLifeCIPA?: number | null;
 };

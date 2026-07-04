@@ -62,7 +62,7 @@ export default async function CamerasPage({ searchParams }: CamerasPageProps) {
               {/* BADGES - Optimized for mobile */}
               <div className="mt-3 sm:mt-4 flex flex-wrap items-center gap-1.5 sm:gap-2">
                 {camera.cameraType && <Badge>{camera.cameraType}</Badge>}
-                {camera.sensorFormat && <Badge variant="secondary">{camera.sensorFormat}</Badge>}
+                {camera.sensorSize && <Badge variant="secondary">{camera.sensorSize}</Badge>}
                 {camera.releaseYear && (
                   <span className="hidden sm:inline-block">
                     <Badge variant="secondary">{camera.releaseYear}</Badge>
@@ -72,12 +72,12 @@ export default async function CamerasPage({ searchParams }: CamerasPageProps) {
 
               {/* EXTRA - Show year on mobile here instead */}
               <div className="mt-2.5 sm:mt-3 text-xs sm:text-sm text-[var(--text-secondary)]">
-                {camera.mount && (
-                  <span>Mount: {camera.mount}</span>
+                {camera.lensMount && (
+                  <span>Mount: {camera.lensMount}</span>
                 )}
                 {camera.releaseYear && (
                   <span className="sm:hidden">
-                    {camera.mount && ' • '}
+                    {camera.lensMount && ' • '}
                     {camera.releaseYear}
                   </span>
                 )}

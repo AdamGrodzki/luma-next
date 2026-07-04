@@ -43,7 +43,7 @@ export default async function CameraDetailPage({ params }: Props) {
 
   const relatedCameras = await getRelatedCameras(camera.slug, {
     brandSlug: camera.brand.slug,
-    sensorFormat: camera.sensorFormat,
+    sensorSize: camera.sensorSize,
     limit: 3,
   });
 

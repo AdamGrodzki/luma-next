@@ -46,7 +46,7 @@ export async function importCameras(brandMap: BrandIdMap) {
     if (typeof camera.releaseYear === "number") fields.releaseYear = { "en-US": camera.releaseYear };
     if (camera.cameraType) fields.cameraType = { "en-US": camera.cameraType };
     if (camera.mount) fields.mount = { "en-US": camera.mount };
-    if (camera.sensorFormat) fields.sensorFormat = { "en-US": camera.sensorFormat };
+    if (camera.sensorSize) fields.sensorSize = { "en-US": camera.sensorSize };
     if (camera.description) fields.description = { "en-US": camera.description };
     if (camera.specs) fields.specs = { "en-US": camera.specs };
     if (camera.status) fields.status = { "en-US": camera.status };

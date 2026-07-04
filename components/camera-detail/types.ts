@@ -27,7 +27,7 @@ export type RelatedCameraCard = {
   name: string;
   image?: string | null;
   releaseYear?: number | null;
-  sensorFormat?: string | null;
+  sensorSize?: string | null;
   brand: string;
 };
 
@@ -43,7 +43,6 @@ export type CameraDetailData = {
   gallery?: string[];
   description?: string | null;
   story?: string | null;
-  msrp?: string | null;
 
   heroStats: CameraHeroStat[];
 

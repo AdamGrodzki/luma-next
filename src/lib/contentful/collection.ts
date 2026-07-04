@@ -27,10 +27,10 @@ function normalizeText(value: string | null | undefined): string {
         .replace(/[\u0300-\u036f]/g, "");
 }
 
-function normalizeSensorGroupName(sensorFormat: string | null | undefined): string {
-    if (!sensorFormat) return "Inne";
+function normalizeSensorGroupName(sensorSize: string | null | undefined): string {
+    if (!sensorSize) return "Inne";
 
-    const value = normalizeText(sensorFormat);
+    const value = normalizeText(sensorSize);
 
     if (
         value.includes("pelna klatka") ||
@@ -65,7 +65,7 @@ function matchesSearch(camera: {
     name: string;
     brand: { name: string };
     mount?: string | null;
-    sensorFormat?: string | null;
+    sensorSize?: string | null;
     cameraType?: string | null;
     description?: string | null;
 }, query: string): boolean {
@@ -74,7 +74,7 @@ function matchesSearch(camera: {
             camera.name,
             camera.brand.name,
             camera.mount ?? "",
-            camera.sensorFormat ?? "",
+            camera.sensorSize ?? "",
             camera.cameraType ?? "",
             camera.description ?? "",
         ].join(" ")
@@ -134,7 +134,7 @@ export async function getCollectionData(
     // Apply common filters (sensor, type, search, years)
     if (filters?.sensor) {
         filtered = filtered.filter(
-            (camera) => normalizeSensorGroupName(camera.sensorFormat) === filters.sensor
+            (camera) => normalizeSensorGroupName(camera.sensorSize) === filters.sensor
         );
     }
 
@@ -166,7 +166,7 @@ export async function getCollectionData(
 
     if (filters?.sensor) {
         camerasForCounting = camerasForCounting.filter(
-            (camera) => normalizeSensorGroupName(camera.sensorFormat) === filters.sensor
+            (camera) => normalizeSensorGroupName(camera.sensorSize) === filters.sensor
         );
     }
 
@@ -206,7 +206,7 @@ export async function getCollectionData(
     const groupedMap = new Map<string, CollectionCameraCard[]>();
 
     for (const camera of filtered) {
-        const groupName = normalizeSensorGroupName(camera.sensorFormat);
+        const groupName = normalizeSensorGroupName(camera.sensorSize);
         const existing = groupedMap.get(groupName) ?? [];
 
         existing.push({

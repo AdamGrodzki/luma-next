@@ -1,0 +1,41 @@
+name: YI 4K+ Action Camera
+slug: yi-4k-plus-12mp
+Brand: YI
+releaseYear: 2017
+BodyType: VR/Action camera
+WeightIncBatteries: 96 g (0.21 lb / 3.39 oz)
+Dimensions: 65 x 42 x 30 mm (2.56 x 1.65 x 1.18″)
+LensMount: ""
+ArticulatedLCD: Fixed
+ContinuousDrive: 30.0 fps
+ViewfinderType: None
+SensorSize: 1/2.3" (6.17 x 4.55 mm)
+SensorType: CMOS
+ImageStabilization: Digital only
+EffectivePixels: 12 megapixels
+NumberOfFocusPoints: ""
+ISO: Auto, 400-6400
+FileFormat:
+  - JPEG
+  - Raw
+ImageRatioWh:
+  - 4:3
+  - 16:9
+MaximumShutterSpeed: ""
+MinimumShutterSpeed: ""
+ExposureCompensation: ""
+TouchScreen: "Yes"
+BuiltInFlash: ""
+GPS: None
+LiveView: "Yes"
+MicrophonePort: "Yes"
+SelfTimer: "Yes"
+USB: USB 3.0 (5 GBit/sec)
+USBCharging: "Yes"
+BatteryDescription: ""
+BatteryLifeCIPA: ""
+ViewfinderCoverage: ""
+viewFinderMagnification: ""
+viewFinderResolution: ""
+Autofocus:
+  - TouchLive View

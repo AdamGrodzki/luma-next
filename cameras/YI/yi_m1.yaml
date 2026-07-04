@@ -1,0 +1,51 @@
+name: YI M1
+slug: yi-m1
+Brand: YI
+releaseYear: 2016
+BodyType: Rangefinder-style mirrorless
+WeightIncBatteries: 281 g (0.62 lb / 9.91 oz)
+Dimensions: 114 x 64 x 34 mm (4.49 x 2.52 x 1.34″)
+LensMount: Micro Four Thirds
+ArticulatedLCD: Fixed
+ContinuousDrive: 5.0 fps
+ViewfinderType: None
+SensorSize: Four Thirds (17.3 x 13 mm)
+SensorType: CMOS
+ImageStabilization: "No"
+EffectivePixels: 20 megapixels
+NumberOfFocusPoints: "81"
+ISO: Auto, 100-25600
+FileFormat:
+  - JPEG
+  - Raw
+ImageRatioWh:
+  - 1:1
+  - 4:3
+  - 3:2
+  - 16:9
+MaximumShutterSpeed: 1/4000 sec
+MinimumShutterSpeed: 60 sec
+ExposureCompensation: ±5 (at 1/3 EV steps)
+TouchScreen: "Yes"
+BuiltInFlash: "No"
+GPS: None
+LiveView: "Yes"
+MicrophonePort: "No"
+SelfTimer: "Yes"
+USB: USB 2.0 (480 Mbit/sec)
+USBCharging: ""
+BatteryDescription: BXM-10 lithium-ion battery & charger
+BatteryLifeCIPA: "450"
+ViewfinderCoverage: ""
+viewFinderMagnification: ""
+viewFinderResolution: ""
+Autofocus:
+  - Contrast Detect (sensor)
+  - Multi-area
+  - Center
+  - Selective single-point
+  - Single
+  - Continuous
+  - Touch
+  - Face Detection
+  - Live View
