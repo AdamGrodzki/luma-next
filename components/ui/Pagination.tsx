@@ -52,7 +52,7 @@ export default function Pagination({ currentPage, totalPages, baseUrl }: Paginat
           className="min-h-[44px] flex items-center justify-center px-4 sm:px-5 py-3 rounded-lg border border-[var(--border-light)] bg-[var(--bg-darker)] text-[var(--text-secondary)] hover:bg-[var(--bg-dark)] hover:text-[var(--text-primary)] hover:border-[var(--border-medium)] transition-all text-sm font-medium"
           aria-label="Previous page"
         >
-          <span className="hidden sm:inline">Poprzednia</span>
+          <span className="hidden sm:inline">Previous</span>
           <span className="sm:hidden">←</span>
         </Link>
       ) : (
@@ -61,7 +61,7 @@ export default function Pagination({ currentPage, totalPages, baseUrl }: Paginat
             className="min-h-[44px] flex items-center justify-center px-4 sm:px-5 py-3 rounded-lg border border-[var(--border-light)] bg-[var(--bg-darker)] text-[var(--text-muted)] cursor-not-allowed text-sm font-medium opacity-50"
           aria-label="Previous page"
         >
-          <span className="hidden sm:inline">Poprzednia</span>
+          <span className="hidden sm:inline">Previous</span>
           <span className="sm:hidden">←</span>
         </button>
       )}
@@ -111,7 +111,7 @@ export default function Pagination({ currentPage, totalPages, baseUrl }: Paginat
           className="min-h-[44px] flex items-center justify-center px-4 sm:px-5 py-3 rounded-lg border border-[var(--border-light)] bg-[var(--bg-darker)] text-[var(--text-secondary)] hover:bg-[var(--bg-dark)] hover:text-[var(--text-primary)] hover:border-[var(--border-medium)] transition-all text-sm font-medium"
           aria-label="Next page"
         >
-          <span className="hidden sm:inline">Następna</span>
+          <span className="hidden sm:inline">Next</span>
           <span className="sm:hidden">→</span>
         </Link>
       ) : (
@@ -120,7 +120,7 @@ export default function Pagination({ currentPage, totalPages, baseUrl }: Paginat
             className="min-h-[44px] flex items-center justify-center px-4 sm:px-5 py-3 rounded-lg border border-[var(--border-light)] bg-[var(--bg-darker)] text-[var(--text-muted)] cursor-not-allowed text-sm font-medium opacity-50"
           aria-label="Next page"
         >
-          <span className="hidden sm:inline">Następna</span>
+          <span className="hidden sm:inline">Next</span>
           <span className="sm:hidden">→</span>
         </button>
       )}

@@ -54,11 +54,11 @@ export function CameraSpecs({ camera }: Props) {
           Engineering overview
         </p>
         <h2 className="text-2xl font-bold tracking-tight text-[var(--text-primary)] sm:text-3xl md:text-4xl xl:text-5xl">
-          Specyfikacja techniczna
+          Full technical specifications
         </h2>
         <p className="mx-auto mt-4 max-w-3xl text-sm leading-6 text-[var(--text-secondary)] sm:text-base sm:leading-7">
-          Pełna specyfikacja techniczna aparatu pogrupowana w logiczne
-          kategorie do porównania z innymi modelami.
+          The full technical specifications of the camera, grouped into logical
+          categories for comparison with other models.
         </p>
       </div>
 
@@ -66,7 +66,7 @@ export function CameraSpecs({ camera }: Props) {
         {camera.specs.map((group, groupIndex) => {
           const Icon = sectionIcons[group.title];
           const filledItemsCount = group.items.filter(
-            (item) => item.value !== "Brak danych"
+            (item) => item.value !== "No data"
           ).length;
 
           return (
@@ -77,7 +77,7 @@ export function CameraSpecs({ camera }: Props) {
                 transitionDelay: `${groupIndex * 30}ms`,
               }}
             >
-              {/* Header sekcji */}
+              {/* Section header */}
               <div className="border-b border-[var(--border-light)] bg-gradient-to-r from-[var(--accent-primary)]/5 to-transparent p-5 sm:p-6">
                 <div className="flex items-center gap-3">
                   {Icon && (
@@ -90,7 +90,7 @@ export function CameraSpecs({ camera }: Props) {
                       {group.title}
                     </h3>
                     <p className="mt-1 text-xs text-[var(--text-muted)] sm:text-sm">
-                      {filledItemsCount} z {group.items.length} dostępne
+                      {filledItemsCount} of {group.items.length} available
                     </p>
                   </div>
                 </div>

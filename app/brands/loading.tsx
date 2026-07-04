@@ -1,8 +1,5 @@
 "use client";
 
-/**
- * Loading skeleton dla strony szczegółów marki
- */
 export default function BrandDetailLoading() {
   return (
     <main className="min-h-screen bg-[var(--bg-dark)] py-8 sm:py-12 md:py-16 text-[var(--text-primary)]">

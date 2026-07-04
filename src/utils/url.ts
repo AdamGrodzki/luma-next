@@ -17,8 +17,8 @@ interface QueryParams {
 /**
  * Buduje URL z parametrami query
  * @example
- * buildUrl("/kolekcja", { brand: "canon", sensor: "35mm" })
- * // "/kolekcja?brand=canon&sensor=35mm"
+ * buildUrl("/collection", { brand: "canon", sensor: "35mm" })
+ * // "/collection?brand=canon&sensor=35mm"
  */
 export function buildUrl(
   basePath: string,

@@ -8,10 +8,10 @@ Nowoczesna aplikacja webowa do eksplorowania aparatów i marek fotograficznych, 
 
 * 🔎 Przeglądanie aparatów według:
 
-  * marki
+  * brands
   * typu
   * sensora
-* 🎯 Zaawansowane filtrowanie i sortowanie
+* 🎯Advanced filtering and sorting
 * 🧠 Wyszukiwarka (full-text search)
 * 🏷️ Strony detali:
 
@@ -93,7 +93,7 @@ http://localhost:3000
 src/
 ├── app/
 │   ├── page.tsx              # Homepage
-│   ├── kolekcja/             # Kolekcja + filtrowanie
+│   ├── collection/             # collection + filtering
 │   ├── cameras/              # Lista + detale aparatów
 │   ├── brands/               # Lista + detale marek
 │   ├── loading.tsx

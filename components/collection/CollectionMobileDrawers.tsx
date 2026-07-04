@@ -109,11 +109,11 @@ export default function CollectionMobileDrawers({
           aria-controls="brands-drawer"
           aria-label="Open brands filter"
         >
-          Marki
+          Brands
         </button>
 
         <div className="text-center text-sm uppercase tracking-[0.18em] text-[var(--text-muted)]">
-          {activeBrandName} • {totalCount} modeli
+          {activeBrandName} • {totalCount} models
         </div>
 
         <button
@@ -124,14 +124,14 @@ export default function CollectionMobileDrawers({
           aria-controls="filters-drawer"
           aria-label="Open filters"
         >
-          Filtry
+          Filters
         </button>
       </div>
 
       <Drawer
         id="brands-drawer"
         side="left"
-        title="Marki"
+        title="Brands"
         open={brandsOpen}
         onClose={() => setBrandsOpen(false)}
       >
@@ -150,7 +150,7 @@ export default function CollectionMobileDrawers({
       <Drawer
         id="filters-drawer"
         side="right"
-        title="Filtry"
+        title="Filters"
         open={filtersOpen}
         onClose={() => setFiltersOpen(false)}
       >

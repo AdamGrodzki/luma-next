@@ -77,11 +77,11 @@ export function CameraGallery({ camera }: Props) {
 >
         <div className="text-center">
           <h2 className="text-3xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl">
-            Galeria Modelu
+            Gallery of {camera.name}
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-sm leading-7 text-[var(--text-muted)] md:text-base">
-            Zobacz detale korpusu, konstrukcję i charakter wizualny modelu w
-            bardziej dopracowanym układzie galerii.
+            See the details of the body, construction, and visual character of the model in
+            a more refined gallery layout.
           </p>
         </div>
 
@@ -113,7 +113,7 @@ export function CameraGallery({ camera }: Props) {
               </div>
 
               <div className="absolute bottom-4 left-4 rounded-full border border-[var(--accent-primary)] bg-[var(--bg-card)] px-4 py-2 text-[10px] uppercase tracking-[0.24em] text-[var(--text-primary)] shadow-lg backdrop-blur-md transition group-hover:bg-[var(--accent-primary)] group-hover:text-[var(--bg-dark)]">
-                Otwórz podgląd
+                Preview
               </div>
             </button>
           </div>
@@ -121,11 +121,11 @@ export function CameraGallery({ camera }: Props) {
           <div className="rounded-[28px] border border-[var(--border-light)] bg-[linear-gradient(180deg,var(--bg-dark)_0%,var(--bg-dark)_100%)] p-5 md:p-6">
             <div className="mb-5">
               <h3 className="text-2xl font-bold text-[var(--text-primary)]">
-                Ujęcia dodatkowe
+                Additional shots
               </h3>
               <p className="mt-2 text-sm leading-7 text-[var(--text-muted)]">
-                Kliknij miniaturę, aby zmienić główny podgląd zdjęcia albo
-                otworzyć je w pełnym ekranie.
+                Click on a thumbnail to change the main image preview or
+                open it in full screen.
               </p>
             </div>
 

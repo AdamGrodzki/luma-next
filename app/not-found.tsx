@@ -13,12 +13,12 @@ export default function NotFound() {
             </div>
 
             <h1 className="mt-8 font-serif text-5xl leading-tight text-[#f3eadf]">
-            Nie znaleziono strony
+            Page Not Found
             </h1>
 
             <p className="mx-auto mt-5 max-w-xl text-base leading-7 text-[#a79d92]">
-            Ten adres nie istnieje, został usunięty albo wskazuje na element,
-            którego nie ma jeszcze w katalogu.
+            This address does not exist, has been removed, or points to an item
+            that is not yet in the catalog.
             </p>
 
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
@@ -26,14 +26,14 @@ export default function NotFound() {
                 href="/"
                 className="inline-flex rounded-full border border-[#8e6a47] px-6 py-3 text-sm uppercase tracking-[0.14em] text-[#f3eadf] transition hover:bg-[#141210]"
             >
-                Strona główna
+                Home
             </Link>
 
             <Link
-                href="/kolekcja"
+                href="/collection"
                 className="inline-flex rounded-full border border-[#2d241c] px-6 py-3 text-sm uppercase tracking-[0.14em] text-[#cbb9a5] transition hover:border-[#6b573f]"
             >
-                Zobacz kolekcję
+                View Collection
             </Link>
             </div>
         </div>

@@ -43,7 +43,7 @@ export function CameraHero({ camera }: Props) {
 
             <div className="space-y-3 sm:space-y-4">
               <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--text-muted)] sm:text-[11px] sm:tracking-[0.38em]">
-                Kolekcja aparatów / detal modelu
+                Collection of cameras / model detail
               </p>
 
               <h1 className="max-w-[12ch] text-3xl font-black uppercase leading-[0.95] text-[var(--text-primary)] sm:text-4xl md:text-5xl xl:max-w-[10ch] xl:text-7xl">

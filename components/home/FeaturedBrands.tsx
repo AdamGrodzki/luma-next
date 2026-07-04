@@ -13,9 +13,9 @@ export default function FeaturedBrands({ brands }: Props) {
         <section className="py-12 sm:py-16 md:py-20">
             <Container>
                 <SectionHeader
-                    eyebrow="Wybrane marki"
-                    title="Producenci"
-                    description="Najważniejsze brandy dostępne w katalogu."
+                    eyebrow="Featured Brands"
+                    title="Brands"
+                    description="The most important brands available in the catalog."
                 />
 
                 <div className="mt-8 sm:mt-10 grid gap-4 sm:gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
@@ -27,8 +27,8 @@ export default function FeaturedBrands({ brands }: Props) {
                                         {brand.name}
                                     </h3>
                                     <p className="mt-2 sm:mt-3 text-xs sm:text-sm text-[var(--text-muted)] truncate">
-                                        {brand.country ?? "Brak kraju"} •{" "}
-                                        {brand.foundedYear ?? "Brak roku"}
+                                        {brand.country ?? "No country"} •{" "}
+                                        {brand.foundedYear ?? "No year"}
                                     </p>
                                 </div>
 
@@ -45,7 +45,7 @@ export default function FeaturedBrands({ brands }: Props) {
                             </div>
 
                             <p className="mt-3 sm:mt-4 line-clamp-2 sm:line-clamp-3 text-xs sm:text-sm leading-5 sm:leading-6 text-[var(--text-secondary)]">
-                                {brand.description ?? "Brak opisu marki."}
+                                {brand.description ?? "No brand description available."}
                             </p>
                         </InfoCard>
                     ))}

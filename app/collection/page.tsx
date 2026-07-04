@@ -72,7 +72,7 @@ export default async function CollectionPage({ searchParams }: Props) {
       sort
     });
 
-  const displayBrandName = isGlobalView ? "Wszystkie marki" : activeBrand?.name || "Nieznana marka";
+  const displayBrandName = isGlobalView ? "All Brands" : activeBrand?.name || "Unknown Brand";
   const displayBrandSlug = isGlobalView ? "all" : activeBrand?.slug || undefined;
   const displayLogoUrl = isGlobalView ? null : activeBrand?.logoUrl;
 
@@ -137,7 +137,7 @@ export default async function CollectionPage({ searchParams }: Props) {
             <div className="mt-6 flex flex-wrap gap-2">
               {activeQuery && (
                 <span className="rounded-full border border-[var(--accent-primary)]/50 px-3 py-1 text-xs text-[var(--text-muted)]">
-                  Szukaj: {activeQuery}
+                  Search: {activeQuery}
                 </span>
               )}
               {activeSensor && (
@@ -147,17 +147,17 @@ export default async function CollectionPage({ searchParams }: Props) {
               )}
               {activeType && (
                 <span className="rounded-full border border-[var(--accent-primary)]/50 px-3 py-1 text-xs text-[var(--text-muted)]">
-                  Typ: {activeType}
+                  Type: {activeType}
                 </span>
               )}
               {typeof yearFrom === "number" && (
                 <span className="rounded-full border border-[var(--accent-primary)]/50 px-3 py-1 text-xs text-[var(--text-muted)]">
-                  Od: {yearFrom}
+                  From: {yearFrom}
                 </span>
               )}
               {typeof yearTo === "number" && (
                 <span className="rounded-full border border-[var(--accent-primary)]/50 px-3 py-1 text-xs text-[var(--text-muted)]">
-                  Do: {yearTo}
+                  To: {yearTo}
                 </span>
               )}
             </div>
@@ -165,7 +165,7 @@ export default async function CollectionPage({ searchParams }: Props) {
             <div className="mb-8 flex flex-col gap-4 rounded-[22px] border border-[var(--border-default)] bg-[var(--bg-card)] p-4 md:flex-row md:items-center md:justify-between">
               <div>
                 <p className="text-sm uppercase tracking-[0.14em] text-[var(--text-muted)]">
-                  Sortowanie
+                  Sorting
                 </p>
 
                 <div className="mt-3 flex flex-wrap gap-2">
@@ -184,7 +184,7 @@ export default async function CollectionPage({ searchParams }: Props) {
                       : "border-[var(--border-light)] text-[var(--text-muted)]"
                       }`}
                   >
-                    Najnowsze
+                    Newest
                   </Link>
 
                   <Link
@@ -202,7 +202,7 @@ export default async function CollectionPage({ searchParams }: Props) {
                       : "border-[var(--border-light)] text-[var(--text-muted)]"
                       }`}
                   >
-                    Najstarsze
+                    Oldest
                   </Link>
 
                   <Link
@@ -244,7 +244,7 @@ export default async function CollectionPage({ searchParams }: Props) {
               </div>
 
               <div className="text-sm text-[var(--text-muted)]">
-                Wyników: <span className="text-[var(--text-primary)]">{totalCount}</span>
+                Results: <span className="text-[var(--text-primary)]">{totalCount}</span>
               </div>
             </div>
 
@@ -256,7 +256,7 @@ export default async function CollectionPage({ searchParams }: Props) {
                 ))
               ) : (
                   <div className="rounded-2xl border border-[var(--border-light)] bg-[var(--bg-darker)] p-6 text-[var(--text-secondary)]">
-                    Brak aparatów dla wybranych filtrów.
+                    No cameras found for the selected filters.
                 </div>
               )}
             </div>

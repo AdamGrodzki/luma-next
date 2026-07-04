@@ -1,8 +1,5 @@
 "use client";
 
-/**
- * Loading skeleton dla strony O Nas
- */
 export default function AboutLoading() {
   return (
     <main className="min-h-screen bg-[var(--bg-dark)] text-[var(--text-primary)]">

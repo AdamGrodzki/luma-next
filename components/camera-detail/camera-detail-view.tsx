@@ -18,18 +18,18 @@ export function CameraDetailView({ camera }: Props) {
     { id: "hero", label: "Hero", show: true },
     {
       id: "gallery",
-      label: "Galeria",
+      label: "Gallery",
       show: Boolean(camera.gallery?.length || camera.image),
     },
     {
       id: "story",
-      label: "Historia",
+      label: "Story",
       show: Boolean(camera.story || camera.description),
     },
-    // { id: "popularity", label: "Popularność", show: true },
-    // { id: "market", label: "Rynek", show: true },
-    { id: "specs", label: "Specyfikacja", show: Boolean(camera.specs?.length) },
-    { id: "related", label: "Podobne", show: Boolean(camera.related?.length) },
+    // { id: "popularity", label: "Popularity", show: true },
+    // { id: "market", label: "Market", show: true },
+    { id: "specs", label: "Specifications", show: Boolean(camera.specs?.length) },
+    { id: "related", label: "Related", show: Boolean(camera.related?.length) },
   ]
     .filter((item) => item.show)
     .map(({ id, label }) => ({ id, label }));

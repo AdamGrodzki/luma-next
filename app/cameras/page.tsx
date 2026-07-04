@@ -23,9 +23,9 @@ export default async function CamerasPage({ searchParams }: CamerasPageProps) {
     <main className="min-h-screen bg-[var(--bg-dark)] py-8 sm:py-12 md:py-16 text-[var(--text-primary)]">
       <Container>
         <SectionHeader
-          eyebrow="Katalog"
-          title="Aparaty"
-          description={`Przeglądaj modele aparatów. ${total} modeli w naszej bazie danych.`}
+          eyebrow="Catalog"
+          title="Cameras"
+          description={`Browse camera models. ${total} models in our database.`}
         />
 
         <div className="mt-8 sm:mt-12 grid gap-4 sm:gap-5 md:gap-6 grid-cols-2 sm:grid-cols-2 lg:grid-cols-3">
@@ -44,7 +44,7 @@ export default async function CamerasPage({ searchParams }: CamerasPageProps) {
                   />
                 ) : (
                     <div className="flex h-40 sm:h-48 md:h-56 items-center justify-center text-xs sm:text-sm text-[var(--text-muted)]">
-                    Brak zdjęcia
+                    No image available
                   </div>
                 )}
               </div>

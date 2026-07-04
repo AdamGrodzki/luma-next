@@ -14,9 +14,9 @@ export default function FeaturedCameras({ cameras }: Props) {
         <section className="border-t border-[var(--border-light)] py-12 sm:py-16 md:py-20">
             <Container>
                 <SectionHeader
-                    eyebrow="Wybrane modele"
-                    title="Aparaty"
-                    description="Kilka modeli, od których warto zacząć eksplorację katalogu."
+                    eyebrow="Featured Models"
+                    title="Cameras"
+                    description="A few models to start exploring the catalog."
                 />
 
                 <div className="mt-8 sm:mt-10 grid gap-4 sm:gap-5 grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
@@ -36,7 +36,7 @@ export default function FeaturedCameras({ cameras }: Props) {
                                     />
                                 ) : (
                                         <div className="flex h-40 sm:h-48 md:h-56 items-center justify-center text-xs text-[var(--text-muted)]">
-                                        Brak zdjęcia
+                                        No image available
                                     </div>
                                 )}
                             </div>
