@@ -44,7 +44,7 @@ function buildCollectionUrl({
   if (sort) params.set("sort", sort);
 
   const query = params.toString();
-  return query ? `/kolekcja?${query}` : "/kolekcja";
+  return query ? `/collection?${query}` : "/collection";
 }
 
 export default function FilterSidebar({
@@ -99,7 +99,7 @@ export default function FilterSidebar({
     <aside className="rounded-[22px] border border-[var(--border-light)] bg-[var(--bg-card)] p-5 shadow-[0_0_0_1px_rgba(218,180,134,0.05)]">
       <div className="flex items-center justify-between">
         <h2 className="text-2xl font-semibold uppercase tracking-[0.08em] text-[var(--text-primary)]">
-          Filtrowanie
+          Filtering
         </h2>
 
         <Link
@@ -136,7 +136,7 @@ export default function FilterSidebar({
             type="text"
             name="q"
             defaultValue={activeQuery ?? ""}
-            placeholder="Szukaj aparatu..."
+            placeholder="Search for a camera..."
             className="w-full bg-transparent text-sm text-[var(--text-primary)] outline-none placeholder:text-[var(--text-muted)]"
           />
         </div>
@@ -146,14 +146,14 @@ export default function FilterSidebar({
             type="number"
             name="yearFrom"
             defaultValue={activeYearFrom ?? ""}
-            placeholder="Od roku"
+            placeholder="From"
             className="rounded-xl border border-[var(--accent-primary)] bg-transparent px-4 py-3 text-sm text-[var(--text-primary)] outline-none placeholder:text-[var(--text-muted)]"
           />
           <input
             type="number"
             name="yearTo"
             defaultValue={activeYearTo ?? ""}
-            placeholder="Do roku"
+            placeholder="To"
             className="rounded-xl border border-[var(--accent-primary)] bg-transparent px-4 py-3 text-sm text-[var(--text-primary)] outline-none placeholder:text-[var(--text-muted)]"
           />
         </div>
@@ -162,13 +162,13 @@ export default function FilterSidebar({
           type="submit"
           className="w-full rounded-xl border border-[var(--accent-primary)] px-4 py-3 text-sm uppercase tracking-[0.14em] text-[var(--text-primary)] transition hover:bg-[var(--border-default)]"
         >
-          Zastosuj
+          Apply
         </button>
       </form>
 
         <div className="mt-8 border-t border-[var(--border-light)] pt-8 pr-2">
         <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-[var(--text-primary)]">
-          • Wielkość matrycy
+          • Sensor Size
         </h3>
 
         <div className="mt-5 space-y-3">
@@ -207,7 +207,7 @@ export default function FilterSidebar({
 
         <div className="mt-8 border-t border-[var(--border-default)] pt-8 pr-2">
         <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-[var(--text-primary)]">
-          • Rodzaj sprzętu
+          • Type of Equipment
         </h3>
 
         <div className="mt-5 space-y-3">

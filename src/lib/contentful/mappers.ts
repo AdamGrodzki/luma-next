@@ -24,20 +24,20 @@ export function mapContentfulCameraToDetail(
 
     heroStats: [
       {
-        label: "Premiera",
-        value: camera.releaseYear ? String(camera.releaseYear) : "Brak danych",
+        label: "Premiere",
+        value: camera.releaseYear ? String(camera.releaseYear) : "No data",
       },
       {
-        label: "Matryca",
-        value: camera.sensorSize ?? "Brak danych",
+        label: "Sensor",
+        value: camera.sensorSize ?? "No data",
       },
       {
-        label: "Typ",
-        value: camera.bodyType ?? "Brak danych",
+        label: "Type",
+        value: camera.bodyType ?? "No data",
       },
       {
-        label: "Mocowanie",
-        value: camera.lensMount ?? "Brak danych",
+        label: "Mount",
+        value: camera.lensMount ?? "No data",
       },
     ],
 
@@ -84,77 +84,77 @@ export function mapContentfulCameraToDetail(
       {
         title: "Body",
         items: [
-          { label: "Typ obudowy", value: camera.bodyType ?? "Brak danych" },
+          { label: "Type", value: camera.bodyType ?? "No data" },
           {
-            label: "Waga",
-            value: camera.WeightIncBatteries ? `${camera.WeightIncBatteries} g` : "Brak danych",
+            label: "Weight",
+            value: camera.WeightIncBatteries ? `${camera.WeightIncBatteries} g` : "No data",
           },
-          { label: "Wymiary", value: camera.dimensions ?? "Brak danych" },
-          { label: "Mocowanie obiektyfu", value: camera.lensMount ?? "Brak danych" },
+          { label: "Dimensions", value: camera.dimensions ?? "No data" },
+          { label: "Lens Mount", value: camera.lensMount ?? "No data" },
         ],
       },
       {
         title: "Viewfinder",
         items: [
-          { label: "Typ wizjera", value: camera.viewfinderType ?? "Brak danych" },
+          { label: "Viewfinder Type", value: camera.viewfinderType ?? "No data" },
           {
-            label: "Pokrycie wizjera",
-            value: camera.viewfinderCoverage ?? "Brak danych",
+            label: "Viewfinder Coverage",
+            value: camera.viewfinderCoverage ?? "No data",
           },
           {
-            label: "Powiększenie wizjera",
-            value: camera.viewFinderMagnification ?? "Brak danych",
+            label: "Viewfinder Magnification",
+            value: camera.viewFinderMagnification ?? "No data",
           },
           {
-            label: "Rozdzielczość wizjera",
+            label: "Viewfinder Resolution",
             value: camera.viewFinderResolution
               ? `${camera.viewFinderResolution}`
-              : "Brak danych",
+              : "No data",
           },
         ],
       },
       {
         title: "Display & Controls",
         items: [
-          { label: "Ekran LCD", value: camera.articulatedLcd ?? "Brak danych" },
+          { label: "LCD Screen", value: camera.articulatedLcd ?? "No data" },
           {
-            label: "Zdjęcia seryjne",
-            value: camera.continuousDrive ?? "Brak danych",
+            label: "Continuous Shooting",
+            value: camera.continuousDrive ?? "No data",
           },
           {
-            label: "Dotyk",
+            label: "Touchscreen",
             value:
               camera.touchscreen == null
-                ? "Brak danych"
+                ? "No data"
                 : camera.touchscreen
-                ? "Tak"
-                : "Nie",
+                ? "Yes"
+                : "No",
           },
           {
             label: "Live view",
             value:
-              camera.liveView == null ? "Brak danych" : camera.liveView ? "Tak" : "Nie",
+              camera.liveView == null ? "No data" : camera.liveView ? "Yes" : "No",
           },
         ],
       },
       {
         title: "Sensor & Focus",
         items: [
-          { label: "Rozmiar sensora", value: camera.sensorSize ?? "Brak danych" },
-          { label: "Typ sensora", value: camera.sensorType ?? "Brak danych" },
+          { label: "Sensor Size", value: camera.sensorSize ?? "No data" },
+          { label: "Sensor Type", value: camera.sensorType ?? "No data" },
           {
-            label: "Efektywne piksele",
+            label: "Effective Pixels",
             value: camera.effectivePixels
               ? `${camera.effectivePixels} Mpx`
-              : "Brak danych",
+              : "No data",
           },
           {
-            label: "Punkty ostrości",
-            value: camera.numberOfFocusPoints ?? "Brak danych",
+            label: "Focus Points",
+            value: camera.numberOfFocusPoints ?? "No data",
           },
           {
             label: "Autofocus",
-            value: camera.autofocus ?? "Brak danych",
+            value: camera.autofocus ?? "No data",
           },
 
         ],
@@ -163,35 +163,35 @@ export function mapContentfulCameraToDetail(
         title: "Image Processing",
         items: [
           {
-            label: "Stabilizacja obrazu",
-            value: camera.imageStabilization ?? "Brak danych",
+            label: "Image Stabilization",
+            value: camera.imageStabilization ?? "No data",
           },
-          { label: "Zakres ISO", value: camera.ISO ?? "Brak danych" },
+          { label: "ISO Range", value: camera.ISO ?? "No data" },
           {
-            label: "ISO wzmocnione",
+            label: "Boosted ISO",
             value: camera.isoBoostMin && camera.isoBoostMax
               ? `${camera.isoBoostMin} - ${camera.isoBoostMax}`
-              : "Brak danych",
+              : "No data",
           },
 
-          { label: "Formaty plików", value: camera.fileFormat ?? "Brak danych" },
-          { label: "Proporcje obrazu", value: camera.ImageRatioWh ?? "Brak danych" },
+          { label: "File Formats", value: camera.fileFormat ?? "No data" },
+          { label: "Image Ratio", value: camera.ImageRatioWh ?? "No data" },
         ],
       },
       {
         title: "Exposure",
         items: [
           {
-            label: "Maks. czas otwarcia",
-            value: camera.maximumShutterSpeed ?? "Brak danych",
+            label: "Maximum Shutter Speed",
+            value: camera.maximumShutterSpeed ?? "No data",
           },
           {
-            label: "Min. czas otwarcia",
-            value: camera.minimumShutterSpeed ?? "Brak danych",
+            label: "Minimum Shutter Speed",
+            value: camera.minimumShutterSpeed ?? "No data",
           },
           {
-            label: "Kompensacja ekspozycji",
-            value: camera.exposureCompensation ?? "Brak danych",
+            label: "Exposure Compensation",
+            value: camera.exposureCompensation ?? "No data",
           },
         ],
       },
@@ -199,28 +199,28 @@ export function mapContentfulCameraToDetail(
         title: "Video",
         items: [
           {
-            label: "Port mikrofonu",
+            label: "Microphone Port",
             value:
-              camera.microphonePort == null ? "Brak danych" : camera.microphonePort ? "Tak" : "Nie",
+              camera.microphonePort == null ? "No data" : camera.microphonePort ? "Yes" : "No",
           },
         ],
       },
       {
         title: "Connectivity",
         items: [
-          { label: "Wersja USB", value: camera.USB ?? "Brak danych" },
+          { label: "USB Version", value: camera.USB ?? "No data" },
           {
-            label: "Ładowanie USB",
+            label: "USB Charging",
             value:
               camera.usbCharging == null
-                ? "Brak danych"
+                ? "No data"
                 : camera.usbCharging
-                ? "Tak"
-                : "Nie",
+                ? "Yes"
+                : "No",
           },
           {
             label: "GPS",
-            value: camera.GPS == null ? "None" : camera.GPS ? "Tak" : "Nie",
+            value: camera.GPS == null ? "No data" : camera.GPS ? "Yes" : "No",
           },
         ],
       },
@@ -228,40 +228,40 @@ export function mapContentfulCameraToDetail(
         title: "Power & Misc",
         items: [
           {
-            label: "Wbudowany flash",
+            label: "Built-in Flash",
             value:
               camera.builtInFlash == null
-                ? "Brak danych"
+                ? "No data"
                 : camera.builtInFlash
-                ? "Tak"
-                : "Nie",
+                ? "Yes"
+                : "No",
           },
           {
-            label: "Samowyzwalacz",
+            label: "Self Timer",
             value:
               camera.selfTimer == null
-                ? "Brak danych"
+                ? "No data"
                 : camera.selfTimer
-                ? "Tak"
-                : "Nie",
+                ? "Yes"
+                : "No",
           },
           {
-            label: "Opis baterii",
-            value: camera.batteryDescription ?? "Brak danych",
+            label: "Battery Description",
+            value: camera.batteryDescription ?? "No data",
           },
           {
-            label: "Czas pracy (CIPA)",
-            value: camera.batteryLifeCIPA ?? "Brak danych",
+            label: "Battery Life (CIPA)",
+            value: camera.batteryLifeCIPA ?? "No data",
           },
           {
-            label: "Kraj marki",
-            value: camera.brand.country ?? "Brak danych",
+            label: "Brand Country",
+            value: camera.brand.country ?? "No data",
           },
           {
-            label: "Rok założenia marki",
+            label: "Brand Founded Year",
             value: camera.brand.foundedYear
               ? String(camera.brand.foundedYear)
-              : "Brak danych",
+              : "No data",
           },
         ],
       },
@@ -274,7 +274,7 @@ export function mapContentfulCameraToDetail(
       image: related.heroImageUrl ?? null,
       releaseYear: related.releaseYear ?? null,
       sensorSize: related.sensorSize ?? null,
-      brand: related.brand.name,
+      brand: related.brand.name ?? "No data",
     })),
   };
 }

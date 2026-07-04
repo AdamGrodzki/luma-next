@@ -32,34 +32,34 @@ export default async function BrandDetailPage({ params }: Props) {
     <main className="min-h-screen bg-[var(--bg-dark)] py-16 text-[var(--text-primary)]">
       <Container>
         <SectionHeader
-          eyebrow="Marka"
+          eyebrow="Brand"
           title={brand.name}
-          description={brand.description ?? "Brak opisu marki."}
+          description={brand.description ?? "No description available."}
         />
 
         <div className="mt-6">
           <Link
-            href={`/kolekcja?brand=${brand.slug}`}
+            href={`/collection?brand=${brand.slug}`}
             className="inline-flex rounded-full border border-[var(--accent-primary)] px-5 py-3 text-sm uppercase tracking-[0.14em] text-[var(--text-primary)] transition hover:bg-[var(--border-default)]"
           >
-            Zobacz kolekcję marki
+            View Collection
           </Link>
         </div>
 
         {/* STATS */}
         <div className="mt-8 grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           <InfoCard>
-            <p className="text-m text-[var(--text-muted)]">Kraj</p>
-            <p className="mt-2 text-4xl text-[var(--text-primary)]">{brand.country ?? "Brak danych"}</p>
+            <p className="text-m text-[var(--text-muted)]">Country</p>
+            <p className="mt-2 text-4xl text-[var(--text-primary)]">{brand.country ?? "No data"}</p>
           </InfoCard>
 
           <InfoCard>
-            <p className="text-m text-[var(--text-muted)]">Rok założenia</p>
-            <p className="mt-2 text-4xl text-[var(--text-primary)]">{brand.foundedYear ?? "Brak danych"}</p>
+            <p className="text-m text-[var(--text-muted)]">Founded Year</p>
+            <p className="mt-2 text-4xl text-[var(--text-primary)]">{brand.foundedYear ?? "No data"}</p>
           </InfoCard>
 
           <InfoCard>
-            <p className="text-m text-[var(--text-muted)]">Modele</p>
+            <p className="text-m text-[var(--text-muted)]">Models</p>
             <p className="mt-2 text-4xl text-[var(--text-primary)]">{brandCameras.length}</p>
           </InfoCard>
 
@@ -82,7 +82,7 @@ export default async function BrandDetailPage({ params }: Props) {
         {/* CAMERAS */}
         <div className="mt-14">
           <h2 className="text-3xl font-serif text-[var(--text-primary)]">
-            Modele marki
+            Brand Models
           </h2>
 
           <div className="mt-8 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">

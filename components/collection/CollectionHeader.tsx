@@ -30,7 +30,7 @@ export default function CollectionHeader({
                 {brandName}
               </h1>
               <div className="mt-1 text-sm text-[var(--text-secondary)]">
-                Znaleziono {totalCount} {totalCount === 1 ? 'model' : 'modeli'}
+                Found {totalCount} {totalCount === 1 ? 'model' : 'models'}
               </div>
             </div>
           </div>
@@ -55,10 +55,10 @@ export default function CollectionHeader({
 
               <div>
                 <div className="text-sm font-semibold uppercase tracking-[0.14em] text-[var(--accent-primary)]">
-                  O producencie →
+                  About the brand →
                 </div>
                 <div className="mt-1 text-xl text-[var(--text-primary)]">
-                  Znaleziono {totalCount} modeli
+                  Found {totalCount} {totalCount === 1 ? 'model' : 'models'}
                 </div>
               </div>
           </>
@@ -70,7 +70,7 @@ export default function CollectionHeader({
           href={`/brands/${brandSlug}`}
           className="rounded-full border border-[var(--special-badge-border)] px-4 py-2 text-center text-xs uppercase tracking-[0.16em] text-[var(--text-secondary)] hover:border-[var(--accent-primary)] hover:text-[var(--text-primary)]"
         >
-          Zobacz profil marki
+          View Brand
         </Link>
       )}
     </div>

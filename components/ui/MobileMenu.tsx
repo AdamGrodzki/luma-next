@@ -27,10 +27,10 @@ export default function MobileMenu() {
   }, [isOpen]);
 
   const menuItems = [
-    { href: '/kolekcja', label: 'Kolekcja' },
-    { href: '/brands', label: 'Marki' },
-    { href: '/o-nas', label: 'O Nas' },
-    { href: '/cameras', label: 'Aparaty' },
+    { href: '/kolekcja', label: 'Collection' },
+    { href: '/brands', label: 'Brands' },
+    { href: '/o-nas', label: 'About Us' },
+    { href: '/cameras', label: 'Cameras' },
   ];
 
   return (
@@ -117,7 +117,7 @@ export default function MobileMenu() {
         <div className="mt-auto border-t border-[var(--border-light)] px-2 py-2">
           <div className="flex items-center justify-between">
             <span className="text-xs font-medium uppercase tracking-wider text-[var(--text-muted)]">
-              Motyw
+              Theme
             </span>
             <ThemeToggle />
           </div>

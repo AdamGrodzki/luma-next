@@ -15,7 +15,7 @@ export function CameraRelated({ camera }: Props) {
       className="space-y-8 rounded-[28px] border border-[var(--border-light)] bg-[var(--bg-card)] px-6 py-10 md:px-10">
       <div className="text-center">
         <h2 className="text-3xl font-bold text-[var(--text-primary)] md:text-5xl">
-          Podobne aparaty
+          Related Cameras
         </h2>
       </div>
 
@@ -37,7 +37,7 @@ export function CameraRelated({ camera }: Props) {
                 />
               ) : (
                   <div className="flex h-full items-center justify-center text-sm text-[var(--text-muted)]">
-                  Brak zdjęcia
+                  No image available
                 </div>
               )}
             </div>

@@ -14,7 +14,7 @@ export default function Loading() {
             </p>
 
                 <p className="mt-3 text-sm text-[var(--text-muted)]">
-            Przygotowujemy dane i widoki.
+            Preparing the camera catalog for you. This may take a few seconds.
             </p>
         </div>
         </main>

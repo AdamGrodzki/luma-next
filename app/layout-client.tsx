@@ -42,13 +42,13 @@ export default function RootLayoutClient({
           <div className="hidden md:grid grid-cols-[1fr_220px_1fr] items-center gap-4">
             <nav className="flex min-w-0 items-center gap-4 text-[11px] uppercase tracking-[0.22em] transition-colors duration-300 lg:gap-8">
               <Link
-                href="/kolekcja"
-                className={`whitespace-nowrap transition-all duration-200 ${isActive('/kolekcja')
+                href="/collection"
+                className={`whitespace-nowrap transition-all duration-200 ${isActive('/collection')
                     ? 'text-[var(--accent-primary)] font-semibold border-b-2 border-[var(--accent-primary)] pb-1'
                     : 'text-[var(--text-muted)] hover:text-[var(--accent-hover)]'
                   }`}
               >
-                Kolekcja
+                Collection
               </Link>
               <Link
                 href="/brands"
@@ -57,7 +57,7 @@ export default function RootLayoutClient({
                     : 'text-[var(--text-muted)] hover:text-[var(--accent-hover)]'
                   }`}
               >
-                Marki
+                Brands
               </Link>
               <Link
                 href="/o-nas"
@@ -66,7 +66,7 @@ export default function RootLayoutClient({
                     : 'text-[var(--text-muted)] hover:text-[var(--accent-hover)]'
                   }`}
               >
-                O Nas
+                About us
               </Link>
             </nav>
 
@@ -84,7 +84,7 @@ export default function RootLayoutClient({
                     : 'text-[var(--text-muted)] hover:text-[var(--accent-hover)]'
                   }`}
               >
-                Aparaty
+                Cameras
               </Link>
               <ThemeToggle />
             </div>

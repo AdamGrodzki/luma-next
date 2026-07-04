@@ -39,7 +39,7 @@ function buildBrandUrl({
   if (typeof yearTo === "number") params.set("yearTo", String(yearTo));
   if (sort) params.set("sort", sort);
 
-  return `/kolekcja?${params.toString()}`;
+  return `/collection?${params.toString()}`;
 }
 
 export default function BrandSidebar({
@@ -59,10 +59,10 @@ export default function BrandSidebar({
     <aside className="rounded-[22px] border border-[var(--border-light)] bg-[var(--bg-card)] p-4 shadow-[0_0_0_1px_rgba(218,180,134,0.05)]">
       <div className="mb-3">
         <h2 className="text-lg font-semibold uppercase tracking-[0.12em] text-[var(--accent-secondary)]">
-          Marki sprzętowe
+          Camera Brands
         </h2>
         <p className="mt-1 text-xs uppercase tracking-[0.16em] text-[var(--text-secondary)]">
-          Wybierz producenta
+          Choose a brand
         </p>
       </div>
 
@@ -110,7 +110,7 @@ export default function BrandSidebar({
                     : "text-[var(--text-secondary)] group-hover:text-[var(--text-primary)]"
                   }`}
               >
-                Wszystkie marki
+                All Brands
               </span>
 
               <span

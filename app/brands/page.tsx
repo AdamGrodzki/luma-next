@@ -17,9 +17,9 @@ export default async function BrandsPage() {
     <main className="min-h-screen bg-[var(--bg-dark)] py-8 sm:py-12 md:py-16 text-[var(--text-primary)]">
       <Container>
         <SectionHeader
-          eyebrow="Katalog"
-          title="Marki"
-          description="Przeglądaj dostępne marki aparatów fotograficznych."
+          eyebrow="Catalog"
+          title="Brands"
+          description="Browse available camera brands."
         />
 
         <div className="mt-8 sm:mt-12 grid gap-4 sm:gap-5 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
@@ -68,7 +68,7 @@ export default async function BrandsPage() {
                     </span>
                   )}
                   <span className="bg-[var(--special-badge-bg)] px-3 py-1 text-xs text-[var(--text-secondary)]">
-                    {brandCameras.length} modeli
+                    {brandCameras.length} models
                   </span>
                 </div>
               </InfoCard>
