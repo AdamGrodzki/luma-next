@@ -60,8 +60,8 @@ export default function RootLayoutClient({
                 Brands
               </Link>
               <Link
-                href="/o-nas"
-                className={`whitespace-nowrap transition-all duration-200 ${isActive('/o-nas')
+                href="/about"
+                className={`whitespace-nowrap transition-all duration-200 ${isActive('/about')
                     ? 'text-[var(--accent-primary)] font-semibold border-b-2 border-[var(--accent-primary)] pb-1'
                     : 'text-[var(--text-muted)] hover:text-[var(--accent-hover)]'
                   }`}

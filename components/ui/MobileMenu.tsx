@@ -27,9 +27,9 @@ export default function MobileMenu() {
   }, [isOpen]);
 
   const menuItems = [
-    { href: '/kolekcja', label: 'Collection' },
+    { href: '/collection', label: 'Collection' },
     { href: '/brands', label: 'Brands' },
-    { href: '/o-nas', label: 'About Us' },
+    { href: '/about', label: 'About Us' },
     { href: '/cameras', label: 'Cameras' },
   ];
 
