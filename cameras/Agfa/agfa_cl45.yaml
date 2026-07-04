@@ -1,0 +1,36 @@
+name: Agfa ePhoto CL45
+slug: agfa-ephoto-cl45
+Brand: Agfa
+releaseYear: 2001
+BodyType: Compact
+WeightIncBatteries: 270 g (0.60 lb / 9.52 oz)
+Dimensions: 119 x 51 x 75 mm (4.69 x 2.01 x 2.95″)
+LensMount: ""
+ArticulatedLCD: ""
+ContinuousDrive: ""
+ViewfinderType: Optical (tunnel)
+SensorSize: ""
+SensorType: CCD
+ImageStabilization: "No"
+EffectivePixels: 2 megapixels
+NumberOfFocusPoints: ""
+ISO: "100"
+FileFormat: ""
+ImageRatioWh: "4:3"
+MaximumShutterSpeed: 1/2000 sec
+MinimumShutterSpeed: 30 sec
+ExposureCompensation: ±2 (at 1/2 EV steps)
+TouchScreen: "No"
+BuiltInFlash: "Yes"
+GPS: ""
+LiveView: "Yes"
+MicrophonePort: ""
+SelfTimer: "Yes"
+USB: USB 1.0 (1.5 Mbit/sec)
+USBCharging: ""
+BatteryDescription: AA (4) batteries (NiMH recommended)
+BatteryLifeCIPA: ""
+ViewfinderCoverage: ""
+viewFinderMagnification: ""
+viewFinderResolution: ""
+Autofocus: []

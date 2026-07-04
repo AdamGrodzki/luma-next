@@ -1,0 +1,39 @@
+name: Agfa DC-600uw
+slug: agfa-dc600uw
+Brand: Agfa
+releaseYear: 2009
+BodyType: Compact
+WeightIncBatteries: 161 g (0.35 lb / 5.68 oz)
+Dimensions: 101 x 61 x 32 mm (3.98 x 2.4 x 1.26″)
+LensMount: ""
+ArticulatedLCD: Fixed
+ContinuousDrive: ""
+ViewfinderType: None
+SensorSize: 1/2.3" (6.17 x 4.55 mm)
+SensorType: CCD
+ImageStabilization: Unknown
+EffectivePixels: 6 megapixels
+NumberOfFocusPoints: ""
+ISO: Auto, 100, 200, 400, 800, 1600
+FileFormat: ""
+ImageRatioWh: "4:3"
+MaximumShutterSpeed: 1/1000 sec
+MinimumShutterSpeed: 8 sec
+ExposureCompensation: ±2 (at 1/5 EV steps)
+TouchScreen: "No"
+BuiltInFlash: "Yes"
+GPS: None
+LiveView: "Yes"
+MicrophonePort: ""
+SelfTimer: ""
+USB: USB 2.0 (480 Mbit/sec)
+USBCharging: ""
+BatteryDescription: 2 x AA batteries (NiMH )
+BatteryLifeCIPA: ""
+ViewfinderCoverage: ""
+viewFinderMagnification: ""
+viewFinderResolution: ""
+Autofocus:
+    - Contrast Detect (sensor)
+    - Single
+    - Live View

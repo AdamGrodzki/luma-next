@@ -1,0 +1,47 @@
+name: Zeiss ZX1
+slug: zeiss-zx1
+Brand: Zeiss
+releaseYear: 2018
+BodyType: Large sensor compact
+WeightIncBatteries: 800 g (1.76 lb / 28.22 oz)
+Dimensions: 142 x 93 x 46 mm (5.59 x 3.66 x 1.81″)
+LensMount: ""
+ArticulatedLCD: Fully articulated
+ContinuousDrive: 3.0 fps
+ViewfinderType: Electronic
+SensorSize: Full frame (36 x 24 mm)
+SensorType: CMOS
+ImageStabilization: "No"
+EffectivePixels: 37 megapixels
+NumberOfFocusPoints: "255"
+ISO: Auto, 80-51200
+FileFormat: JPEGDNG
+ImageRatioWh: "3:2"
+MaximumShutterSpeed: 1/2000 sec
+MinimumShutterSpeed: 30 sec
+ExposureCompensation: ""
+TouchScreen: "Yes"
+BuiltInFlash: "No"
+GPS: None
+LiveView: "Yes"
+MicrophonePort: ""
+SelfTimer: "Yes"
+USB: USB 3.2 Gen 1 (5 GBit/sec)
+USBCharging: ""
+BatteryDescription: ""
+BatteryLifeCIPA: ""
+ViewfinderCoverage: 100%
+viewFinderMagnification: 0.74×
+viewFinderResolution: 6,220,800
+Autofocus:
+    - Contrast Detect (sensor)
+    - Multi-area
+    - Center
+    - Selective single-point
+    - Tracking
+    - Single
+    - Continuous
+    - Touch
+    - Face Detection
+    - Live View
+# heroImage: data/assets/cameras/zeiss-zx1/image.jpg ?? 

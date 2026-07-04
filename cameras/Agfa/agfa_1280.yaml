@@ -1,0 +1,39 @@
+name: Agfa 1280
+slug: agfa-1280
+Brand: Agfa
+releaseYear: 1997
+BodyType: Compact
+WeightIncBatteries: 420 g (0.93 lb / 14.82 oz)
+Dimensions: 95 x 86 x 51 mm (3.74 x 3.39 x 2.01″)
+LensMount: ""
+ArticulatedLCD: ""
+ContinuousDrive: ""
+ViewfinderType: None
+SensorSize: ""
+SensorType: CCD
+ImageStabilization: "No"
+EffectivePixels: 1 megapixels
+NumberOfFocusPoints: ""
+ISO: "100"
+FileFormat: ""
+ImageRatioWh: "4:3"
+MaximumShutterSpeed: 1/500 sec
+MinimumShutterSpeed: 1/4 sec
+ExposureCompensation: ±3 (at 1 EV steps)
+TouchScreen: "No"
+BuiltInFlash: "Yes"
+GPS: ""
+LiveView: "Yes"
+MicrophonePort: ""
+SelfTimer: Yes (5 or 10 sec)
+USB: ""
+USBCharging: ""
+BatteryDescription: AA NiMH (4) batteries (supplied)
+BatteryLifeCIPA: ""
+ViewfinderCoverage: ""
+viewFinderMagnification: ""
+viewFinderResolution: ""
+Autofocus:
+    - Contrast Detect (sensor)
+    - Single
+    - Live View

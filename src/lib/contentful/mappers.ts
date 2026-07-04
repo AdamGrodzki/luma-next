@@ -108,7 +108,7 @@ export function mapContentfulCameraToDetail(
           {
             label: "Rozdzielczość wizjera",
             value: camera.viewFinderResolution
-              ? `${camera.viewFinderResolution} k-dot`
+              ? `${camera.viewFinderResolution}`
               : "Brak danych",
           },
         ],
