@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import type { CameraDetailData } from "./types";
+import { X } from "lucide-react";
 
 type Props = {
   camera: CameraDetailData;
@@ -207,10 +208,10 @@ export function CameraGallery({ camera }: Props) {
                 <button
                   type="button"
                   onClick={() => setIsLightboxOpen(false)}
-                  aria-label="Zamknij podgląd"
+                  aria-label="Close fullscreen preview"
                   className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--accent-primary)] bg-[var(--bg-dark)] text-lg leading-none text-[var(--text-primary)] transition duration-300 hover:scale-[1.04] hover:bg-[var(--accent-primary)] hover:text-[var(--bg-darker)] sm:h-11 sm:w-11 sm:text-xl"
                 >
-                  ×
+                  <X />
                 </button>
               </div>
             </div>

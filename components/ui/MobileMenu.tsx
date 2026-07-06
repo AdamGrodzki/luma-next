@@ -4,6 +4,9 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import ThemeToggle from './ThemeToggle';
+import HamburgerButton from './HamburgerButton';
+import { MENU_ITEMS } from './constants/menuItems';
+import { useIsActive } from './hooks/useIsActive';
 
 export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,43 +29,10 @@ export default function MobileMenu() {
     };
   }, [isOpen]);
 
-  const menuItems = [
-    { href: '/collection', label: 'Collection' },
-    { href: '/brands', label: 'Brands' },
-    { href: '/about', label: 'About Us' },
-    { href: '/cameras', label: 'Cameras' },
-  ];
-
   return (
     <>
       {/* Hamburger Button */}
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-[5px] transition-all"
-        aria-label={isOpen ? 'Close menu' : 'Open menu'}
-        aria-expanded={isOpen}
-        aria-controls="mobile-menu"
-      >
-        <span
-          className={`block h-[2px] w-6 rounded-full transition-all duration-300 ${
-            isOpen 
-              ? 'translate-y-[7px] rotate-45 bg-[var(--text-primary)]' 
-              : 'bg-[var(--text-muted)]'
-          }`}
-        />
-        <span
-          className={`block h-[2px] w-6 rounded-full transition-all duration-300 ${
-            isOpen ? 'opacity-0' : 'bg-[var(--text-muted)]'
-          }`}
-        />
-        <span
-          className={`block h-[2px] w-6 rounded-full transition-all duration-300 ${
-            isOpen 
-              ? '-translate-y-[7px] -rotate-45 bg-[var(--text-primary)]' 
-              : 'bg-[var(--text-muted)]'
-          }`}
-        />
-      </button>
+      <HamburgerButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
 
       {/* Overlay */}
       <div
@@ -92,8 +62,8 @@ export default function MobileMenu() {
 
         {/* Menu Items */}
         <nav className="flex flex-col gap-2 p-2">
-          {menuItems.map((item) => {
-            const isActive = pathname === item.href || pathname?.startsWith(item.href + '/');
+          {MENU_ITEMS.map((item) => {
+            const isActive = useIsActive(pathname, item.href);
             return (
               <Link
                 key={item.href}

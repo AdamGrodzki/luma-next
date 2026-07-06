@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { buildContentfulImageUrl } from "@/src/lib/contentful/assets";
+import { CAMERA_CARD_CLASSES } from "@/src/utils/tailwind-classes";
 import type { CollectionCameraCard } from "./types";
 
 type Props = {
@@ -18,9 +19,9 @@ export default function CameraCard({ camera, priority = false }: Props) {
   return (
     <Link
       href={`/cameras/${camera.slug}`}
-      className="overflow-hidden rounded-lg sm:rounded-2xl border border-[var(--border-default)] bg-[var(--bg-card)] transition hover:border-[var(--accent-primary)]"
+      className={CAMERA_CARD_CLASSES.CONTAINER}
     >
-      <div className="aspect-[4/3] bg-[var(--bg-darker)]">
+      <div className={CAMERA_CARD_CLASSES.IMAGE_CONTAINER}>
         {thumb ? (
           <Image
             src={thumb}
@@ -30,28 +31,28 @@ export default function CameraCard({ camera, priority = false }: Props) {
             priority={priority}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             loading={priority ? "eager" : "lazy"}
-            className="h-full w-full object-cover"
+            className={CAMERA_CARD_CLASSES.IMAGE}
           />
         ) : (
-          <div className="flex h-full items-center justify-center text-xs uppercase tracking-[0.16em] text-[#7d756b]">
+          <div className={CAMERA_CARD_CLASSES.PLACEHOLDER_TEXT}>
             No image available
           </div>
         )}
       </div>
 
-      <div className="p-3 sm:p-4 bg-[var(--special-brand-bg)]">
+      <div className={CAMERA_CARD_CLASSES.CONTENT}>
         {camera.brandName && (
-          <div className="text-xs uppercase tracking-[0.16em] text-[var(--text-muted)] mb-1">
+          <div className={CAMERA_CARD_CLASSES.BRAND_NAME}>
             {camera.brandName}
           </div>
         )}
-        <div className="text-xs uppercase tracking-[0.14em] rounded-md px-2 py-1 text-xs font-semibold uppercase tracking-[0.08em] transition-colors text-[var(--accent-primary)]">
+        <div className={CAMERA_CARD_CLASSES.TYPE_BADGE}>
           {camera.type || "Camera"}
         </div>
-        <h4 className="mt-1.5 sm:mt-2 text-base sm:text-lg font-semibold text-[var(--text-primary)] line-clamp-2">
+        <h4 className={CAMERA_CARD_CLASSES.TITLE}>
           {camera.name}
         </h4>
-        <div className="mt-2 sm:mt-3 flex items-center justify-between text-xs sm:text-sm text-[var(--text-secondary)]">
+        <div className={CAMERA_CARD_CLASSES.FOOTER}>
           <span>Premiere</span>
           <span>{camera.year || "—"}</span>
         </div>

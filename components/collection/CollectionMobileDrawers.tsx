@@ -4,6 +4,7 @@ import { useState } from "react";
 import BrandSidebar from "./BrandSidebar";
 import FilterSidebar from "./FilterSidebar";
 import type { CollectionBrand } from "./types";
+import { X } from "lucide-react";
 
 type Props = {
   brands: CollectionBrand[];
@@ -70,7 +71,7 @@ function Drawer({ id, side, title, open, onClose, children }: DrawerProps) {
               className="rounded-full border border-[#3b3024] px-3 py-1 text-xs uppercase tracking-[0.16em] text-[var(--text-primary)] transition hover:bg-[var(--bg-card)]"
               aria-label={`Close ${title.toLowerCase()} drawer`}
             >
-              Zamknij
+              <X />
             </button>
           </div>
 

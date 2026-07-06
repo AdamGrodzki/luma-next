@@ -1,7 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import {ArrowRight, ArrowLeft } from "lucide-react";
+import { ArrowRight, ArrowLeft } from "lucide-react";
+import { getPageNumbers, getPageUrl } from "@/src/utils/pagination";
+import {
+  PAGINATION_BUTTON_BASE,
+  PAGINATION_BUTTON_ACTIVE,
+  PAGINATION_BUTTON_INACTIVE,
+  PAGINATION_BUTTON_DISABLED,
+  PAGINATION_PAGE_BUTTON_BASE,
+} from "@/src/utils/tailwind-classes";
 
 interface PaginationProps {
   currentPage: number;
@@ -12,45 +20,13 @@ interface PaginationProps {
 export default function Pagination({ currentPage, totalPages, baseUrl }: PaginationProps) {
   if (totalPages <= 1) return null;
 
-  const getPageUrl = (page: number) => {
-    return page === 1 ? baseUrl : `${baseUrl}?page=${page}`;
-  };
-
-  const getPageNumbers = () => {
-    const pages: (number | string)[] = [];
-    const showEllipsis = totalPages > 7;
-
-    if (!showEllipsis) {
-      // Show all pages if 7 or fewer
-      for (let i = 1; i <= totalPages; i++) {
-        pages.push(i);
-      }
-    } else {
-      // Always show first page
-      pages.push(1);
-
-      if (currentPage <= 3) {
-        // Near the start
-        pages.push(2, 3, 4, "...", totalPages);
-      } else if (currentPage >= totalPages - 2) {
-        // Near the end
-        pages.push("...", totalPages - 3, totalPages - 2, totalPages - 1, totalPages);
-      } else {
-        // In the middle
-        pages.push("...", currentPage - 1, currentPage, currentPage + 1, "...", totalPages);
-      }
-    }
-
-    return pages;
-  };
-
   return (
     <nav className="flex items-center justify-center gap-2 mt-20" aria-label="Pagination">
       {/* Previous Button */}
       {currentPage > 1 ? (
         <Link
-          href={getPageUrl(currentPage - 1)}
-          className="min-h-[44px] flex items-center justify-center px-4 sm:px-5 py-3 rounded-lg border border-[var(--border-light)] bg-[var(--bg-darker)] text-[var(--text-secondary)] hover:bg-[var(--bg-dark)] hover:text-[var(--text-primary)] hover:border-[var(--border-medium)] transition-all text-sm font-medium"
+          href={getPageUrl(currentPage - 1, baseUrl)}
+          className={`${PAGINATION_BUTTON_BASE} ${PAGINATION_BUTTON_INACTIVE}`}
           aria-label="Previous page"
         >
           <span className="hidden sm:inline">Previous</span>
@@ -59,7 +35,7 @@ export default function Pagination({ currentPage, totalPages, baseUrl }: Paginat
       ) : (
         <button
           disabled
-            className="min-h-[44px] flex items-center justify-center px-4 sm:px-5 py-3 rounded-lg border border-[var(--border-light)] bg-[var(--bg-darker)] text-[var(--text-muted)] cursor-not-allowed text-sm font-medium opacity-50"
+          className={`${PAGINATION_BUTTON_BASE} ${PAGINATION_BUTTON_DISABLED}`}
           aria-label="Previous page"
         >
           <span className="hidden sm:inline">Previous</span>
@@ -69,7 +45,7 @@ export default function Pagination({ currentPage, totalPages, baseUrl }: Paginat
 
       {/* Page Numbers */}
       <div className="flex items-center gap-1 sm:gap-2">
-        {getPageNumbers().map((page, index) => {
+        {getPageNumbers(currentPage, totalPages).map((page, index) => {
           if (page === "...") {
             return (
               <span
@@ -87,15 +63,10 @@ export default function Pagination({ currentPage, totalPages, baseUrl }: Paginat
           return (
             <Link
               key={pageNumber}
-              href={getPageUrl(pageNumber)}
-              className={`
-                min-w-[44px] min-h-[44px] flex items-center justify-center px-3 py-3 rounded-lg text-sm font-medium transition-all
-                ${
-                  isActive
-                    ? "bg-[var(--accent-primary)] text-white border-2 border-[var(--accent-primary)]"
-                    : "border border-[var(--border-light)] bg-[var(--bg-darker)] text-[var(--text-secondary)] hover:bg-[var(--bg-dark)] hover:text-[var(--text-primary)] hover:border-[var(--border-medium)]"
-                }
-              `}
+              href={getPageUrl(pageNumber, baseUrl)}
+              className={`${PAGINATION_PAGE_BUTTON_BASE} ${
+                isActive ? PAGINATION_BUTTON_ACTIVE : PAGINATION_BUTTON_INACTIVE
+              }`}
               aria-label={`Page ${pageNumber}`}
               aria-current={isActive ? "page" : undefined}
             >
@@ -108,8 +79,8 @@ export default function Pagination({ currentPage, totalPages, baseUrl }: Paginat
       {/* Next Button */}
       {currentPage < totalPages ? (
         <Link
-          href={getPageUrl(currentPage + 1)}
-          className="min-h-[44px] flex items-center justify-center px-4 sm:px-5 py-3 rounded-lg border border-[var(--border-light)] bg-[var(--bg-darker)] text-[var(--text-secondary)] hover:bg-[var(--bg-dark)] hover:text-[var(--text-primary)] hover:border-[var(--border-medium)] transition-all text-sm font-medium"
+          href={getPageUrl(currentPage + 1, baseUrl)}
+          className={`${PAGINATION_BUTTON_BASE} ${PAGINATION_BUTTON_INACTIVE}`}
           aria-label="Next page"
         >
           <span className="hidden sm:inline">Next</span>
@@ -118,7 +89,7 @@ export default function Pagination({ currentPage, totalPages, baseUrl }: Paginat
       ) : (
         <button
           disabled
-            className="min-h-[44px] flex items-center justify-center px-4 sm:px-5 py-3 rounded-lg border border-[var(--border-light)] bg-[var(--bg-darker)] text-[var(--text-muted)] cursor-not-allowed text-sm font-medium opacity-50"
+          className={`${PAGINATION_BUTTON_BASE} ${PAGINATION_BUTTON_DISABLED}`}
           aria-label="Next page"
         >
           <span className="hidden sm:inline">Next</span>

@@ -1,12 +1,11 @@
 import { CameraHero } from "./camera-hero";
 import { CameraGallery } from "./camera-gallery";
 import { CameraStory } from "./camera-story";
-// import { CameraPopularity } from "./camera-popularity";
-// import { CameraMarketValue } from "./camera-market-value";
 import { CameraSpecs } from "./camera-specs";
 import { CameraRelated } from "./camera-related";
 import { CameraStickyNav } from "./camera-sticky-nav";
 import { RevealOnScroll } from "./reveal-on-scroll";
+import { getNavItems, CAMERA_DETAIL_REVEALS } from "@/src/utils/camera-detail";
 import type { CameraDetailData } from "./types";
 
 type Props = {
@@ -14,25 +13,7 @@ type Props = {
 };
 
 export function CameraDetailView({ camera }: Props) {
-  const navItems = [
-    { id: "hero", label: "Hero", show: true },
-    {
-      id: "gallery",
-      label: "Gallery",
-      show: Boolean(camera.gallery?.length || camera.image),
-    },
-    {
-      id: "story",
-      label: "Story",
-      show: Boolean(camera.story || camera.description),
-    },
-    // { id: "popularity", label: "Popularity", show: true },
-    // { id: "market", label: "Market", show: true },
-    { id: "specs", label: "Specifications", show: Boolean(camera.specs?.length) },
-    { id: "related", label: "Related", show: Boolean(camera.related?.length) },
-  ]
-    .filter((item) => item.show)
-    .map(({ id, label }) => ({ id, label }));
+  const navItems = getNavItems(camera);
 
   return (
     <main className="min-h-screen bg-[var(--bg-dark)] text-[var(--text-primary)]">
@@ -44,31 +25,23 @@ export function CameraDetailView({ camera }: Props) {
       <div className="relative mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-3 py-4 sm:px-4 sm:py-6 md:gap-10 md:px-6 md:py-8 xl:gap-12 xl:px-8 xl:py-10">
         <CameraStickyNav items={navItems} />
 
-        <RevealOnScroll y={18}>
+        <RevealOnScroll y={CAMERA_DETAIL_REVEALS.HERO_Y_OFFSET}>
           <CameraHero camera={camera} />
         </RevealOnScroll>
 
-        <RevealOnScroll delay={60}>
+        <RevealOnScroll delay={CAMERA_DETAIL_REVEALS.GALLERY_DELAY}>
           <CameraGallery camera={camera} />
         </RevealOnScroll>
 
-        <RevealOnScroll delay={80}>
+        <RevealOnScroll delay={CAMERA_DETAIL_REVEALS.STORY_DELAY}>
           <CameraStory camera={camera} />
         </RevealOnScroll>
 
-        {/* <RevealOnScroll delay={100}>
-          <CameraPopularity camera={camera} />
-        </RevealOnScroll>
-
-        <RevealOnScroll delay={120}>
-          <CameraMarketValue camera={camera} />
-        </RevealOnScroll> */}
-
-        <RevealOnScroll delay={140}>
+        <RevealOnScroll delay={CAMERA_DETAIL_REVEALS.SPECS_DELAY}>
           <CameraSpecs camera={camera} />
         </RevealOnScroll>
 
-        <RevealOnScroll delay={160}>
+        <RevealOnScroll delay={CAMERA_DETAIL_REVEALS.RELATED_DELAY}>
           <CameraRelated camera={camera} />
         </RevealOnScroll>
       </div>
