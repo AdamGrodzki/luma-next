@@ -61,9 +61,6 @@ export default function BrandSidebar({
         <h2 className="text-lg font-semibold uppercase tracking-[0.12em] text-[var(--accent-secondary)]">
           Camera Brands
         </h2>
-        <p className="mt-1 text-xs uppercase tracking-[0.16em] text-[var(--text-secondary)]">
-          Choose a brand
-        </p>
       </div>
 
       <div className="relative">

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { FormEvent } from "react";
+import { buildCollectionUrl, parseYearInput } from "@/src/utils/collection-url";
 
 type Props = {
   sensorFilters: string[];
@@ -15,37 +16,6 @@ type Props = {
   activeYearTo?: number;
   activeSort?: string;
 };
-
-function buildCollectionUrl({
-  brand,
-  sensor,
-  type,
-  q,
-  yearFrom,
-  yearTo,
-  sort,
-}: {
-  brand?: string;
-  sensor?: string;
-  type?: string;
-  q?: string;
-  yearFrom?: number;
-  yearTo?: number;
-    sort?: string;
-}) {
-  const params = new URLSearchParams();
-
-  if (brand) params.set("brand", brand);
-  if (sensor) params.set("sensor", sensor);
-  if (type) params.set("type", type);
-  if (q && q.trim()) params.set("q", q.trim());
-  if (typeof yearFrom === "number") params.set("yearFrom", String(yearFrom));
-  if (typeof yearTo === "number") params.set("yearTo", String(yearTo));
-  if (sort) params.set("sort", sort);
-
-  const query = params.toString();
-  return query ? `/collection?${query}` : "/collection";
-}
 
 export default function FilterSidebar({
   sensorFilters,
@@ -72,15 +42,8 @@ export default function FilterSidebar({
     const q =
       typeof qRaw === "string" && qRaw.trim() ? qRaw.trim() : undefined;
 
-    const yearFrom =
-      typeof yearFromRaw === "string" && yearFromRaw.trim()
-        ? Number(yearFromRaw)
-        : undefined;
-
-    const yearTo =
-      typeof yearToRaw === "string" && yearToRaw.trim()
-        ? Number(yearToRaw)
-        : undefined;
+    const yearFrom = parseYearInput(typeof yearFromRaw === "string" ? yearFromRaw : undefined);
+    const yearTo = parseYearInput(typeof yearToRaw === "string" ? yearToRaw : undefined);
 
     router.push(
       buildCollectionUrl({
@@ -88,8 +51,8 @@ export default function FilterSidebar({
         sensor: activeSensor,
         type: activeType,
         q,
-        yearFrom: Number.isNaN(yearFrom) ? undefined : yearFrom,
-        yearTo: Number.isNaN(yearTo) ? undefined : yearTo,
+        yearFrom,
+        yearTo,
         sort: activeSort,
       })
     );
