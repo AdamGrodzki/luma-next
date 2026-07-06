@@ -20,12 +20,23 @@ export const metadata: Metadata = {
   icons: {
     icon: "/luma-logo.svg",
   },
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Luma Cameras",
+  },
+  formatDetection: {
+    telephone: false,
+  },
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1.0,
   viewportFit: "cover",
+  themeColor: "#F9F8F6",
+  colorScheme: "dark light",
 };
 
 
