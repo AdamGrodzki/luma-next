@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   description: "Encyklopedia marek i aparatów oparta o Next.js i Contentful.",
   icons: {
     icon: "/luma-logo.svg",
+    apple: "/luma-logo.svg",
   },
   manifest: "/manifest.json",
   appleWebApp: {
