@@ -19,17 +19,16 @@ export default function Error({
             </div>
 
                 <h1 className="mt-8 font-serif text-5xl leading-tight text-[var(--text-primary)]">
-            Coś poszło nie tak
+                    Sorry, something went wrong.
             </h1>
 
                 <p className="mt-5 max-w-xl text-base leading-7 text-[var(--text-secondary)]">
-            Nie udało się załadować tej części aplikacji. Spróbuj ponownie albo
-            wróć do wcześniejszej strony.
+                    Don't worry, something went wrong. Try again or go back to the previous page.
             </p>
 
                 <div className="mt-8 rounded-2xl border border-[var(--border-default)] bg-[var(--bg-darker)] p-4">
                     <p className="text-xs uppercase tracking-[0.18em] text-[var(--text-muted)]">
-                Szczegóły błędu
+                        Error details
             </p>
 
             <pre className="mt-3 overflow-x-auto whitespace-pre-wrap break-words text-sm leading-6 text-[#b8aea2]">
@@ -42,14 +41,14 @@ export default function Error({
                 onClick={reset}
                 className="rounded-full border border-[#8e6a47] px-6 py-3 text-sm uppercase tracking-[0.14em] text-[#f3eadf] transition hover:bg-[#141210]"
             >
-                Spróbuj ponownie
+                        Try again
             </button>
 
             <a
                 href="/"
                 className="inline-flex rounded-full border border-[#2d241c] px-6 py-3 text-sm uppercase tracking-[0.14em] text-[#cbb9a5] transition hover:border-[#6b573f]"
             >
-                Wróć na start
+                        Back to home
             </a>
             </div>
         </div>
