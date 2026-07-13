@@ -8,30 +8,49 @@ import {
   Zap,
   Monitor,
   Battery,
+  Smartphone,
+  Gauge,
+  Grid3x3,
 } from "lucide-react";
 
 type Props = {
   camera: CameraDetailData;
 };
 
-const sectionIcons: Record<string, React.ComponentType<{ className: string }>> = {
-  Body: Camera,
-  Viewfinder: Focus,
-  "Display & Controls": Monitor,
-  "Sensor & Focus": Focus,
-  "Image Processing": ImageIcon,
-  Exposure: Zap,
-  Video: Video,
-  Connectivity: Wifi,
-  "Power & Misc": Battery,
-};
+// Ikony dla poszczególnych pól - bardziej rozszerzone mapowanie
+const getFieldIcon = (
+  label: string
+): React.ComponentType<{ className: string }> | null => {
+  const lowerLabel = label.toLowerCase();
 
-// Ikony dla poszczególnych pól
-const fieldIcons: Record<string, React.ComponentType<{ className: string }>> = {
-  ISO: Zap,
-  "Procesor obrazu": Zap,
-  Ekran: Monitor,
-  Bateria: Battery,
+  const iconMap: Record<string, React.ComponentType<{ className: string }>> = {
+    iso: Zap,
+    sensor: Grid3x3,
+    resolution: ImageIcon,
+    battery: Battery,
+    video: Video,
+    wifi: Wifi,
+    connectivity: Wifi,
+    display: Monitor,
+    screen: Monitor,
+    weight: Gauge,
+    dimensions: Camera,
+    focus: Focus,
+    autofocus: Focus,
+    lens: Camera,
+    zoom: Camera,
+    megapixel: ImageIcon,
+    megapixels: ImageIcon,
+    flash: Zap,
+    exposure: Zap,
+  };
+
+  for (const [key, icon] of Object.entries(iconMap)) {
+    if (lowerLabel.includes(key)) {
+      return icon;
+    }
+  }
+  return null;
 };
 
 function formatValue(value: string | number): {
@@ -39,11 +58,32 @@ function formatValue(value: string | number): {
   isEmpty: boolean;
 } {
   const strValue = String(value);
-  const isEmpty = strValue === "Brak danych";
+  const isEmpty =
+    strValue === "Brak danych" || strValue === "No data" || strValue === "-";
   return { text: strValue, isEmpty };
 }
 
 export function CameraSpecs({ camera }: Props) {
+  // Fields to exclude from display
+  const excludedFields = ["country", "founded", "gps", "year founded"];
+
+  // Flatten all specs from all groups into a single array
+  const allSpecs = camera.specs.flatMap((group) =>
+    group.items.map((item) => ({
+      label: item.label,
+      value: item.value,
+    }))
+  );
+
+  // Filter out empty specs and excluded fields
+  const filledSpecs = allSpecs.filter((spec) => {
+    const { text } = formatValue(spec.value);
+    const isExcluded = excludedFields.some((field) =>
+      spec.label.toLowerCase().includes(field.toLowerCase())
+    );
+    return text !== "Brak danych" && !isExcluded;
+  });
+
   return (
     <section
       id="specs"
@@ -57,80 +97,48 @@ export function CameraSpecs({ camera }: Props) {
           Full technical specifications
         </h2>
         <p className="mx-auto mt-4 max-w-3xl text-sm leading-6 text-[var(--text-secondary)] sm:text-base sm:leading-7">
-          The full technical specifications of the camera, grouped into logical
-          categories for comparison with other models.
+          All technical specifications of this camera, carefully organized for
+          easy comparison and understanding.
         </p>
       </div>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:gap-7">
-        {camera.specs.map((group, groupIndex) => {
-          const Icon = sectionIcons[group.title];
-          const filledItemsCount = group.items.filter(
-            (item) => item.value !== "No data"
-          ).length;
+      {/* Unified specs grid */}
+      <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-5">
+        {filledSpecs.map((spec, index) => {
+          const { text, isEmpty } = formatValue(spec.value);
+          const FieldIcon = getFieldIcon(spec.label);
 
           return (
             <div
-              key={group.title}
-              className="group overflow-hidden rounded-[18px] border border-[var(--border-light)] bg-gradient-to-br from-[var(--bg-dark)] to-[var(--bg-darker)] transition duration-300 hover:border-[var(--accent-primary)]/30 hover:shadow-lg hover:shadow-[var(--accent-primary)]/10 sm:rounded-[22px]"
+              key={`${spec.label}-${index}`}
+              className="group/spec overflow-hidden rounded-[14px] border border-[var(--border-light)] bg-gradient-to-br from-[var(--bg-dark)] to-[var(--bg-darker)] p-4 transition-all duration-300 hover:border-[var(--accent-primary)]/40 hover:shadow-lg hover:shadow-[var(--accent-primary)]/10 hover:bg-gradient-to-br hover:from-[var(--bg-dark)]/80 hover:to-[var(--bg-darker)]/80 sm:rounded-[16px] sm:p-5"
               style={{
-                transitionDelay: `${groupIndex * 30}ms`,
+                animationDelay: `${index * 20}ms`,
               }}
             >
-              {/* Section header */}
-              <div className="border-b border-[var(--border-light)] bg-gradient-to-r from-[var(--accent-primary)]/5 to-transparent p-5 sm:p-6">
-                <div className="flex items-center gap-3">
-                  {Icon && (
-                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[var(--accent-primary)]/10">
-                      <Icon className="h-6 w-6 text-[var(--accent-primary)]" />
-                    </div>
-                  )}
-                  <div className="flex-1">
-                    <h3 className="text-lg font-bold text-[var(--text-primary)] sm:text-xl">
-                      {group.title}
-                    </h3>
-                    <p className="mt-1 text-xs text-[var(--text-muted)] sm:text-sm">
-                      {filledItemsCount} of {group.items.length} available
-                    </p>
+              {/* Icon section */}
+              {FieldIcon && (
+                <div className="mb-3 flex items-center justify-center">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--accent-primary)]/10 transition-all duration-300 group-hover/spec:scale-110 group-hover/spec:bg-[var(--accent-primary)]/20">
+                    <FieldIcon className="h-5 w-5 text-[var(--accent-primary)]/70 transition-colors duration-300 group-hover/spec:text-[var(--accent-primary)]" />
                   </div>
                 </div>
-              </div>
+              )}
 
-              {/* Spec items */}
-              <div className="divide-y divide-[var(--border-light)] p-5 sm:p-6">
-                {group.items.map((item) => {
-                  const { text, isEmpty } = formatValue(item.value);
-                  const FieldIcon = Object.entries(fieldIcons).find(([key]) =>
-                    item.label.toLowerCase().includes(key.toLowerCase())
-                  )?.[1];
+              {/* Label */}
+              <label className="mb-2 block text-center text-[9px] font-semibold uppercase tracking-[0.25em] text-[var(--text-muted)] transition-colors duration-300 group-hover/spec:text-[var(--accent-primary)]/80 sm:text-[10px]">
+                {spec.label}
+              </label>
 
-                  return (
-                    <div
-                      key={item.label}
-                      className={`group/item py-3.5 first:pt-0 last:pb-0 transition-colors ${
-                        isEmpty ? "opacity-60" : ""
-                      }`}
-                    >
-                      <div className="mb-2 flex items-center gap-2">
-                        {FieldIcon && (
-                          <FieldIcon className="h-4 w-4 text-[var(--accent-primary)]/60" />
-                        )}
-                        <label className="text-[9px] font-semibold uppercase tracking-[0.3em] text-[var(--text-muted)] group-hover/item:text-[var(--accent-primary)]/70 sm:text-[10px] sm:tracking-[0.35em]">
-                          {item.label}
-                        </label>
-                      </div>
-                      <div
-                        className={`text-sm font-medium leading-5 sm:text-[15px] sm:leading-6 ${
-                          isEmpty
-                            ? "text-[var(--text-muted)] italic"
-                            : "text-[var(--text-primary)] group-hover/item:text-[var(--accent-primary)]"
-                        }`}
-                      >
-                        {text}
-                      </div>
-                    </div>
-                  );
-                })}
+              {/* Value */}
+              <div
+                className={`text-center text-sm font-medium leading-5 transition-colors duration-300 sm:text-[15px] sm:leading-6 ${
+                  isEmpty
+                    ? "text-[var(--text-muted)] italic opacity-60"
+                    : "text-[var(--text-primary)] group-hover/spec:text-[var(--accent-primary)]"
+                }`}
+              >
+                {text}
               </div>
             </div>
           );
